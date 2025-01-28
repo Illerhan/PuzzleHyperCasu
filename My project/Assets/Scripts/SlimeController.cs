@@ -43,7 +43,9 @@ public class SlimeController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
-        Destroy(targetItem);
+        
+        Destroy(targetItem.gameObject);
+        targetItem = null;
         transform.localScale *= 1.2f;
         
         Debug.Log($"{slimeData.slimeName} reached its compatible item!");

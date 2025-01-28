@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02bce6653ae33408f0934202955c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangePrefab: {fileID: 6106873361330438305, guid: dead7dde630f12642b836e34f1c35dc6, type: 3}
 --- !u!1 &113656930
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02bce6653ae33408f0934202955c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangePrefab: {fileID: 6106873361330438305, guid: dead7dde630f12642b836e34f1c35dc6, type: 3}
 --- !u!1 &1239867248
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,11 +11,13 @@ public class DragableObject : MonoBehaviour
 {
     Vector3 mousePosition;
     private bool isMooved;
-    private float influenceRadius = 10f;
+    private GameObject range;
+    private float influenceRadius = 5f;
     public static event Action<DragableObject> OnItemDropped;
+    public GameObject rangePrefab;
     
 
-    private void Awake()
+    private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
     }
@@ -26,17 +29,27 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
+        range = Instantiate(rangePrefab);
+        range.transform.localScale = new Vector3(influenceRadius*1.5f,1,influenceRadius*1.5f);
         mousePosition = Input.mousePosition - getMousePosition();
+        
     }
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition-mousePosition);
+        if(!isMooved)
+        {
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            range.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        }
+        
     }
 
     private void OnMouseUp()
     {
+        isMooved = true;
         ObjectManager.Instance.UpdateItemPosition(this);
+        Destroy(range.gameObject);
         OnItemDropped?.Invoke(this);
     }
 
@@ -44,4 +57,5 @@ public class DragableObject : MonoBehaviour
     {
         return influenceRadius;
     }
+    
 }
