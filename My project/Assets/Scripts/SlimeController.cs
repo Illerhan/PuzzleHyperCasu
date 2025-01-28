@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SlimeController : MonoBehaviour
 {
@@ -30,40 +31,11 @@ public class SlimeController : MonoBehaviour
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
         if (distance <= droppedItem.GetInfluenceRadius())
         {
+            targetItem = droppedItem;
             StartCoroutine(MoveToObject(droppedItem.transform.position));
         }
     }
     
-    // public void MoveToFood()
-    // {
-    //     var compatibleItems = ObjectManager.Instance.GetItemsByTag(slimeData.compatibleItemTag);
-    //
-    //     if (compatibleItems.Count == 0)
-    //     {
-    //         Debug.Log($"{slimeData.slimeName} has no compatible items!");
-    //         return;
-    //     }
-    //     
-    //     DragableObject closeItem = null;
-    //     float closestDistance = Mathf.Infinity;
-    //
-    //     foreach (DragableObject item in compatibleItems)
-    //     {
-    //         float distance = Vector3.Distance(transform.position, item.transform.position);
-    //         if (distance < closestDistance)
-    //         {
-    //             closestDistance = distance;
-    //             closeItem = item;
-    //             
-    //         }
-    //     }
-    //
-    //     if (closeItem != null)
-    //     {
-    //         StartCoroutine(MoveToObject(closeItem.transform.position));
-    //     }
-    // }
-
     private IEnumerator MoveToObject(Vector3 targetPosition)
     {
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
@@ -71,6 +43,9 @@ public class SlimeController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
+        Destroy(targetItem);
+        transform.localScale *= 1.2f;
+        
         Debug.Log($"{slimeData.slimeName} reached its compatible item!");
     }
    
