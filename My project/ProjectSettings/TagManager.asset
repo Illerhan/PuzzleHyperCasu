@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MovableObject
   - Slime
+  - Apple
+  - Kiwi
   layers:
   - Default
   - TransparentFX
