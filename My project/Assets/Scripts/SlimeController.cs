@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class SlimeController : MonoBehaviour
@@ -10,6 +11,8 @@ public class SlimeController : MonoBehaviour
     public SlimeData slimeData;
     private DragableObject targetItem = null;
     public int currentSize = 1;
+    [SerializeField] private float pulseRadius;
+    [SerializeField] private float pulseForce;
     
     public float speed = 30f;
     void Start()
@@ -68,7 +71,29 @@ public class SlimeController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public void Bounce()
+    {
+        Debug.Log("Hola");
+        Collider[] hitSlimes = Physics.OverlapSphere(transform.position, pulseRadius);
+
+        foreach (Collider slim in hitSlimes)
+        {
+            if (slim.GameObject() != gameObject)
+            {
+                if (slim.CompareTag("Slime") && slim.GetComponent<SlimeController>().slimeData.slimeName != slimeData.slimeName)
+                {
+                    Rigidbody rb = slim.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        Vector3 forceDirection = (slim.transform.position - transform.position).normalized;
+                        rb.AddForce(forceDirection * pulseForce,ForceMode.Impulse);
+                    }
+                }
+            }
+        }
+    }
+    
     
     // Update is called once per frame
     void Update()

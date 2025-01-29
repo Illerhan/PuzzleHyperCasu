@@ -12,7 +12,8 @@ public class DragableObject : MonoBehaviour
     Vector3 mousePosition;
     private bool isMooved;
     private GameObject range;
-    private float influenceRadius = 5f;
+    private float influenceRadius = 10f;
+    [SerializeField] private string itemName;
 
     public static event Action<DragableObject> OnItemDropped;
     public GameObject rangePrefab;
@@ -47,6 +48,16 @@ public class DragableObject : MonoBehaviour
             }
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SlimeController slim = other.GetComponent<SlimeController>();
+        if (slim.slimeData.compatibleItemTag != this.itemName)
+        {
+            Debug.Log("Hola");
+            slim.Bounce();
+        }
     }
 
     private void OnMouseUp()
