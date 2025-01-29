@@ -6,5 +6,4 @@ public class SlimeData : ScriptableObject
     public string slimeName;
     public string compatibleItemTag;
     public Color slimeColor;
-    
 }

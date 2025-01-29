@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,11 +9,12 @@ public class SlimeController : MonoBehaviour
 
     public SlimeData slimeData;
     private DragableObject targetItem = null;
+    public int currentSize = 1;
     
     public float speed = 30f;
     void Start()
     {
-        
+        transform.localScale *= currentSize;
     }
     
     private void OnEnable()
@@ -46,18 +48,32 @@ public class SlimeController : MonoBehaviour
         
         Destroy(targetItem.gameObject);
         targetItem = null;
-        transform.localScale *= 1.2f;
+        GrowSlim();
         
         Debug.Log($"{slimeData.slimeName} reached its compatible item!");
     }
-   
-    
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   
 
+    private void GrowSlim()
+    {
+        transform.localScale *= 1.2f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SlimeController otherSlim = other.GetComponent<SlimeController>();
+        if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+        {
+            Debug.Log("Collided");
+            GrowSlim();
+            Destroy(other.gameObject);
+        }
+    }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     // Update is called once per frame
     void Update()
     {
+    
+        
     }
 }

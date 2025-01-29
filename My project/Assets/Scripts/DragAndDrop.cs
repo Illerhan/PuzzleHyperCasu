@@ -13,6 +13,7 @@ public class DragableObject : MonoBehaviour
     private bool isMooved;
     private GameObject range;
     private float influenceRadius = 5f;
+
     public static event Action<DragableObject> OnItemDropped;
     public GameObject rangePrefab;
     
@@ -39,8 +40,11 @@ public class DragableObject : MonoBehaviour
     {
         if(!isMooved)
         {
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-            range.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            if (Camera.main != null)
+            {
+                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+                range.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            }
         }
         
     }
