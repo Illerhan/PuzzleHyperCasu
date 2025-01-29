@@ -21,8 +21,10 @@ public class LevelManager : MonoBehaviour
         int count = LevelsContainers.transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            buttonList.Add(LevelsContainers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject);
+            GameObject child = LevelsContainers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
+            buttonList.Add(child);
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
+            
 
         }
       
