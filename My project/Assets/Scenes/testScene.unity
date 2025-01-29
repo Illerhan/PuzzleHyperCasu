@@ -1497,7 +1497,7 @@ MonoBehaviour:
   slimeData: {fileID: 11400000, guid: 713099c7969040a47b7721868b968952, type: 2}
   currentSize: 1
   pulseRadius: 50
-  pulseForce: 2
+  pulseForce: 10
   speed: 10
 --- !u!54 &2000245621
 Rigidbody:

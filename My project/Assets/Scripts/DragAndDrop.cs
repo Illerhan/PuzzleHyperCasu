@@ -50,13 +50,16 @@ public class DragableObject : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        SlimeController slim = other.GetComponent<SlimeController>();
-        if (slim.slimeData.compatibleItemTag != this.itemName)
+        if (isMooved)
         {
-            Debug.Log("Hola");
-            slim.Bounce();
+            SlimeController slim = other.GetComponent<SlimeController>();
+            if (slim.slimeData.compatibleItemTag != this.itemName)
+            {
+                Debug.Log("Hola");
+                slim.Bounce();
+            }
         }
     }
 
