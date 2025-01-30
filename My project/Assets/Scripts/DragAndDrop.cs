@@ -16,6 +16,7 @@ public class DragableObject : MonoBehaviour
     [SerializeField] private string itemName;
 
     public static event Action<DragableObject> OnItemDropped;
+    public static event Action<DragableObject> OnItemEaten;
     public GameObject rangePrefab;
     
 
@@ -75,5 +76,9 @@ public class DragableObject : MonoBehaviour
     {
         return influenceRadius;
     }
-    
+
+    private void OnDestroy()
+    {
+        OnItemEaten?.Invoke(this);
+    }
 }
