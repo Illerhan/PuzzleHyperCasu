@@ -7565,7 +7565,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelsContainers: {fileID: 2023609553}
-  LineMap: {fileID: 0}
 --- !u!4 &1308440952
 Transform:
   m_ObjectHideFlags: 0
