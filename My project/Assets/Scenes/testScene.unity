@@ -419,7 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ae1972d55af6d489ba14789ab9cc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: {fileID: 11400000, guid: 6df55847b9b2fd24eb0bbb03d6ab34f1, type: 2}
+  levelContainer: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
+  currentLevel: {fileID: 11400000, guid: 90c9786be4b39d44d84582879818b95b, type: 2}
   tilemap: {fileID: 1283654393}
 --- !u!4 &696317027
 Transform:
