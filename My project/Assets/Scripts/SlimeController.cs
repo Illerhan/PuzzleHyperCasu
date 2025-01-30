@@ -19,6 +19,9 @@ public class SlimeController : MonoBehaviour
     void Start()
     {
         transform.localScale *= currentSize;
+        Renderer slimRenderer = this.GetComponent<Renderer>();
+        Color slimColor = slimeData.slimeColor;
+        slimRenderer.material.color = slimColor;
     }
     
     private void OnEnable()
