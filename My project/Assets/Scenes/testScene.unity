@@ -224,8 +224,8 @@ Transform:
   m_GameObject: {fileID: 107693103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.93, y: -4.16, z: -3.13}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.19, y: -4.26, z: -3.13}
+  m_LocalScale: {x: 0.48873, y: 0.41929, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -242,7 +242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02bce6653ae33408f0934202955c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  influenceRadius: 10
   itemName: Kiwi
+  initialPosition: {x: 0, y: 0, z: 0}
+  spawnZone: {x: 0, y: 0, z: 0}
+  spawnZoneRadius: 5
   rangePrefab: {fileID: 6106873361330438305, guid: dead7dde630f12642b836e34f1c35dc6, type: 3}
 --- !u!54 &107693110
 Rigidbody:
@@ -387,8 +391,8 @@ Transform:
   m_GameObject: {fileID: 113656930}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7078413, y: 0.0016551922, z: -0.00076244754, w: 0.7063692}
-  m_LocalPosition: {x: -2.2043247, y: 0.1353879, z: -2.2826138}
-  m_LocalScale: {x: 2.2354, y: 1, z: 2.3128}
+  m_LocalPosition: {x: -0.05, y: 0.8, z: -2.29}
+  m_LocalScale: {x: 0.7907835, y: 1, z: 1.5018092}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -541,7 +545,7 @@ Transform:
   m_GameObject: {fileID: 225158557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.97, y: 4.64, z: -3.13}
+  m_LocalPosition: {x: -3.11, y: 4.64, z: -3.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1127,8 +1131,8 @@ Transform:
   m_GameObject: {fileID: 1033743087}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.96, y: -3.86, z: -3.13}
-  m_LocalScale: {x: 1, y: 1.0554, z: 1}
+  m_LocalPosition: {x: -1.98, y: -4.4, z: -3.13}
+  m_LocalScale: {x: 0.94697, y: 0.36776102, z: 0.94697}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1145,7 +1149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02bce6653ae33408f0934202955c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  influenceRadius: 0
   itemName: Apple
+  initialPosition: {x: 0, y: 0, z: 0}
+  spawnZone: {x: 0, y: 0, z: 0}
+  spawnZoneRadius: 1
   rangePrefab: {fileID: 6106873361330438305, guid: dead7dde630f12642b836e34f1c35dc6, type: 3}
 --- !u!54 &1033743094
 Rigidbody:
@@ -1322,7 +1330,7 @@ Transform:
   m_GameObject: {fileID: 1676722592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65, y: 2.19, z: -3.13}
+  m_LocalPosition: {x: 3.08, y: 2.19, z: -3.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
