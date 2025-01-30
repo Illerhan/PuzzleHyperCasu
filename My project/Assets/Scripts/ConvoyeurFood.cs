@@ -38,16 +38,6 @@ public class ConvoyeurFood : MonoBehaviour
         {
             SpawnNewFood(i);
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        
-        //DragableObject.OnItemDropped += HandleItemDropped;
-=======
-
->>>>>>> Stashed changes
-=======
-
->>>>>>> Stashed changes
     }
     
     
