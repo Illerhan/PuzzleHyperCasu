@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[CreateAssetMenu(fileName = "LevellSO", menuName = "Scriptable Objects/LevellSO")]
+[CreateAssetMenu(fileName = "LevellSO", menuName = "Level/LevellSO")]
 public class LevellSO : ScriptableObject
 {
     [System.Serializable]
@@ -11,7 +11,7 @@ public class LevellSO : ScriptableObject
         public Vector3Int tilePosition;
     }
 
-    [System.Serializable]
+   [System.Serializable]
     public class LevelSlime
     {
         public GameObject slimePrefab;

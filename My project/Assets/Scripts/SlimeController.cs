@@ -85,11 +85,14 @@ public class SlimeController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         SlimeController otherSlim = other.GetComponent<SlimeController>();
-        if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+        if(otherSlim != null)
         {
-            Debug.Log("Collided");
-            GrowSlim();
-            Destroy(other.gameObject);
+            if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+            {
+                Debug.Log("Collided");
+                GrowSlim();
+                Destroy(other.gameObject);
+            }
         }
     }
 
