@@ -56,7 +56,6 @@ public class SlimeController : MonoBehaviour
             StopCoroutine(co);
             co = null;
         }
-        
     }
     
     private IEnumerator MoveToObject(Vector3 targetPosition)
