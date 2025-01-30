@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 908e78f4b15fba3439f53474de18e45b, type: 3}
-  m_Name: Level2
+  m_Name: Lvl2
   m_EditorClassIdentifier: 
-  objectsToSpawn:
-  - prefab: {fileID: 8254833122842956610, guid: 217ec974b1572f349b7db6a463847fb1, type: 3}
-    tilePosition: {x: 0, y: 5, z: 0}
-  - prefab: {fileID: 3497896979896397978, guid: 21098bb654f7dda4a9a65420bd661470, type: 3}
-    tilePosition: {x: 1, y: 0, z: 0}
-  slimeToSpawn: []
+  objectsToSpawn: []
+  slimeToSpawn:
+  - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
+    slimePosition: {x: 1, y: -4.5, z: -0.5}
