@@ -12,12 +12,11 @@ public class DragableObject : MonoBehaviour
     Vector3 mousePosition;
     private bool isMooved;
     private GameObject range;
-    [SerializeField] private float influenceRadius;
-    [SerializeField] private string itemName;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private Vector3 spawnZone;
     [SerializeField] private float spawnZoneRadius = 5f;
     private bool isFirstMove = true;
+    [SerializeField] public FoodType type;
 
     public static event Action<DragableObject> OnItemDropped;
     public static event Action<DragableObject> OnItemEaten;
@@ -27,6 +26,7 @@ public class DragableObject : MonoBehaviour
     private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
+        
     }
 
     private Vector3 getMousePosition()
@@ -43,7 +43,7 @@ public class DragableObject : MonoBehaviour
             isFirstMove = false;
         }
         range = Instantiate(rangePrefab);
-        range.transform.localScale = new Vector3(influenceRadius*1.5f,1,influenceRadius*1.5f);
+        range.transform.localScale = new Vector3(type.influenceRadius*1.5f,1,type.influenceRadius*1.5f);
         mousePosition = Input.mousePosition - getMousePosition();
     }
 
@@ -65,7 +65,7 @@ public class DragableObject : MonoBehaviour
         if (isMooved)
         {
             SlimeController slim = other.GetComponent<SlimeController>();
-            if (slim.slimeData.compatibleItemTag != this.itemName)
+            if (slim.slimeData.compatibleItemTag != type.itemName)
             {
                 Debug.Log("Hola");
                 slim.Bounce();
@@ -99,7 +99,7 @@ public class DragableObject : MonoBehaviour
 
     public float GetInfluenceRadius()
     {
-        return influenceRadius;
+        return type.influenceRadius;
     }
 
     private void OnDestroy()
