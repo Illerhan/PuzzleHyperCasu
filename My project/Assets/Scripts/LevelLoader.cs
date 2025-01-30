@@ -1,11 +1,13 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 public class LevelLoader : MonoBehaviour
 {
 
+    public LevelContainer levelContainer;
     public LevellSO currentLevel;
     public Tilemap tilemap;
     
@@ -19,6 +21,7 @@ public class LevelLoader : MonoBehaviour
 
     void LoadLevel()
     {
+        currentLevel = levelContainer.selectedLevel;
         if (currentLevel == null || tilemap == null)
             return;
         foreach (var obj in currentLevel.objectsToSpawn)

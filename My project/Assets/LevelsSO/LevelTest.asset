@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelTest
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - prefab: {fileID: 0}
-    tilePosition: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 8254833122842956610, guid: 217ec974b1572f349b7db6a463847fb1, type: 3}
+    tilePosition: {x: 10, y: 10, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 217ec974b1572f349b7db6a463847fb1, type: 3}
     slimePosition: {x: 2, y: 2, z: -0.5}
