@@ -36,7 +36,7 @@ public class LevelLoader : MonoBehaviour
         {
             if (slime.slimePrefab != null)
             {
-                Instantiate(slime.slimePrefab, slime.slimePosition, quaternion.identity);
+                Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity);
             }
         }
     }
