@@ -13199,6 +13199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonLevelsContainers: {fileID: 2023609553}
   levels: []
+  currentLevel: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
 --- !u!4 &1308440952
 Transform:
   m_ObjectHideFlags: 0
