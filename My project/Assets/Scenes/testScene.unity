@@ -131,31 +131,14 @@ GameObject:
   - component: {fileID: 107693107}
   - component: {fileID: 107693106}
   - component: {fileID: 107693105}
-  - component: {fileID: 107693104}
   - component: {fileID: 107693109}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: MovableObject
+  m_TagString: Kiwi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &107693104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107693103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ced2f9445853d4a8297ca725bda924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mousePosition: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  mainCamera: {fileID: 0}
-  isDraging: 0
 --- !u!65 &107693105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -290,10 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ced2f9445853d4a8297ca725bda924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePosition: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  mainCamera: {fileID: 0}
-  isDraging: 0
 --- !u!64 &113656932
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -396,6 +375,7 @@ GameObject:
   - component: {fileID: 263063132}
   - component: {fileID: 263063131}
   - component: {fileID: 263063130}
+  - component: {fileID: 263063134}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Slime
@@ -492,6 +472,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &263063134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263063129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bab1364864fbd498d6e10afec6912a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimeData: {fileID: 11400000, guid: fecfdb1e54f1a5f4daf9345cdb3da0a3, type: 2}
+  speed: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,31 +818,14 @@ GameObject:
   - component: {fileID: 1033743091}
   - component: {fileID: 1033743090}
   - component: {fileID: 1033743089}
-  - component: {fileID: 1033743088}
   - component: {fileID: 1033743093}
   m_Layer: 0
   m_Name: w
-  m_TagString: MovableObject
+  m_TagString: Apple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1033743088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033743087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ced2f9445853d4a8297ca725bda924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mousePosition: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  mainCamera: {fileID: 0}
-  isDraging: 0
 --- !u!136 &1033743089
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -952,6 +929,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b02bce6653ae33408f0934202955c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1239867248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239867249}
+  - component: {fileID: 1239867250}
+  m_Layer: 0
+  m_Name: ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1239867249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239867248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0199852, y: -0.38001543, z: 2.614008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1239867250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239867248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be195accd5be6d646a6ef8d716620dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1676722592
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +985,7 @@ GameObject:
   - component: {fileID: 1676722595}
   - component: {fileID: 1676722594}
   - component: {fileID: 1676722593}
+  - component: {fileID: 1676722597}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Slime
@@ -1060,6 +1082,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676722597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676722592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bab1364864fbd498d6e10afec6912a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimeData: {fileID: 11400000, guid: fecfdb1e54f1a5f4daf9345cdb3da0a3, type: 2}
+  speed: 0
 --- !u!1 &2000245615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1108,7 @@ GameObject:
   - component: {fileID: 2000245618}
   - component: {fileID: 2000245617}
   - component: {fileID: 2000245616}
+  - component: {fileID: 2000245620}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Slime
@@ -1168,6 +1205,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000245620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000245615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bab1364864fbd498d6e10afec6912a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimeData: {fileID: 11400000, guid: 713099c7969040a47b7721868b968952, type: 2}
+  speed: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1181,3 +1232,4 @@ SceneRoots:
   - {fileID: 263063133}
   - {fileID: 1676722596}
   - {fileID: 2000245619}
+  - {fileID: 1239867249}
