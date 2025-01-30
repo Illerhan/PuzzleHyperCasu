@@ -19,6 +19,9 @@ public class SlimeController : MonoBehaviour
     void Start()
     {
         transform.localScale *= currentSize;
+        Renderer slimRenderer = this.GetComponent<Renderer>();
+        Color slimColor = slimeData.slimeColor;
+        slimRenderer.material.color = slimColor;
     }
     
     private void OnEnable()
@@ -82,11 +85,14 @@ public class SlimeController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         SlimeController otherSlim = other.GetComponent<SlimeController>();
-        if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+        if(otherSlim != null)
         {
-            Debug.Log("Collided");
-            GrowSlim();
-            Destroy(other.gameObject);
+            if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+            {
+                Debug.Log("Collided");
+                GrowSlim();
+                Destroy(other.gameObject);
+            }
         }
     }
 
