@@ -12,10 +12,15 @@ public class DragableObject : MonoBehaviour
     Vector3 mousePosition;
     private bool isMooved;
     private GameObject range;
-    private float influenceRadius = 10f;
+    [SerializeField] private float influenceRadius;
     [SerializeField] private string itemName;
+    [SerializeField] private Vector3 initialPosition;
+    [SerializeField] private Vector3 spawnZone;
+    [SerializeField] private float spawnZoneRadius = 5f;
+    private bool isFirstMove = true;
 
     public static event Action<DragableObject> OnItemDropped;
+    public static event Action<DragableObject> OnItemEaten;
     public GameObject rangePrefab;
     
 
@@ -31,10 +36,15 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
+        if (isFirstMove)
+        {
+            initialPosition = this.transform.position;
+            spawnZone = initialPosition;
+            isFirstMove = false;
+        }
         range = Instantiate(rangePrefab);
         range.transform.localScale = new Vector3(influenceRadius*1.5f,1,influenceRadius*1.5f);
         mousePosition = Input.mousePosition - getMousePosition();
-        
     }
 
     private void OnMouseDrag()
@@ -65,15 +75,35 @@ public class DragableObject : MonoBehaviour
 
     private void OnMouseUp()
     {
-        isMooved = true;
-        ObjectManager.Instance.UpdateItemPosition(this);
-        Destroy(range.gameObject);
-        OnItemDropped?.Invoke(this);
+        if (IsInsideSpawnZone(transform.position))
+        {
+            ObjectManager.Instance.UpdateItemPosition(this);
+            Destroy(range.gameObject);
+            transform.position = initialPosition;
+        }
+        else
+        {
+            Debug.Log("HI");
+            isMooved = true;
+            ObjectManager.Instance.UpdateItemPosition(this);
+            Destroy(range.gameObject);
+            OnItemDropped?.Invoke(this);
+        }
+        
     }
+    private bool IsInsideSpawnZone(Vector3 position)
+    {
+        return Vector3.Distance(position, spawnZone) <= spawnZoneRadius;
+    }
+    
 
     public float GetInfluenceRadius()
     {
         return influenceRadius;
     }
-    
+
+    private void OnDestroy()
+    {
+        OnItemEaten?.Invoke(this);
+    }
 }

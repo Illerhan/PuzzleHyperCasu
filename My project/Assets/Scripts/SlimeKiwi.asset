@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeName: Kiwi
   compatibleItemTag: Kiwi
-  slimeColor: {r: 0.08728252, g: 0.990566, b: 0, a: 0}
+  slimeColor: {r: 0, g: 0.99215686, b: 0.06758525, a: 1}

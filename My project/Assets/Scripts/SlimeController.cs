@@ -10,24 +10,33 @@ public class SlimeController : MonoBehaviour
 
     public SlimeData slimeData;
     private DragableObject targetItem = null;
-    public int currentSize = 1;
+    public float currentSize = 1;
     [SerializeField] private float pulseRadius;
     [SerializeField] private float pulseForce;
+    private IEnumerator co;
     
     public float speed = 30f;
     void Start()
     {
         transform.localScale *= currentSize;
+        Renderer slimRenderer = this.GetComponent<Renderer>();
+        Color slimColor = slimeData.slimeColor;
+        slimRenderer.material.color = slimColor;
     }
     
     private void OnEnable()
     {
         DragableObject.OnItemDropped += OnItemDropped;
+        DragableObject.OnItemEaten += OnItemEaten;
     }
 
     private void OnDisable()
     {
         DragableObject.OnItemDropped -= OnItemDropped;
+        DragableObject.OnItemEaten += OnItemEaten;
+        
+        
+        
     }
     
     private void OnItemDropped(DragableObject droppedItem)
@@ -37,7 +46,18 @@ public class SlimeController : MonoBehaviour
         if (distance <= droppedItem.GetInfluenceRadius())
         {
             targetItem = droppedItem;
-            StartCoroutine(MoveToObject(droppedItem.transform.position));
+            co = MoveToObject(droppedItem.transform.position);
+            StartCoroutine(co);
+        }
+    }
+
+    private void OnItemEaten(DragableObject droppedItem)
+    {
+        Debug.Log("Food disapeared");
+        if (co != null)
+        {
+            StopCoroutine(co);
+            co = null;
         }
     }
     
@@ -58,7 +78,8 @@ public class SlimeController : MonoBehaviour
 
     private void GrowSlim()
     {
-        transform.localScale *= 1.2f;
+        currentSize += 0.5f;
+        transform.localScale *= 1.5f;
     }
 
     private void OnTriggerEnter(Collider other)
