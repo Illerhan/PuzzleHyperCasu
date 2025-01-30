@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bab1364864fbd498d6e10afec6912a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimeData: {fileID: 11400000, guid: 5e27bfebf34e5e14d8939dc5288138db, type: 2}
+  slimeData: {fileID: 11400000, guid: 713099c7969040a47b7721868b968952, type: 2}
   currentSize: 1
   pulseRadius: 15
   pulseForce: 10
