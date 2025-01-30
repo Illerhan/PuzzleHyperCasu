@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1702575216780225750}
   - component: {fileID: 1593117213218511467}
   m_Layer: 0
-  m_Name: SlimePink
+  m_Name: SlimePinkSize1
   m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeData: {fileID: 11400000, guid: 713099c7969040a47b7721868b968952, type: 2}
-  currentSize: 1
+  currentSize: 1.5
   pulseRadius: 15
   pulseForce: 10
   speed: 10

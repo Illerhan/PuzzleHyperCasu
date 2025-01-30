@@ -15,11 +15,7 @@ GameObject:
   - component: {fileID: 1702575216780225750}
   - component: {fileID: 1593117213218511467}
   m_Layer: 0
-<<<<<<<< HEAD:My project/Assets/SlimeType/SlimeGreen.prefab
-  m_Name: SlimeGreen
-========
-  m_Name: SlimeKiwi
->>>>>>>> main:My project/Assets/Prefabs/SlimeKiwi.prefab
+  m_Name: SlimeOrangeSize1
   m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bab1364864fbd498d6e10afec6912a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimeData: {fileID: 11400000, guid: fecfdb1e54f1a5f4daf9345cdb3da0a3, type: 2}
-  currentSize: 1
+  slimeData: {fileID: 11400000, guid: 5e27bfebf34e5e14d8939dc5288138db, type: 2}
+  currentSize: 1.5
   pulseRadius: 15
   pulseForce: 10
   speed: 10

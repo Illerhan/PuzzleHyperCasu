@@ -30,7 +30,7 @@ public class ConvoyeurFood : MonoBehaviour
             SpawnNewFood(i);
         }
         
-        DragableObject.OnItemDropped += HandleItemDropped;
+        //DragableObject.OnItemDropped += HandleItemDropped;
     }
     
     
