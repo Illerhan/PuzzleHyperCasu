@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66e7f131de1b34489df67a865d7ea36, type: 3}
   m_Name: SlimePomme
   m_EditorClassIdentifier: 
-  slimeName: 
+  slimeName: Apple
   compatibleItemTag: Apple
-  slimeColor: {r: 0, g: 0, b: 0, a: 0}
+  slimeColor: {r: 1, g: 0, b: 0, a: 0}

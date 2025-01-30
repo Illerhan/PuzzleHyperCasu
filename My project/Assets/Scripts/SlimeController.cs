@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class SlimeController : MonoBehaviour
@@ -8,21 +10,30 @@ public class SlimeController : MonoBehaviour
 
     public SlimeData slimeData;
     private DragableObject targetItem = null;
+    public float currentSize = 1;
+    [SerializeField] private float pulseRadius;
+    [SerializeField] private float pulseForce;
+    private IEnumerator co;
     
     public float speed = 30f;
     void Start()
     {
-        
+        transform.localScale *= currentSize;
     }
     
     private void OnEnable()
     {
         DragableObject.OnItemDropped += OnItemDropped;
+        DragableObject.OnItemEaten += OnItemEaten;
     }
 
     private void OnDisable()
     {
         DragableObject.OnItemDropped -= OnItemDropped;
+        DragableObject.OnItemEaten += OnItemEaten;
+        
+        
+        
     }
     
     private void OnItemDropped(DragableObject droppedItem)
@@ -32,7 +43,18 @@ public class SlimeController : MonoBehaviour
         if (distance <= droppedItem.GetInfluenceRadius())
         {
             targetItem = droppedItem;
-            StartCoroutine(MoveToObject(droppedItem.transform.position));
+            co = MoveToObject(droppedItem.transform.position);
+            StartCoroutine(co);
+        }
+    }
+
+    private void OnItemEaten(DragableObject droppedItem)
+    {
+        Debug.Log("Food disapeared");
+        if (co != null)
+        {
+            StopCoroutine(co);
+            co = null;
         }
     }
     
@@ -43,19 +65,58 @@ public class SlimeController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
-        Destroy(targetItem);
-        transform.localScale *= 1.2f;
+        
+        Destroy(targetItem.gameObject);
+        targetItem = null;
+        GrowSlim();
         
         Debug.Log($"{slimeData.slimeName} reached its compatible item!");
     }
-   
-    
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   
 
+    private void GrowSlim()
+    {
+        currentSize += 0.5f;
+        transform.localScale *= 1.5f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SlimeController otherSlim = other.GetComponent<SlimeController>();
+        if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+        {
+            Debug.Log("Collided");
+            GrowSlim();
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void Bounce()
+    {
+        Debug.Log("Hola");
+        Collider[] hitSlimes = Physics.OverlapSphere(transform.position, pulseRadius);
+
+        foreach (Collider slim in hitSlimes)
+        {
+            if (slim.GameObject() != gameObject)
+            {
+                if (slim.CompareTag("Slime") && slim.GetComponent<SlimeController>().slimeData.slimeName != slimeData.slimeName)
+                {
+                    Rigidbody rb = slim.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        Vector3 forceDirection = (slim.transform.position - transform.position).normalized;
+                        rb.AddForce(forceDirection * pulseForce,ForceMode.Impulse);
+                    }
+                }
+            }
+        }
+    }
+    
+    
     // Update is called once per frame
     void Update()
     {
+    
+        
     }
 }

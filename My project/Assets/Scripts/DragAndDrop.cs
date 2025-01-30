@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,11 +11,20 @@ public class DragableObject : MonoBehaviour
 {
     Vector3 mousePosition;
     private bool isMooved;
-    private float influenceRadius = 10f;
+    private GameObject range;
+    [SerializeField] private float influenceRadius;
+    [SerializeField] private string itemName;
+    [SerializeField] private Vector3 initialPosition;
+    [SerializeField] private Vector3 spawnZone;
+    [SerializeField] private float spawnZoneRadius = 5f;
+    private bool isFirstMove = true;
+
     public static event Action<DragableObject> OnItemDropped;
+    public static event Action<DragableObject> OnItemEaten;
+    public GameObject rangePrefab;
     
 
-    private void Awake()
+    private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
     }
@@ -26,22 +36,74 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
+        if (isFirstMove)
+        {
+            initialPosition = this.transform.position;
+            spawnZone = initialPosition;
+            isFirstMove = false;
+        }
+        range = Instantiate(rangePrefab);
+        range.transform.localScale = new Vector3(influenceRadius*1.5f,1,influenceRadius*1.5f);
         mousePosition = Input.mousePosition - getMousePosition();
     }
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition-mousePosition);
+        if(!isMooved)
+        {
+            if (Camera.main != null)
+            {
+                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+                range.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            }
+        }
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (isMooved)
+        {
+            SlimeController slim = other.GetComponent<SlimeController>();
+            if (slim.slimeData.compatibleItemTag != this.itemName)
+            {
+                Debug.Log("Hola");
+                slim.Bounce();
+            }
+        }
     }
 
     private void OnMouseUp()
     {
-        ObjectManager.Instance.UpdateItemPosition(this);
-        OnItemDropped?.Invoke(this);
+        if (IsInsideSpawnZone(transform.position))
+        {
+            ObjectManager.Instance.UpdateItemPosition(this);
+            Destroy(range.gameObject);
+            transform.position = initialPosition;
+        }
+        else
+        {
+            Debug.Log("HI");
+            isMooved = true;
+            ObjectManager.Instance.UpdateItemPosition(this);
+            Destroy(range.gameObject);
+            OnItemDropped?.Invoke(this);
+        }
+        
     }
+    private bool IsInsideSpawnZone(Vector3 position)
+    {
+        return Vector3.Distance(position, spawnZone) <= spawnZoneRadius;
+    }
+    
 
     public float GetInfluenceRadius()
     {
         return influenceRadius;
+    }
+
+    private void OnDestroy()
+    {
+        OnItemEaten?.Invoke(this);
     }
 }
