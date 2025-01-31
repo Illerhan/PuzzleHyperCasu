@@ -20,8 +20,22 @@ public class DragableObject : MonoBehaviour
 
     public static event Action<DragableObject> OnItemDropped;
     public static event Action<DragableObject> OnItemEaten;
+    public static event Action<DragableObject> OnObjectMoved;
     public GameObject rangePrefab;
+    public int indexInConvoyeur;
     
+    public bool IsMooved
+    {
+        get => isMooved;
+        set
+        {
+            if (isMooved != value) // Notify only if value changes
+            {
+                isMooved = value;
+                OnObjectMoved?.Invoke(this); // Notify convoyeur
+            }
+        }
+    }
 
     private void Start()
     {
@@ -87,7 +101,7 @@ public class DragableObject : MonoBehaviour
             isMooved = true;
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
-            OnItemDropped?.Invoke(this);
+            OnObjectMoved?.Invoke(this);
         }
         
     }
