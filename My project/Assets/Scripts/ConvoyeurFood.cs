@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -20,6 +22,8 @@ public class ConvoyeurFood : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        DragableObject.OnObjectMoved += HandleFoodMoved;
+        
         foreach (var food in foodList.food)
         {
             itemQueue.Enqueue(food.foodPrefab);
@@ -29,10 +33,12 @@ public class ConvoyeurFood : MonoBehaviour
         {
             SpawnNewFood(i);
         }
-        
-        DragableObject.OnItemDropped += HandleItemDropped;
     }
     
+    void OnDestroy()
+    {
+        DragableObject.OnObjectMoved -= HandleFoodMoved;
+    }
     
 
     // Update is called once per frame
@@ -69,11 +75,13 @@ public class ConvoyeurFood : MonoBehaviour
 
     void SpawnNewFood(int positionIndex)
     {
-        if (itemQueue.Count == 0) 
+        if (itemQueue.Count <= 0) 
             return;
         DragableObject foodData = itemQueue.Dequeue();
+
         DragableObject newFood = Instantiate(foodData.type.foodPrefab, spawnPoint.position, Quaternion.identity);
         activeItems.Add(newFood);
+        newFood.indexInConvoyeur = positionIndex;
 
         newFood.transform.position = positions[positionIndex].position;
     }
@@ -88,4 +96,10 @@ public class ConvoyeurFood : MonoBehaviour
 
         isMoving = true;
     }
+    
+    private void HandleFoodMoved(DragableObject food)
+    {
+        DroppedFood(food.indexInConvoyeur);
+    }
+    //Graou
 }

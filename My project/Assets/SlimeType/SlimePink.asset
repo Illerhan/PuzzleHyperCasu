@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66e7f131de1b34489df67a865d7ea36, type: 3}
+  m_Name: SlimePink
+  m_EditorClassIdentifier: 
+  slimeName: Pink
+  compatibleItemTag: Pink
+  slimeColor: {r: 0.8679245, g: 0.38892844, b: 0.7154481, a: 1}
