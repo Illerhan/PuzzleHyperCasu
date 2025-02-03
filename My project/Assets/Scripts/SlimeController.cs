@@ -14,7 +14,8 @@ public class SlimeController : MonoBehaviour
     [SerializeField] private float pulseRadius;
     [SerializeField] private float pulseForce;
     private IEnumerator co;
-    
+    private float maxSize = 3;
+    private bool isGrown = false;
     public float speed = 30f;
     void Start()
     {
@@ -41,7 +42,7 @@ public class SlimeController : MonoBehaviour
     
     private void OnItemDropped(DragableObject droppedItem)
     {
-        if (!droppedItem.CompareTag(slimeData.compatibleItemTag)) return;
+        if (!droppedItem.CompareTag(slimeData.compatibleItemTag) || isGrown) return;
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
         if (distance <= droppedItem.GetInfluenceRadius())
         {
@@ -78,8 +79,12 @@ public class SlimeController : MonoBehaviour
 
     private void GrowSlim()
     {
+        if (isGrown)
+            return;
         currentSize += 0.5f;
-        transform.localScale *= 1.5f;
+        transform.localScale *= 1.25f;
+        if (currentSize == maxSize)
+            isGrown = true;
     }
 
     private void OnTriggerEnter(Collider other)
