@@ -1,5 +1,6 @@
  using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.Mathematics;
+ using TMPro;
+ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
@@ -10,17 +11,24 @@ public class LevelLoader : MonoBehaviour
     public LevelContainer levelContainer;
     public LevellSO currentLevel;
     public Tilemap tilemap;
+    public TextMeshProUGUI level;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         LoadLevel();
+        level.text = levelContainer.selectedLevel.name.Remove(0, 3);
     }
 
 
     public void LoadLevel()
     {
+        foreach (Transform child in tilemap.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        
         currentLevel = levelContainer.selectedLevel;
         if (currentLevel == null || tilemap == null)
             return;
@@ -36,10 +44,12 @@ public class LevelLoader : MonoBehaviour
         {
             if (slime.slimePrefab != null)
             {
-                GameObject slimeNew = Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity);
+                GameObject slimeNew = Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity,tilemap.transform);
                 slimeNew.GetComponent<SlimeController>().currentState = slime.defaultState;
             }
         }
+        
+        
     }
     // Update is called once per frame
     void Update()
