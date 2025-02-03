@@ -109,6 +109,7 @@ public class DragableObject : MonoBehaviour
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
             OnItemDropped?.Invoke(this);
+            OnObjectMoved?.Invoke(this);
         }
         
     }

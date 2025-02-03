@@ -35,9 +35,6 @@ public class SlimeController : MonoBehaviour
     {
         DragableObject.OnItemDropped -= OnItemDropped;
         DragableObject.OnItemEaten += OnItemEaten;
-        
-        
-        
     }
     
     private void OnItemDropped(DragableObject droppedItem)
@@ -55,7 +52,7 @@ public class SlimeController : MonoBehaviour
     private void OnItemEaten(DragableObject droppedItem)
     {
         Debug.Log("Food disapeared");
-        if (co != null)
+        if (co != null && droppedItem != null)
         {
             StopCoroutine(co);
             co = null;
