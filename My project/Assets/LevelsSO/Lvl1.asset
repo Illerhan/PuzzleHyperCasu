@@ -15,4 +15,4 @@ MonoBehaviour:
   objectsToSpawn: []
   slimeToSpawn:
   - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
-    slimePosition: {x: -0.5, y: -1.5, z: -0.5}
+    slimePosition: {x: -0.5, y: -1.5, z: -1}
