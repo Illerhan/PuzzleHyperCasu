@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> buttonList;
     public List<ScriptableObject> levels;
     public LevelContainer currentLevel;
+    
 
     
     private void Start()
@@ -31,7 +32,7 @@ public class LevelManager : MonoBehaviour
             GameObject child = buttonLevelsContainers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
             buttonList.Add(child);
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
-            buttonList[i].name = (i + 1).ToString();
+            buttonList[i].name = (i).ToString();
 
 
         }
@@ -41,9 +42,8 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         int index = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        Debug.Log("Load Level " + index);
         currentLevel.selectedLevel = currentLevel.levelSo[index];
-        SceneManager.LoadScene("testScene");
+        SceneManager.LoadScene("Level");
     }
 }
 

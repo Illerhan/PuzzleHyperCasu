@@ -17,10 +17,10 @@ MonoBehaviour:
     tilePosition: {x: 0, y: 0, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -1.5, y: -1.5, z: -0.5}
+    slimePosition: {x: -1.5, y: -1.5, z: -0.75}
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 2.5, y: -4.5, z: -0.5}
+    slimePosition: {x: 2.5, y: -4.5, z: -0.75}
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -2.5, y: 0.5, z: -0.5}
+    slimePosition: {x: -2.5, y: 0.5, z: -0.75}
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: 1.5, y: -1.5, z: -0.5}
+    slimePosition: {x: 1.5, y: -1.5, z: -0.75}
