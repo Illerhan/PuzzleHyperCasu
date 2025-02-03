@@ -16,16 +16,13 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject buttonLevelsContainers;
     private List<GameObject> buttonList;
-    public List<ScriptableObject> levels;
     public LevelContainer currentLevel;
-    public ScrollRect scrollRect;
     
 
     
     private void Start()
     {
         buttonList = new List<GameObject>();
-        levels = new List<ScriptableObject>();
       
         int count = buttonLevelsContainers.transform.childCount;
         for (int i = 0; i < count; i++)

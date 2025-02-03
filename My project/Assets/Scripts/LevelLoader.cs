@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -12,6 +14,7 @@ public class LevelLoader : MonoBehaviour
     public Tilemap tilemap;
     
     
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +22,7 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    void LoadLevel()
+    public void LoadLevel()
     {
         currentLevel = levelContainer.selectedLevel;
         if (currentLevel == null || tilemap == null)
@@ -39,6 +42,9 @@ public class LevelLoader : MonoBehaviour
                 Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity);
             }
         }
+        
+
+        
     }
     // Update is called once per frame
     void Update()

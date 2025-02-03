@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Scroll : MonoBehaviour
 {
     public ScrollRect scrollRect;
-
+    public float speed;
     
-    public float duration;
+    private float duration;
     private float position;
     private float elapsedTime;
     private bool canMove = false;
@@ -42,8 +42,9 @@ public class Scroll : MonoBehaviour
         }
         else
         {
+            duration = position *10 * speed;
             canMove = true;
-          
+            
         }
 
     }
@@ -55,19 +56,16 @@ public class Scroll : MonoBehaviour
             elapsedTime += Time.deltaTime;
             percentageComplete = elapsedTime / duration;
             scrollRect.verticalNormalizedPosition = Mathf.Lerp(scrollRect.verticalNormalizedPosition, position, curve.Evaluate(percentageComplete));
-            Debug.Log("Update true");
             
         }
 
         float pos = Mathf.Round((scrollRect.verticalNormalizedPosition * 1000));
         float endpos = Mathf.Round((position * 1000));
-        Debug.Log(pos);
-        Debug.Log(endpos);
-        
+       
         if (pos == endpos)
         {
             canMove = false;
-            Debug.Log("Update false");
+            duration = 0;
         }
         
     }
