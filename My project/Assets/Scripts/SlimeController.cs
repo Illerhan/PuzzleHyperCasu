@@ -14,7 +14,7 @@ public class SlimeController : MonoBehaviour
     [SerializeField] private float pulseRadius;
     [SerializeField] private float pulseForce;
     private IEnumerator co;
-    private float maxSize = 3;
+    public float maxSize = 3;
     private bool isGrown = false;
     public float speed = 30f;
     void Start()
@@ -23,6 +23,7 @@ public class SlimeController : MonoBehaviour
         Renderer slimRenderer = this.GetComponent<Renderer>();
         Color slimColor = slimeData.slimeColor;
         slimRenderer.material.color = slimColor;
+        SlimeManager.Instance.RegisterSlime(this);
     }
     
     private void OnEnable()
@@ -81,7 +82,10 @@ public class SlimeController : MonoBehaviour
         currentSize += 0.5f;
         transform.localScale *= 1.25f;
         if (currentSize == maxSize)
+        {
             isGrown = true;
+            SlimeManager.Instance.CheckSlimes();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -119,8 +123,12 @@ public class SlimeController : MonoBehaviour
             }
         }
     }
-    
-    
+
+    private void OnDestroy()
+    {
+        SlimeManager.Instance.UnregisterSlime(this);
+    }
+
     // Update is called once per frame
     void Update()
     {
