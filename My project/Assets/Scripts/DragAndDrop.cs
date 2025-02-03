@@ -52,7 +52,7 @@ public class DragableObject : MonoBehaviour
     {
         if (isFirstMove)
         {
-            initialPosition = this.transform.position;
+            initialPosition = transform.position;
             spawnZone = initialPosition;
             isFirstMove = false;
         }
@@ -76,13 +76,23 @@ public class DragableObject : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        
         if (isMooved)
         {
-            SlimeController slim = other.GetComponent<SlimeController>();
-            if (slim.slimeData.compatibleItemTag != type.itemName)
+
+            if (other.CompareTag("Slime"))
             {
-                Debug.Log("Hola");
-                slim.Bounce();
+                SlimeController slim = other.GetComponent<SlimeController>();
+                
+                if (slim.slimeData.compatibleItemTag != type.itemName)
+                {
+                    Debug.Log("Hola");
+                    slim.Bounce();
+                    Destroy(this);
+                    return;
+                }
+                slim.GrowSlim();
+                Destroy(this);
             }
         }
     }
@@ -101,6 +111,7 @@ public class DragableObject : MonoBehaviour
             isMooved = true;
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
+            OnItemDropped?.Invoke(this);
             OnObjectMoved?.Invoke(this);
         }
         

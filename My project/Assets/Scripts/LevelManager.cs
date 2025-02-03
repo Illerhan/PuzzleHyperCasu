@@ -32,7 +32,6 @@ public class LevelManager : MonoBehaviour
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
             buttonList[i].name = (i).ToString();
 
-
         }
         
     }

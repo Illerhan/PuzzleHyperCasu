@@ -57,10 +57,17 @@ public class ConvoyeurFood : MonoBehaviour
         for (int i = 0; i < activeItems.Count; i++)
         {
             DragableObject item = activeItems[i];
+            
+            item.indexInConvoyeur = i;
+            
+            if (item.IsMooved)
+                continue;
+            
             Vector3 targetPos = positions[i].position;
 
             item.transform.position =
                 Vector3.MoveTowards(item.transform.position, targetPos, moveSpeed * Time.deltaTime);
+            
             if (Vector3.Distance(item.transform.position, targetPos) > 0.01f)
             {
                 allReached = false;
@@ -78,12 +85,18 @@ public class ConvoyeurFood : MonoBehaviour
         if (itemQueue.Count <= 0) 
             return;
         DragableObject foodData = itemQueue.Dequeue();
-
-        DragableObject newFood = Instantiate(foodData.type.foodPrefab, spawnPoint.position, Quaternion.identity);
-        activeItems.Add(newFood);
+        
+        Vector3 offScreenPosition = positions[positions.Length - 1].position;
+        offScreenPosition.x += 3f;
+        
+        DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity);
+        
+        //newFood.transform.position = positions[positionIndex].position;
         newFood.indexInConvoyeur = positionIndex;
+        
+        activeItems.Add(newFood);
 
-        newFood.transform.position = positions[positionIndex].position;
+        isMoving = true;
     }
 
     public void DroppedFood(int index)
@@ -91,14 +104,20 @@ public class ConvoyeurFood : MonoBehaviour
         if(index < 0 || index >= activeItems.Count) 
             return;
         DragableObject droppedItem = activeItems[index];
+        droppedItem.IsMooved = true;
         activeItems.RemoveAt(index);
-        SpawnNewFood(positions.Length-1);
-
+        
+        for (int i = index; i < activeItems.Count; i++)
+        {
+            activeItems[i].indexInConvoyeur = i;
+        }
+        SpawnNewFood(activeItems.Count);
         isMoving = true;
     }
     
     private void HandleFoodMoved(DragableObject food)
     {
+
         DroppedFood(food.indexInConvoyeur);
     }
     //Graou
