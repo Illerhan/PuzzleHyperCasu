@@ -19,7 +19,8 @@ public class LevelManager : MonoBehaviour
     public GameObject buttonLevelsContainers;
     private List<GameObject> buttonList;
     public LevelContainer currentLevel;
-    public List<int> lockLevel;
+    public List<bool> lockLevel;
+    public Color lockColor;
     
 
     
@@ -34,25 +35,40 @@ public class LevelManager : MonoBehaviour
             buttonList.Add(child);
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
             buttonList[i].name = (i).ToString();
+            
+            if (lockLevel[i])
+            {
+                buttonList[i].GetComponent<Image>().color = lockColor;
+                buttonList[i].transform.GetChild(1).gameObject.SetActive(true);
+            }
 
         }
-        Debug.Log(buttonList.Count);
-        
+        /*
         foreach (int level in lockLevel)
         {
             Debug.Log(lockLevel[level]-1);
             Debug.Log(buttonList[lockLevel[level]-1].name);
-            //buttonList[lockLevel[level] - 1].GetComponent<Image>().color = new Color(53,53,53,255);
+            buttonList[lockLevel[level] - 1].GetComponent<Image>().color = new Color(53,53,53,255);
 
-        }
+        }*/
         
     }
 
     public void StartLevel()
     {
+        
         int index = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        currentLevel.selectedLevel = currentLevel.levelSo[index];
-        SceneManager.LoadScene("Level");
+        if (lockLevel[index]==false)
+        {
+            currentLevel.selectedLevel = currentLevel.levelSo[index];
+            SceneManager.LoadScene("Level");
+        }
+        else
+        {
+            Debug.Log("lock, level" + (index+1));
+        }
+        
+        
     }
 }
 
