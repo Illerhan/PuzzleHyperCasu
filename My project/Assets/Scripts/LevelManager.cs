@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> buttonList;
     public List<ScriptableObject> levels;
     public LevelContainer currentLevel;
+    public ScrollRect scrollRect;
     
 
     
