@@ -19,7 +19,7 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    void LoadLevel()
+    public void LoadLevel()
     {
         currentLevel = levelContainer.selectedLevel;
         if (currentLevel == null || tilemap == null)
