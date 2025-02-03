@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices.WindowsRuntime;
+ using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -36,7 +36,8 @@ public class LevelLoader : MonoBehaviour
         {
             if (slime.slimePrefab != null)
             {
-                Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity);
+                GameObject slimeNew = Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity);
+                slimeNew.GetComponent<SlimeController>().currentState = slime.defaultState;
             }
         }
     }

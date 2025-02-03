@@ -52,7 +52,7 @@ public class DragableObject : MonoBehaviour
     {
         if (isFirstMove)
         {
-            initialPosition = this.transform.position;
+            initialPosition = transform.position;
             spawnZone = initialPosition;
             isFirstMove = false;
         }
@@ -88,9 +88,12 @@ public class DragableObject : MonoBehaviour
                 {
                     Debug.Log("Hola");
                     slim.Bounce();
+                    Destroy(this);
+                    return;
                 }
+                slim.GrowSlim();
+                Destroy(this);
             }
-            
         }
     }
 
