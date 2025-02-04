@@ -101,8 +101,11 @@ public class SlimeController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
+        SlimeController smallestSlime = null;
+        
+        Collider[] slimeInRange = Physics.OverlapSphere(transform.position,1f);
         SlimeController otherSlim = other.GetComponent<SlimeController>();
         if(otherSlim != null)
         {
