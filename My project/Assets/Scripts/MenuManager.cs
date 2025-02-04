@@ -71,7 +71,7 @@ public class MenuManager : MonoBehaviour
         
     }
 
-
+    /*
     void CheckStar()
     {
         //De base toutes les étoiles sont vides
@@ -103,6 +103,7 @@ public class MenuManager : MonoBehaviour
             //No stars ???
         }
     }
+    */
 
     public void ResetUI()
     {
