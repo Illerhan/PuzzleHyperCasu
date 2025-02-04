@@ -24,9 +24,16 @@ public class LevellSO : ScriptableObject
     {
         public FoodOrder foodOrder;
     }
+
+    [System.Serializable]
+    public class LevelMoves
+    {
+        public int Moves;
+    }
     
 
     public LevelObject[] objectsToSpawn;
     public LevelSlime[] slimeToSpawn;
     public LevelFood foodToSpawn;
+    public LevelMoves[] NbMovesToGainStars;
 }
