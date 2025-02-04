@@ -27,9 +27,7 @@ public class MenuManager : MonoBehaviour
             instance = this;
 
         //on cache les interfaces
-        loseUIGameObject.SetActive(false);
-        winUIGameObject.SetActive(false);
-        isUIDrawn = false;
+        ResetUI();
     }
 
     public void LoseUI()
@@ -55,16 +53,23 @@ public class MenuManager : MonoBehaviour
         
     }
 
+    public void ResetUI()
+    {
+        loseUIGameObject.SetActive(false);
+        winUIGameObject.SetActive(false);
+        isUIDrawn = false;
+    }
+
 
     public void Onback()
     {
-        isUIDrawn = false;
+        ResetUI();
         SceneManager.LoadScene("LevelMap");
     }
 
     public void Retry()
     {
-        isUIDrawn = false;
+        ResetUI();
         levelLoader.LoadLevel();
     }
 }
