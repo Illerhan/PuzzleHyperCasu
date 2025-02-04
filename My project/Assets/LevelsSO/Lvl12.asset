@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Lvl12
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - prefab: {fileID: 0}
-    tilePosition: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 2, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 3, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 4, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 5, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 5, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 8, y: 5, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
     slimePosition: {x: -2.5, y: 0.5, z: -0.75}

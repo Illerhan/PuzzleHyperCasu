@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908e78f4b15fba3439f53474de18e45b, type: 3}
   m_Name: Lvl15
   m_EditorClassIdentifier: 
-  objectsToSpawn: []
+  objectsToSpawn:
+  - prefab: {fileID: 3531281159794595862, guid: b4087de08f8c6ab42b68c06f0e5f2fc0, type: 3}
+    tilePosition: {x: 5, y: 6, z: 0}
+  - prefab: {fileID: 3531281159794595862, guid: b4087de08f8c6ab42b68c06f0e5f2fc0, type: 3}
+    tilePosition: {x: 5, y: 7, z: 0}
+  - prefab: {fileID: 3531281159794595862, guid: b4087de08f8c6ab42b68c06f0e5f2fc0, type: 3}
+    tilePosition: {x: 5, y: 8, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 1779291099969455821, guid: a64e59788ad74c14a93aad724b5765f7, type: 3}
     slimePosition: {x: -0.75, y: 4.25, z: -1.25}
