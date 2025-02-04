@@ -14,18 +14,20 @@ public class LevelLoader : MonoBehaviour
     public LevellSO currentLevel;
     public Tilemap tilemap;
     public TextMeshProUGUI level;
-    public List<TextMeshProUGUI> starsMoves;
+    public List<TextMeshProUGUI> textstarsMoves;
     public ConvoyeurFood convoyeurfood;
+    
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         LoadLevel();
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
-        foreach (var text in starsMoves)
+        for (int i = 0; i < textstarsMoves.Count; i++)
         {
-           // text.text = levelContainer.selectedLevel.NbMovesToGainStars[0];
+            textstarsMoves[i].text = levelContainer.selectedLevel.nbMovesToGainStars[i].Moves.ToString();
         }
     }
 

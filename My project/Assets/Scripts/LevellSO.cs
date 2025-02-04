@@ -35,5 +35,5 @@ public class LevellSO : ScriptableObject
     public LevelObject[] objectsToSpawn;
     public LevelSlime[] slimeToSpawn;
     public LevelFood foodToSpawn;
-    public LevelMoves[] NbMovesToGainStars;
+    public LevelMoves[] nbMovesToGainStars;
 }

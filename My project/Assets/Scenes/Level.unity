@@ -2182,7 +2182,7 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 90c9786be4b39d44d84582879818b95b, type: 2}
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
-  starsMoves:
+  textstarsMoves:
   - {fileID: 11428578}
   - {fileID: 2055748052}
   - {fileID: 403216817}
