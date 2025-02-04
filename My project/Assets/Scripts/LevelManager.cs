@@ -19,13 +19,16 @@ public class LevelManager : MonoBehaviour
     public GameObject buttonLevelsContainers;
     private List<GameObject> buttonList;
     public LevelContainer currentLevel;
-    public List<bool> lockLevel;
+    public List<bool> unlockedlevels;
     public Color lockColor;
+
+    
     
 
     
     private void Start()
     {
+        
         buttonList = new List<GameObject>();
       
         int count = buttonLevelsContainers.transform.childCount;
@@ -36,21 +39,16 @@ public class LevelManager : MonoBehaviour
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
             buttonList[i].name = (i).ToString();
             
-            if (lockLevel[i])
+            if (i!= 0)
             {
                 buttonList[i].GetComponent<Image>().color = lockColor;
                 buttonList[i].transform.GetChild(1).gameObject.SetActive(true);
+                
             }
 
         }
-        /*
-        foreach (int level in lockLevel)
-        {
-            Debug.Log(lockLevel[level]-1);
-            Debug.Log(buttonList[lockLevel[level]-1].name);
-            buttonList[lockLevel[level] - 1].GetComponent<Image>().color = new Color(53,53,53,255);
-
-        }*/
+        //unlockedlevels = new List<bool>(buttonList.Count);
+        
         
     }
 
@@ -58,15 +56,20 @@ public class LevelManager : MonoBehaviour
     {
         
         int index = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        if (lockLevel[index]==false)
+        
+        if ( index == 0 || unlockedlevels[index-1])
         {
             currentLevel.selectedLevel = currentLevel.levelSo[index];
             SceneManager.LoadScene("Level");
+           
         }
         else
         {
+            buttonList[index].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Trigger");
             Debug.Log("lock, level" + (index+1));
         }
+        
+        
         
         
     }
