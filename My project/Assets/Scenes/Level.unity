@@ -2182,6 +2182,7 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 90c9786be4b39d44d84582879818b95b, type: 2}
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
+  convoyeurfood: {fileID: 1820255348}
 --- !u!4 &696317027
 Transform:
   m_ObjectHideFlags: 0
@@ -19465,7 +19466,7 @@ MonoBehaviour:
   - {fileID: 913963260}
   - {fileID: 1913738786}
   moveSpeed: 2
-  foodList: {fileID: 11400000, guid: 93c59a89ec4b1a94b98284d94c5a5eff, type: 2}
+  foodList: {fileID: 0}
 --- !u!4 &1820255349
 Transform:
   m_ObjectHideFlags: 0

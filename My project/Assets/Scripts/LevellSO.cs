@@ -18,7 +18,15 @@ public class LevellSO : ScriptableObject
         public Vector3 slimePosition;
         public SlimeController.SlimeState defaultState;
     }
+    
+    [System.Serializable]
+    public class LevelFood
+    {
+        public FoodOrder foodOrder;
+    }
+    
 
     public LevelObject[] objectsToSpawn;
     public LevelSlime[] slimeToSpawn;
+    public LevelFood foodToSpawn;
 }

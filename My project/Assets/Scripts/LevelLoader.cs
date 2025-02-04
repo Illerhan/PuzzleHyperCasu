@@ -12,6 +12,7 @@ public class LevelLoader : MonoBehaviour
     public LevellSO currentLevel;
     public Tilemap tilemap;
     public TextMeshProUGUI level;
+    public ConvoyeurFood convoyeurfood;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,8 +49,8 @@ public class LevelLoader : MonoBehaviour
                 slimeNew.GetComponent<SlimeController>().currentState = slime.defaultState;
             }
         }
-        
-        
+
+        convoyeurfood.foodList = currentLevel.foodToSpawn.foodOrder;
     }
     // Update is called once per frame
     void Update()
