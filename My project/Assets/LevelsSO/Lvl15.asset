@@ -12,31 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908e78f4b15fba3439f53474de18e45b, type: 3}
   m_Name: Lvl15
   m_EditorClassIdentifier: 
-  objectsToSpawn:
-  - prefab: {fileID: 0}
-    tilePosition: {x: 0, y: 0, z: 0}
+  objectsToSpawn: []
   slimeToSpawn:
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -3, y: -0.75, z: -0.5}
+  - slimePrefab: {fileID: 1779291099969455821, guid: a64e59788ad74c14a93aad724b5765f7, type: 3}
+    slimePosition: {x: -0.75, y: 4.25, z: -1.25}
     defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -1.5, y: -4.25, z: -0.5}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -0.5, y: -5.75, z: -0.5}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -1.25, y: 1.25, z: -0.5}
     defaultState: 0
   - slimePrefab: {fileID: 443885727715651613, guid: 1b72362598735fe45a70d18213b7708a, type: 3}
-    slimePosition: {x: -2.5, y: 3.5, z: -0.5}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
-    slimePosition: {x: -1.5, y: 1, z: -0.5}
-    defaultState: 0
-  - slimePrefab: {fileID: 8101620677072191007, guid: 2c587d1cf63cad343b8ef12f6a68aab1, type: 3}
-    slimePosition: {x: 3.5, y: -0.25, z: -0.5}
+    slimePosition: {x: -2, y: -5.25, z: -1}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 6cd70cc616420dc4dbd9b48cbe558a49, type: 2}
-  NbMovesToGainStars:
+    foodOrder: {fileID: 11400000, guid: f9893c686bd791149a5d0b82d3c482e1, type: 2}
+  nbMovesToGainStars:
+  - Moves: 1
   - Moves: 2
   - Moves: 3
-  - Moves: 4

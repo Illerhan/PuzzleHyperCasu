@@ -13186,7 +13186,7 @@ Transform:
   m_GameObject: {fileID: 1283654390}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13384,7 +13384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20301,6 +20301,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053796653649811505, guid: f99261a68bc1ad24eb0af5f7070dd3f1, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306367797588572416, guid: f99261a68bc1ad24eb0af5f7070dd3f1, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7723194760562741604, guid: f99261a68bc1ad24eb0af5f7070dd3f1, type: 3}

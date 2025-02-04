@@ -94,7 +94,7 @@ public class ConvoyeurFood : MonoBehaviour
         
         DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity, parentFood);
         
-        //newFood.transform.position = positions[positionIndex].position;
+        newFood.transform.position = positions[positionIndex].position;
         newFood.indexInConvoyeur = positionIndex;
         
         activeItems.Add(newFood);

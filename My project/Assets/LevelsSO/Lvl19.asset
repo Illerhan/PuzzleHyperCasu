@@ -17,32 +17,23 @@ MonoBehaviour:
     tilePosition: {x: 0, y: 0, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 2.5, y: -1.5, z: -0.75}
+    slimePosition: {x: -0.5, y: 2.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -0.5, y: -4.5, z: -0.75}
+    slimePosition: {x: -0.5, y: -1.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -3.5, y: -1.5, z: -0.75}
+    slimePosition: {x: 3, y: -4.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -0.5, y: -0.5, z: -0.75}
+    slimePosition: {x: 1.5, y: 0.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -2.5, y: 1.5, z: -0.75}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: 1.5, y: 1.5, z: -0.75}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -2.5, y: -3.5, z: -0.75}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: 1.5, y: -3.5, z: -0.75}
+    slimePosition: {x: 2.5, y: 0.5, z: -0.75}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 9d7a28e2744c4ae41b63ba2cfa7af0d2, type: 2}
-  NbMovesToGainStars:
+    foodOrder: {fileID: 11400000, guid: 4c2e568e11d20f44ab5ae15a5f8f0245, type: 2}
+  nbMovesToGainStars:
   - Moves: 3
   - Moves: 4
   - Moves: 5
