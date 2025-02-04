@@ -126,6 +126,7 @@ public class SlimeController : MonoBehaviour
             if (smallestSlime.slimeData.slimeColor != slimeData.slimeColor)
             {
                 // Game Over
+                MenuManager.instance.LoseUI();
                 return;
             }
             
