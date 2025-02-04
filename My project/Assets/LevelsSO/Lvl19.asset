@@ -42,3 +42,7 @@ MonoBehaviour:
     defaultState: 0
   foodToSpawn:
     foodOrder: {fileID: 11400000, guid: 9d7a28e2744c4ae41b63ba2cfa7af0d2, type: 2}
+  NbMovesToGainStars:
+  - Moves: 3
+  - Moves: 4
+  - Moves: 5
