@@ -15711,6 +15711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212e718abd66c4341bf471a916bac4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slimesList: []
 --- !u!4 &890626335
 Transform:
   m_ObjectHideFlags: 0
@@ -23854,8 +23855,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 696317026}
-  loseUIGameObject: {fileID: 1655475860}
-  winUIGameObject: {fileID: 1650588763}
+  loseUIGameObject: {fileID: 1650588763}
+  winUIGameObject: {fileID: 1655475860}
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0

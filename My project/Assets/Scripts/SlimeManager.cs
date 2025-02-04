@@ -19,13 +19,16 @@ public class SlimeManager : MonoBehaviour
 
     public void RegisterSlime(SlimeController slime)
     {
-        if(slimesList.Contains(slime))
-            slimesList.Add(slime);
+        slimesList.Add(slime);
+
     }
     public void UnregisterSlime(SlimeController slime)
     {
         if(slimesList.Contains(slime))
+        {
             slimesList.Remove(slime);
+        }
+            
     }
 
     public bool CheckSlimes()
