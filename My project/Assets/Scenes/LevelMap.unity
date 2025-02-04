@@ -14344,7 +14344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonLevelsContainers: {fileID: 2023609553}
   currentLevel: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
-  lockLevel: 01000000010000000000010000000001000000010000000000000000000000000001
+  lockLevel: 00000000000000000000000000000000000000000000000000000000000000000000
   lockColor: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 1}
 --- !u!4 &1308440952
 Transform:
@@ -22991,7 +22991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87.64105}
+  m_AnchoredPosition: {x: 0, y: -87.640625}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2023609555

@@ -29,7 +29,7 @@ MonoBehaviour:
     slimePosition: {x: -0.5, y: -4.5, z: -0.5}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
-    slimePosition: {x: 0.5, y: 3.5, z: -0.5}
+    slimePosition: {x: -0.5, y: 3.5, z: -0.5}
     defaultState: 1
   - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
     slimePosition: {x: -2.75, y: -0.5, z: -0.5}
