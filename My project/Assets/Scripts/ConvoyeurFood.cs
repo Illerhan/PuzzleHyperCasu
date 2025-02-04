@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -14,13 +15,14 @@ public class ConvoyeurFood : MonoBehaviour
     public Transform[] positions; // Fixed positions for 4 objects
     public float moveSpeed = 2f;   // Movement speed
     public FoodOrder foodList;    // Reference to predefined items
+    public Transform parentFood;
 
     private Queue<DragableObject> itemQueue = new Queue<DragableObject>();
     private List<DragableObject> activeItems = new List<DragableObject>();
     private bool isMoving = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         DragableObject.OnObjectMoved += HandleFoodMoved;
         
@@ -34,11 +36,12 @@ public class ConvoyeurFood : MonoBehaviour
             SpawnNewFood(i);
         }
     }
-    
+
     void OnDestroy()
     {
         DragableObject.OnObjectMoved -= HandleFoodMoved;
     }
+    
     
 
     // Update is called once per frame
@@ -89,7 +92,7 @@ public class ConvoyeurFood : MonoBehaviour
         Vector3 offScreenPosition = positions[positions.Length - 1].position;
         offScreenPosition.x += 3f;
         
-        DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity);
+        DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity, parentFood);
         
         //newFood.transform.position = positions[positionIndex].position;
         newFood.indexInConvoyeur = positionIndex;

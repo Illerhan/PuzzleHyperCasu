@@ -19467,6 +19467,7 @@ MonoBehaviour:
   - {fileID: 1913738786}
   moveSpeed: 2
   foodList: {fileID: 0}
+  parentFood: {fileID: 1283654391}
 --- !u!4 &1820255349
 Transform:
   m_ObjectHideFlags: 0
