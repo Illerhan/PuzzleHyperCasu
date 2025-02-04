@@ -106,21 +106,39 @@ public class SlimeController : MonoBehaviour
         SlimeController smallestSlime = null;
         
         Collider[] slimeInRange = Physics.OverlapSphere(transform.position,1f);
-        SlimeController otherSlim = other.GetComponent<SlimeController>();
-        if(otherSlim != null)
+        foreach (Collider col in slimeInRange)
         {
-            if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+            SlimeController otherSlim = col.GetComponent<SlimeController>();
+            if (otherSlim != null && otherSlim != this)
             {
-                Destroy(other.gameObject);
-                Debug.Log("Collided");
-                GrowSlim();
-                if (currentState == SlimeState.Sleeping)
+                if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
                 {
-                    co = MoveToObject(targetItem.transform.position);
-                    currentState = SlimeState.Normal;
-                    StartCoroutine(co);
+                    if (smallestSlime == null || otherSlim.currentSize < smallestSlime.currentSize)
+                    {
+                        smallestSlime = otherSlim;
+                    }
                 }
-                
+            }
+        }
+
+        if (smallestSlime != null)
+        {
+            if (smallestSlime.slimeData.slimeColor != slimeData.slimeColor)
+            {
+                // Game Over
+                return;
+            }
+            
+            Destroy(smallestSlime.gameObject);
+            Debug.Log($"Ate {smallestSlime.slimeData.slimeName}");
+            GrowSlim();
+
+            // If sleeping, wake up and move to target
+            if (currentState == SlimeState.Sleeping && targetItem != null)
+            {
+                co = MoveToObject(targetItem.transform.position);
+                currentState = SlimeState.Normal;
+                StartCoroutine(co);
             }
         }
     }

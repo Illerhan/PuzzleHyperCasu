@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SlimeKiwi
   m_EditorClassIdentifier: 
   slimeName: Kiwi
-  compatibleItemTag: Kiwi
+  compatibleItemTag: GreenFood
   slimeColor: {r: 0, g: 0.99215686, b: 0.06758525, a: 1}
