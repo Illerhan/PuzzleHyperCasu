@@ -8,6 +8,9 @@ TagManager:
   - Slime
   - Apple
   - Kiwi
+  - GreenFood
+  - OrangeFood
+  - PinkFood
   layers:
   - Default
   - TransparentFX

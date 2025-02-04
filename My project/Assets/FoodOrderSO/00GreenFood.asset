@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36bce2ee6b5b33249ad608cac11769c4, type: 3}
-  m_Name: Kiwi
+  m_Name: 00GreenFood
   m_EditorClassIdentifier: 
   influenceRadius: 10
-  itemName: Kiwi
+  itemName: GreenFood
   foodPrefab: {fileID: 4375684933971577165, guid: 44fd30b3a7d40704ca168f8e0bee8b1e, type: 3}

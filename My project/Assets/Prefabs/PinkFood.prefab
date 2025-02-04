@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 4375684933971577165}
   - component: {fileID: 396880529189605431}
   m_Layer: 0
-  m_Name: KiwiFood
-  m_TagString: Kiwi
+  m_Name: PinkFood
+  m_TagString: GreenFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,8 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  - {fileID: 2100000, guid: f2f71afc85280bb4f80d6f9181bde2a3, type: 2}
+  - {fileID: 2100000, guid: 4eebec22afbbf724c9b90e7d9a3aa902, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,6 +127,7 @@ MonoBehaviour:
   spawnZoneRadius: 5
   type: {fileID: 11400000, guid: 0f69ca12ac989d547bb0c6673e4c984e, type: 2}
   rangePrefab: {fileID: 6106873361330438305, guid: dead7dde630f12642b836e34f1c35dc6, type: 3}
+  indexInConvoyeur: 0
 --- !u!54 &396880529189605431
 Rigidbody:
   m_ObjectHideFlags: 0
