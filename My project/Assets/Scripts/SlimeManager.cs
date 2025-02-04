@@ -8,7 +8,7 @@ public class SlimeManager : MonoBehaviour
 
     public static SlimeManager Instance;
 
-    private List<SlimeController> slimesList = new List<SlimeController>();
+    [SerializeField] private List<SlimeController> slimesList = new List<SlimeController>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
@@ -40,8 +40,16 @@ public class SlimeManager : MonoBehaviour
         }
 
         if (i == slimesList.Count)
+        {
+            MenuManager.instance.WinUI();
             return true;
-        return false;
+        }
+        else
+        {
+            return false;
+        }
+            
+        
     }
     void Start()
     {
