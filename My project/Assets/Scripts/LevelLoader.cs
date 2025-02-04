@@ -1,3 +1,5 @@
+ using System.Collections.Generic;
+ using System.Linq;
  using System.Runtime.InteropServices.WindowsRuntime;
  using TMPro;
  using Unity.Mathematics;
@@ -12,6 +14,7 @@ public class LevelLoader : MonoBehaviour
     public LevellSO currentLevel;
     public Tilemap tilemap;
     public TextMeshProUGUI level;
+    public List<TextMeshProUGUI> starsMoves;
     public ConvoyeurFood convoyeurfood;
     
     
@@ -20,6 +23,10 @@ public class LevelLoader : MonoBehaviour
     {
         LoadLevel();
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
+        foreach (var text in starsMoves)
+        {
+           // text.text = levelContainer.selectedLevel.NbMovesToGainStars[0];
+        }
     }
 
 
@@ -31,6 +38,7 @@ public class LevelLoader : MonoBehaviour
         }
         
         currentLevel = levelContainer.selectedLevel;
+        
         if (currentLevel == null || tilemap == null)
             return;
         foreach (var obj in currentLevel.objectsToSpawn)

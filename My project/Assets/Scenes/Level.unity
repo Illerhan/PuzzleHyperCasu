@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 11428579}
   - component: {fileID: 11428578}
   m_Layer: 5
-  m_Name: Coup
+  m_Name: 3Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1369,7 +1369,7 @@ GameObject:
   - component: {fileID: 403216818}
   - component: {fileID: 403216817}
   m_Layer: 5
-  m_Name: Coup
+  m_Name: 1Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2182,6 +2182,10 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 90c9786be4b39d44d84582879818b95b, type: 2}
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
+  starsMoves:
+  - {fileID: 11428578}
+  - {fileID: 2055748052}
+  - {fileID: 403216817}
   convoyeurfood: {fileID: 1820255348}
 --- !u!4 &696317027
 Transform:
@@ -20035,7 +20039,7 @@ GameObject:
   - component: {fileID: 2055748053}
   - component: {fileID: 2055748052}
   m_Layer: 5
-  m_Name: Coup
+  m_Name: 2Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
