@@ -9,6 +9,8 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class DragableObject : MonoBehaviour
 {
+    
+    
     Vector3 mousePosition;
     private bool isMooved;
     private GameObject range;
@@ -114,8 +116,8 @@ public class DragableObject : MonoBehaviour
             Destroy(range.gameObject);
             OnItemDropped?.Invoke(this);
             OnObjectMoved?.Invoke(this);
-            LevelManager.Instance.actionCount++;
-            MenuManager.instance.UpdateFinalMoveNumber(LevelManager.Instance.actionCount);
+            LevelLoader.actionCount++;
+            MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
         }
         
     }

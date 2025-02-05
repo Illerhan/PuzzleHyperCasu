@@ -12,19 +12,14 @@ public class MenuManager : MonoBehaviour
     public GameObject loseUIGameObject;
     public GameObject winUIGameObject;
 
-    //étoiles et textes
+    //étoiles
 
-    public Image star1;
-    public TMP_Text textstar1;
-
-    public Image star2;
-    public TMP_Text textstar2;
-
-    public Image star3;
-    public TMP_Text textstar3;
+    public Image Win1Star;
+    public Image Win2Star;
+    public Image Win3Star;
+    
 
     public Sprite obtainedStarImage;
-    public Sprite emptyStarImage;
 
     //score pour chaque étoile
 
@@ -71,7 +66,7 @@ public class MenuManager : MonoBehaviour
         //interface de win activée
         if (!isUIDrawn)
         {
-            SetMoveNumbers();
+            
             CheckStar();
 
             isUIDrawn = true;
@@ -80,52 +75,27 @@ public class MenuManager : MonoBehaviour
         }
         
     }
-
-
-    void SetMoveNumbers()
-    {
-        //1 = plus petit nombre, 3 = plus grand
-        score_pl1 = levelLoader.currentLevel.nbMovesToGainStars[0].Moves;
-        score_pl2 = levelLoader.currentLevel.nbMovesToGainStars[1].Moves;
-        score_pl3 = levelLoader.currentLevel.nbMovesToGainStars[2].Moves;
-
-        //On assigne les bonnes valeurs
-        textstar1.text = score_pl3.ToString();
-        textstar2.text = score_pl3.ToString();
-        textstar3.text = score_pl3.ToString();
-    }
-
+    
     
     void CheckStar()
     {
-
-        //De base toutes les étoiles sont vides
-        star1.sprite = emptyStarImage;
-        star2.sprite = emptyStarImage;
-        star3.sprite = emptyStarImage;
-
-        //On remplit celles qu'on posséde
-        if (finalNumberOfMoves <= score_pl1)
+        
+        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
-            //3 stars
-            star1.sprite = obtainedStarImage;
-            star2.sprite = obtainedStarImage;
-            star3.sprite = obtainedStarImage;
-        }
-        else if(finalNumberOfMoves <= score_pl2)
-        {
-            star1.sprite = obtainedStarImage;
-            star2.sprite = obtainedStarImage;
-            //2 stars
-        }
-        else if(finalNumberOfMoves <= score_pl3)
-        {
-            star1.sprite = obtainedStarImage;
-            //1 star
-        }
-        else
-        {
-            //No stars ???
+            Debug.Log(2);
+            Win1Star.sprite = obtainedStarImage;
+            
+            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
+            {
+                Debug.Log(3);
+                Win2Star.sprite = obtainedStarImage;
+                
+                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
+                {
+                    Debug.Log(4);
+                    Win3Star.sprite = obtainedStarImage;
+                }
+            }
         }
     }
     
@@ -140,7 +110,9 @@ public class MenuManager : MonoBehaviour
 
     public void UpdateFinalMoveNumber(int numberOfMoves)
     {
-        numberOfMoves = finalNumberOfMoves;
+        finalNumberOfMoves = numberOfMoves;
+        levelLoader.totalmoves--;
+        levelLoader.movesLeft.text = levelLoader.totalmoves.ToString();
     }
 
 

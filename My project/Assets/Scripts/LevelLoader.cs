@@ -3,19 +3,26 @@
  using System.Runtime.InteropServices.WindowsRuntime;
  using TMPro;
  using Unity.Mathematics;
-using UnityEngine;
+ using UnityEditor;
+ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 public class LevelLoader : MonoBehaviour
 {
-
+    
     public LevelContainer levelContainer;
     public LevellSO currentLevel;
+    public TextMeshProUGUI movesLeft;
+    public int totalmoves=10;
     public Tilemap tilemap;
     public TextMeshProUGUI level;
     public List<TextMeshProUGUI> textstarsMoves;
     public ConvoyeurFood convoyeurfood;
+    
+    public static int actionCount = 0 ;
+
+    
     
     
     
@@ -24,11 +31,14 @@ public class LevelLoader : MonoBehaviour
     {
         
         LoadLevel();
+        movesLeft.text = totalmoves.ToString();
+        
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
         for (int i = 0; i < textstarsMoves.Count; i++)
         {
             textstarsMoves[i].text = levelContainer.selectedLevel.nbMovesToGainStars[i].Moves.ToString();
         }
+        
     }
 
 
@@ -62,9 +72,9 @@ public class LevelLoader : MonoBehaviour
 
         convoyeurfood.foodList = currentLevel.foodToSpawn.foodOrder;
     }
-    // Update is called once per frame
-    void Update()
+
+    public void UpdateMoves()
     {
-        
+        Debug.Log("yes");
     }
 }
