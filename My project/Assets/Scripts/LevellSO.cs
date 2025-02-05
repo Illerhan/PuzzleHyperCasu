@@ -31,6 +31,8 @@ public class LevellSO : ScriptableObject
         public int Moves;
     }
     
+    
+    
 
     public LevelObject[] objectsToSpawn;
     public LevelSlime[] slimeToSpawn;

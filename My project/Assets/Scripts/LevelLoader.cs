@@ -29,6 +29,7 @@ public class LevelLoader : MonoBehaviour
         {
             textstarsMoves[i].text = levelContainer.selectedLevel.nbMovesToGainStars[i].Moves.ToString();
         }
+        
     }
 
 
