@@ -11,6 +11,7 @@ TagManager:
   - GreenFood
   - OrangeFood
   - PinkFood
+  - Grass
   layers:
   - Default
   - TransparentFX

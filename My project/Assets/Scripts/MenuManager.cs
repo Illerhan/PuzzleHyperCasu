@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,27 +12,33 @@ public class MenuManager : MonoBehaviour
     public GameObject loseUIGameObject;
     public GameObject winUIGameObject;
 
+    //Ã©toiles et textes
+
     public Image star1;
-    public GameObject textstar1;
+    public TMP_Text textstar1;
 
     public Image star2;
-    public GameObject textstar2;
+    public TMP_Text textstar2;
 
     public Image star3;
-    public GameObject textstar3;
+    public TMP_Text textstar3;
 
     public Sprite obtainedStarImage;
     public Sprite emptyStarImage;
 
-    //bool pour éviter des situations où on affiche les 2 interfaces en même temps
-    bool isUIDrawn = false;
+    //score pour chaque Ã©toile
 
-
-    private int placeholderInt;
- 
     private int score_pl1;
     private int score_pl2;
     private int score_pl3;
+
+    //bool pour Ã©viter des situations oÃ¹ on affiche les 2 interfaces en mÃ©me temps
+    bool isUIDrawn = false;
+
+
+    private int finalNumberOfMoves;
+ 
+
 
 
     //singleton
@@ -50,7 +57,7 @@ public class MenuManager : MonoBehaviour
 
     public void LoseUI()
     {
-        //interface de lose activée
+        //interface de lose activÃ©e
         if (!isUIDrawn)
         {
             isUIDrawn = true;
@@ -61,9 +68,12 @@ public class MenuManager : MonoBehaviour
 
     public void WinUI()
     {
-        //interface de win activée
+        //interface de win activÃ©e
         if (!isUIDrawn)
         {
+            SetMoveNumbers();
+            CheckStar();
+
             isUIDrawn = true;
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
@@ -71,29 +81,44 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    /*
+
+    void SetMoveNumbers()
+    {
+        //1 = plus petit nombre, 3 = plus grand
+        score_pl1 = levelLoader.currentLevel.nbMovesToGainStars[0].Moves;
+        score_pl2 = levelLoader.currentLevel.nbMovesToGainStars[1].Moves;
+        score_pl3 = levelLoader.currentLevel.nbMovesToGainStars[2].Moves;
+
+        //On assigne les bonnes valeurs
+        textstar1.text = score_pl3.ToString();
+        textstar2.text = score_pl3.ToString();
+        textstar3.text = score_pl3.ToString();
+    }
+
+    
     void CheckStar()
     {
-        //De base toutes les étoiles sont vides
+
+        //De base toutes les Ã©toiles sont vides
         star1.sprite = emptyStarImage;
         star2.sprite = emptyStarImage;
         star3.sprite = emptyStarImage;
 
-        //On remplit celles qu'on possède
-        if (placeholderInt <= score_pl1)
+        //On remplit celles qu'on possÃ©de
+        if (finalNumberOfMoves <= score_pl1)
         {
             //3 stars
             star1.sprite = obtainedStarImage;
             star2.sprite = obtainedStarImage;
             star3.sprite = obtainedStarImage;
         }
-        else if(placeholderInt <= score_pl2)
+        else if(finalNumberOfMoves <= score_pl2)
         {
             star1.sprite = obtainedStarImage;
             star2.sprite = obtainedStarImage;
             //2 stars
         }
-        else if(placeholderInt <= score_pl3)
+        else if(finalNumberOfMoves <= score_pl3)
         {
             star1.sprite = obtainedStarImage;
             //1 star
@@ -103,13 +128,18 @@ public class MenuManager : MonoBehaviour
             //No stars ???
         }
     }
-    */
+    
 
     public void ResetUI()
     {
         loseUIGameObject.SetActive(false);
         winUIGameObject.SetActive(false);
         isUIDrawn = false;
+    }
+
+    public void UpdateFinalMoveNumber(int numberOfMoves)
+    {
+        numberOfMoves = finalNumberOfMoves;
     }
 
 

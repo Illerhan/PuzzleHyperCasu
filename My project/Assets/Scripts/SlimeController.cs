@@ -49,8 +49,12 @@ public class SlimeController : MonoBehaviour
     private void OnItemDropped(DragableObject droppedItem)
     {
         targetItem = droppedItem;
+        
         if ((!droppedItem.CompareTag(slimeData.compatibleItemTag) && currentState != SlimeState.Hungry)|| isGrown || currentState == SlimeState.Sleeping) 
             return;
+        if (IsPathBlocked(droppedItem.transform.position))
+            return;
+        
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
         if (distance <= droppedItem.GetInfluenceRadius())
         {
@@ -111,7 +115,7 @@ public class SlimeController : MonoBehaviour
             SlimeController otherSlim = col.GetComponent<SlimeController>();
             if (otherSlim != null && otherSlim != this)
             {
-                if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+                if (currentSize > otherSlim.currentSize)
                 {
                     if (smallestSlime == null || otherSlim.currentSize < smallestSlime.currentSize)
                     {
@@ -126,6 +130,7 @@ public class SlimeController : MonoBehaviour
             if (smallestSlime.slimeData.slimeColor != slimeData.slimeColor)
             {
                 // Game Over
+                Debug.Log("SayHi");
                 MenuManager.instance.LoseUI();
                 return;
             }
@@ -169,6 +174,21 @@ public class SlimeController : MonoBehaviour
     private void OnDestroy()
     {
         SlimeManager.Instance.UnregisterSlime(this);
+    }
+
+    private bool IsPathBlocked(Vector3 targetPosition)
+    {
+        RaycastHit hit;
+        Vector3 direction = targetPosition - transform.position;
+        if (Physics.Raycast(transform.position, direction.normalized, out hit, direction.magnitude))
+        {
+            if (hit.collider.CompareTag("Grass"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Update is called once per frame

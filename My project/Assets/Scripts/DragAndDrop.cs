@@ -23,7 +23,6 @@ public class DragableObject : MonoBehaviour
     public static event Action<DragableObject> OnObjectMoved;
     public GameObject rangePrefab;
     public int indexInConvoyeur;
-    
     public bool IsMooved
     {
         get => isMooved;
@@ -40,6 +39,7 @@ public class DragableObject : MonoBehaviour
     private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
+        
         
     }
 
@@ -113,6 +113,8 @@ public class DragableObject : MonoBehaviour
             Destroy(range.gameObject);
             OnItemDropped?.Invoke(this);
             OnObjectMoved?.Invoke(this);
+            LevelManager.Instance.actionCount++;
+            MenuManager.instance.UpdateFinalMoveNumber(LevelManager.Instance.actionCount);
         }
         
     }
