@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour
     public LevelContainer levelContainer;
     public LevellSO currentLevel;
     public TextMeshProUGUI movesLeft;
-    public int totalmoves=10;
+    public int movesDone=0;
     public Tilemap tilemap;
     public TextMeshProUGUI level;
     public List<TextMeshProUGUI> textstarsMoves;
@@ -31,7 +31,7 @@ public class LevelLoader : MonoBehaviour
     {
         
         LoadLevel();
-        movesLeft.text = totalmoves.ToString();
+        movesLeft.text = movesDone.ToString();
         
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
         for (int i = 0; i < textstarsMoves.Count; i++)
