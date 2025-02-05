@@ -69,6 +69,8 @@ public class MenuManager : MonoBehaviour
         //interface de lose activée
         if (!isUIDrawn)
         {
+            isWinBg = false;
+            bgClockStarted = true;
             isUIDrawn = true;
             loseUIGameObject.SetActive(true);
         }
@@ -80,6 +82,7 @@ public class MenuManager : MonoBehaviour
         //interface de win activée
         if (!isUIDrawn)
         {
+            isWinBg = true;
             bgClockStarted = true;
             CheckStar();
 
@@ -96,16 +99,16 @@ public class MenuManager : MonoBehaviour
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
             Win1Star.sprite = obtainedStarImage;
-            LevelManager.Instance.starsNumber++;
+            //LevelManager.Instance.starsNumber++;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
                 Win2Star.sprite = obtainedStarImage;
-                LevelManager.Instance.starsNumber++;
+                //LevelManager.Instance.starsNumber++;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
                     Win3Star.sprite = obtainedStarImage;
-                    LevelManager.Instance.starsNumber++;
+                    //LevelManager.Instance.starsNumber++;
                 }
             }
         }
@@ -126,6 +129,7 @@ public class MenuManager : MonoBehaviour
         bgClock = 0;
         bgClockStarted = false;
 
+        isWinBg = false;
 
         isUIDrawn = false;
         
@@ -180,7 +184,8 @@ public class MenuManager : MonoBehaviour
             {
                 //transition du winbg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
-                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime);
+                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
+                Debug.Log(winBgAlpha * bgClock / bgFadeTime);
 
                 
             }
@@ -188,7 +193,8 @@ public class MenuManager : MonoBehaviour
             {
                 //transition du losebg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
-                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime);
+                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
+                Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
             }
         }
 
