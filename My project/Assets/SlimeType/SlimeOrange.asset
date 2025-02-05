@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SlimeOrange
   m_EditorClassIdentifier: 
   slimeName: Orange
-  compatibleItemTag: Orange
+  compatibleItemTag: OrangeFood
   slimeColor: {r: 0.990566, g: 0.69851565, b: 0.2569865, a: 1}

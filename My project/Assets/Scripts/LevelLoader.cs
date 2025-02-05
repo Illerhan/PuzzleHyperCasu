@@ -1,11 +1,7 @@
- using System.Collections.Generic;
- using System.Linq;
- using System.Runtime.InteropServices.WindowsRuntime;
- using TMPro;
- using Unity.Mathematics;
- using UnityEditor;
- using UnityEngine;
-using UnityEngine.Rendering;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
 using UnityEngine.Tilemaps;
 
 public class LevelLoader : MonoBehaviour

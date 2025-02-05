@@ -1,17 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Mime;
-using NUnit.Framework;
 using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.PlasticSCM.Editor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UIElements.Button;
 using Image = UnityEngine.UI.Image;
 
 public class LevelManager : MonoBehaviour
