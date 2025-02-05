@@ -49,8 +49,12 @@ public class SlimeController : MonoBehaviour
     private void OnItemDropped(DragableObject droppedItem)
     {
         targetItem = droppedItem;
+        
         if ((!droppedItem.CompareTag(slimeData.compatibleItemTag) && currentState != SlimeState.Hungry)|| isGrown || currentState == SlimeState.Sleeping) 
             return;
+        if (IsPathBlocked(droppedItem.transform.position))
+            return;
+        
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
         if (distance <= droppedItem.GetInfluenceRadius())
         {
@@ -170,6 +174,21 @@ public class SlimeController : MonoBehaviour
     private void OnDestroy()
     {
         SlimeManager.Instance.UnregisterSlime(this);
+    }
+
+    private bool IsPathBlocked(Vector3 targetPosition)
+    {
+        RaycastHit hit;
+        Vector3 direction = targetPosition - transform.position;
+        if (Physics.Raycast(transform.position, direction.normalized, out hit, direction.magnitude))
+        {
+            if (hit.collider.CompareTag("Grass"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Update is called once per frame
