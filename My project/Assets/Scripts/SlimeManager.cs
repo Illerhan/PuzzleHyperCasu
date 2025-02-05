@@ -32,21 +32,14 @@ public class SlimeManager : MonoBehaviour
 
     public void CheckSlimes()
     {
-        int i = 0;
         foreach (var slime in slimesList)
         {
-            if (slime.currentSize == slime.maxSize)
+            if (slime.currentSize < slime.maxSize)
             {
-                i++;
+                return;
             }
         }
-
-        if (i == slimesList.Count)
-        {
-            MenuManager.instance.WinUI();
-            LevelManager.Instance.UnlockedLevels();
-        }
-            
+        MenuManager.instance.WinUI();
     }
     void Start()
     {
