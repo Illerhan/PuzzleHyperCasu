@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,11 +10,22 @@ public class MenuManager : MonoBehaviour
 {
     public LevelLoader levelLoader;
 
+    [Space(10)]
     public GameObject loseUIGameObject;
+    public Image loseBackground;
+    [SerializeField] int loseBgAlpha;
+
+    [Space(10)]
     public GameObject winUIGameObject;
+    public Image winBackground;
+    [SerializeField] int winBgAlpha;
+    [Space(10)]
+    public float bgFadeTime = 1f;
+    //false : fade in le win bg, true : fade in le lose bg
+    bool isWinBg = false;
 
     //étoiles
-
+    [Space(10)]
     public Image Win1Star;
     public Image Win2Star;
     public Image Win3Star;
@@ -32,8 +44,10 @@ public class MenuManager : MonoBehaviour
 
 
     private int finalNumberOfMoves;
- 
 
+    //gestion du temps pour l'UI
+    bool bgClockStarted = false;
+    float bgClock = 0;
 
 
     //singleton
@@ -55,6 +69,8 @@ public class MenuManager : MonoBehaviour
         //interface de lose activée
         if (!isUIDrawn)
         {
+            isWinBg = false;
+            bgClockStarted = true;
             isUIDrawn = true;
             loseUIGameObject.SetActive(true);
         }
@@ -66,7 +82,8 @@ public class MenuManager : MonoBehaviour
         //interface de win activée
         if (!isUIDrawn)
         {
-            
+            isWinBg = true;
+            bgClockStarted = true;
             CheckStar();
 
             isUIDrawn = true;
@@ -82,16 +99,16 @@ public class MenuManager : MonoBehaviour
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
             Win1Star.sprite = obtainedStarImage;
-            LevelManager.Instance.starsNumber++;
+            //LevelManager.Instance.starsNumber++;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
                 Win2Star.sprite = obtainedStarImage;
-                LevelManager.Instance.starsNumber++;
+                //LevelManager.Instance.starsNumber++;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
                     Win3Star.sprite = obtainedStarImage;
-                    LevelManager.Instance.starsNumber++;
+                    //LevelManager.Instance.starsNumber++;
                 }
             }
         }
@@ -103,6 +120,17 @@ public class MenuManager : MonoBehaviour
     {
         loseUIGameObject.SetActive(false);
         winUIGameObject.SetActive(false);
+
+        //reset transparence
+        winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, 0);
+        loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, 0);
+
+        //reset clocks
+        bgClock = 0;
+        bgClockStarted = false;
+
+        isWinBg = false;
+
         isUIDrawn = false;
         
         
@@ -135,4 +163,42 @@ public class MenuManager : MonoBehaviour
         LevelManager.Instance.SetNextLevel();
         SceneManager.LoadScene("Level");
     }
+
+
+    private void Update()
+    {
+        if (bgClockStarted)
+        {
+            if(bgClock < bgFadeTime)
+            {
+                bgClock += Time.deltaTime;
+                
+                Debug.Log(bgClock);
+            }
+            else
+            {
+                bgClockStarted = false;
+            }
+
+            if (isWinBg)
+            {
+                //transition du winbg
+                //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
+                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
+                Debug.Log(winBgAlpha * bgClock / bgFadeTime);
+
+                
+            }
+            else
+            {
+                //transition du losebg
+                //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
+                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
+                Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
+            }
+        }
+
+    }
+
+
 }
