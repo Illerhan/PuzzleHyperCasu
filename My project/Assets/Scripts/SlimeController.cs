@@ -111,7 +111,7 @@ public class SlimeController : MonoBehaviour
             SlimeController otherSlim = col.GetComponent<SlimeController>();
             if (otherSlim != null && otherSlim != this)
             {
-                if (otherSlim.slimeData.slimeName == slimeData.slimeName && currentSize > otherSlim.currentSize)
+                if (currentSize > otherSlim.currentSize)
                 {
                     if (smallestSlime == null || otherSlim.currentSize < smallestSlime.currentSize)
                     {
@@ -126,6 +126,7 @@ public class SlimeController : MonoBehaviour
             if (smallestSlime.slimeData.slimeColor != slimeData.slimeColor)
             {
                 // Game Over
+                Debug.Log("SayHi");
                 MenuManager.instance.LoseUI();
                 return;
             }

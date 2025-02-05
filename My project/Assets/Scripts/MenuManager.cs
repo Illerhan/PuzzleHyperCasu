@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
     public Sprite obtainedStarImage;
     public Sprite emptyStarImage;
 
-    //bool pour éviter des situations où on affiche les 2 interfaces en même temps
+    //bool pour Ã©viter des situations oÃ¹ on affiche les 2 interfaces en mÃ©me temps
     bool isUIDrawn = false;
 
 
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
 
     public void LoseUI()
     {
-        //interface de lose activée
+        //interface de lose activÃ©e
         if (!isUIDrawn)
         {
             isUIDrawn = true;
@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour
 
     public void WinUI()
     {
-        //interface de win activée
+        //interface de win activÃ©e
         if (!isUIDrawn)
         {
             isUIDrawn = true;
@@ -74,12 +74,12 @@ public class MenuManager : MonoBehaviour
     /*
     void CheckStar()
     {
-        //De base toutes les étoiles sont vides
+        //De base toutes les Ã©toiles sont vides
         star1.sprite = emptyStarImage;
         star2.sprite = emptyStarImage;
         star3.sprite = emptyStarImage;
 
-        //On remplit celles qu'on possède
+        //On remplit celles qu'on possÃ©de
         if (placeholderInt <= score_pl1)
         {
             //3 stars
