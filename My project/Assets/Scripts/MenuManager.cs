@@ -70,8 +70,15 @@ public class MenuManager : MonoBehaviour
             CheckStar();
 
             isUIDrawn = true;
-            loseUIGameObject.SetActive(false);
-            winUIGameObject.SetActive(true);
+            if (loseUIGameObject != null)
+            {
+                loseUIGameObject.SetActive(false);
+            }
+            if(winUIGameObject != null)
+            {
+                winUIGameObject.SetActive(true);
+            }
+            
         }
         
     }
@@ -81,15 +88,27 @@ public class MenuManager : MonoBehaviour
     {
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
-            Win1Star.sprite = obtainedStarImage;
+            if(Win1Star != null) 
+            {
+                Win1Star.sprite = obtainedStarImage;
+            }
+            
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
-                Win2Star.sprite = obtainedStarImage;
+                if (Win1Star != null)
+                {
+                    Win2Star.sprite = obtainedStarImage;
+                }
+                    
                 
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
-                    Win3Star.sprite = obtainedStarImage;
+                    if(Win3Star != null)
+                    {
+                        Win3Star.sprite = obtainedStarImage;
+                    }
+                    
                 }
             }
         }
