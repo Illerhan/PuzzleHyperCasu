@@ -151,6 +151,5 @@ public class MenuManager : MonoBehaviour
         ResetUI();
         LevelManager.Instance.SetNextLevel();
         SceneManager.LoadScene("Level");
-        
     }
 }
