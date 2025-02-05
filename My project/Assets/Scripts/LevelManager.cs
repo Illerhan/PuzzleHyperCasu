@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     public LevelContainer currentLevel;
     public List<bool> unlockedlevels;
     public Color lockColor;
+    public static LevelManager Instance;
     
     
     private void Awake()
