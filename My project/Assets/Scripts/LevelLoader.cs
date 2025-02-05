@@ -73,9 +73,5 @@ public class LevelLoader : MonoBehaviour
         convoyeurfood.foodList = currentLevel.foodToSpawn.foodOrder;
         actionCount = 0;
     }
-
-    public void UpdateMoves()
-    {
-        Debug.Log("yes");
-    }
+    
 }

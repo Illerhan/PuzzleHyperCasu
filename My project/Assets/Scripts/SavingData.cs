@@ -22,7 +22,7 @@ public class SavingData : MonoBehaviour
                 stars.Add(-1);
             }
             levelData.stars = stars;
-            SaveGameData();
+            SaveGameData(levelData );
         }
         else
         {
@@ -33,7 +33,7 @@ public class SavingData : MonoBehaviour
     
 
     
-    public void SaveGameData()
+    public void SaveGameData(LevelData levelData)
     {
         string json = JsonUtility.ToJson(levelData, true);
         Debug.Log(json);

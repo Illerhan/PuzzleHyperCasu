@@ -82,14 +82,16 @@ public class MenuManager : MonoBehaviour
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
             Win1Star.sprite = obtainedStarImage;
+            LevelManager.Instance.starsNumber++;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
                 Win2Star.sprite = obtainedStarImage;
-                
+                LevelManager.Instance.starsNumber++;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
                     Win3Star.sprite = obtainedStarImage;
+                    LevelManager.Instance.starsNumber++;
                 }
             }
         }
