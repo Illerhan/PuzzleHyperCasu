@@ -16,7 +16,7 @@ public class ConvoyeurFood : MonoBehaviour
     public float moveSpeed = 2f;   // Movement speed
     public FoodOrder foodList;    // Reference to predefined items
     public Transform parentFood;
-
+    private int foodCount = 0;
     private Queue<DragableObject> itemQueue = new Queue<DragableObject>();
     private List<DragableObject> activeItems = new List<DragableObject>();
     private bool isMoving = false;
@@ -93,8 +93,9 @@ public class ConvoyeurFood : MonoBehaviour
         offScreenPosition.x += 3f;
         
         DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity, parentFood);
-        
-        newFood.transform.position = positions[positionIndex].position;
+        foodCount++;
+        if (foodCount <= 3)
+            newFood.transform.position = positions[positionIndex].position;
         newFood.indexInConvoyeur = positionIndex;
         
         activeItems.Add(newFood);
