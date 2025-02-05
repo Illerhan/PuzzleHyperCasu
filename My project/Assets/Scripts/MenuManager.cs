@@ -108,8 +108,8 @@ public class MenuManager : MonoBehaviour
     public void UpdateFinalMoveNumber(int numberOfMoves)
     {
         finalNumberOfMoves = numberOfMoves;
-        levelLoader.totalmoves--;
-        levelLoader.movesLeft.text = levelLoader.totalmoves.ToString();
+        levelLoader.movesDone++;
+        levelLoader.movesLeft.text = levelLoader.movesDone.ToString();
     }
 
 
