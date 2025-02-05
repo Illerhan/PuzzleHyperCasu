@@ -79,7 +79,6 @@ public class MenuManager : MonoBehaviour
     
     void CheckStar()
     {
-        
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
             Win1Star.sprite = obtainedStarImage;
@@ -94,6 +93,7 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
+        finalNumberOfMoves = 0;
     }
     
 
@@ -102,6 +102,7 @@ public class MenuManager : MonoBehaviour
         loseUIGameObject.SetActive(false);
         winUIGameObject.SetActive(false);
         isUIDrawn = false;
+        
         
     }
 
