@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,13 +13,13 @@ public class MenuManager : MonoBehaviour
     public GameObject winUIGameObject;
 
     public Image star1;
-    public GameObject textstar1;
+    public TMP_Text textstar1;
 
     public Image star2;
-    public GameObject textstar2;
+    public TMP_Text textstar2;
 
     public Image star3;
-    public GameObject textstar3;
+    public TMP_Text textstar3;
 
     public Sprite obtainedStarImage;
     public Sprite emptyStarImage;
