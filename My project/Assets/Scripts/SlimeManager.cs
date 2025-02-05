@@ -40,6 +40,7 @@ public class SlimeManager : MonoBehaviour
             }
         }
         MenuManager.instance.WinUI();
+        LevelManager.Instance.UnlockedLevels();
     }
     void Start()
     {
