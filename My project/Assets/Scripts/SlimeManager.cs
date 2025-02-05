@@ -9,7 +9,6 @@ public class SlimeManager : MonoBehaviour
     public static SlimeManager Instance;
 
     [SerializeField] private List<SlimeController> slimesList = new List<SlimeController>();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {

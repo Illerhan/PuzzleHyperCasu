@@ -114,6 +114,7 @@ public class DragableObject : MonoBehaviour
             OnItemDropped?.Invoke(this);
             OnObjectMoved?.Invoke(this);
             LevelManager.Instance.actionCount++;
+            MenuManager.instance.UpdateFinalMoveNumber(LevelManager.Instance.actionCount);
         }
         
     }
