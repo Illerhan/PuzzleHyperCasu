@@ -24,8 +24,11 @@ public class LevelManager : MonoBehaviour
     public int actionCount = 0 ;
     public static LevelManager Instance;
     
-    
-
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     
     private void Start()
     {
@@ -69,10 +72,13 @@ public class LevelManager : MonoBehaviour
             buttonList[index].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Trigger");
             Debug.Log("lock, level" + (index+1));
         }
-        
-        
-        
-        
+    }
+
+    public void SetNextLevel()
+    {
+        int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
+        currentLevel.selectedLevel = currentLevel.levelSo[index + 1];
+        SceneManager.LoadScene("Level");
     }
 }
 

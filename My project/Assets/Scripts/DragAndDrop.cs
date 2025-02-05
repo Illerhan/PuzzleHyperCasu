@@ -48,6 +48,7 @@ public class DragableObject : MonoBehaviour
         return Camera.main.WorldToScreenPoint(transform.position);
     }
     
+    
     private void OnMouseDown()
     {
         if (isFirstMove)
@@ -79,7 +80,6 @@ public class DragableObject : MonoBehaviour
         
         if (isMooved)
         {
-
             if (other.CompareTag("Slime"))
             {
                 SlimeController slim = other.GetComponent<SlimeController>();
@@ -109,6 +109,7 @@ public class DragableObject : MonoBehaviour
         {
             Debug.Log("HI");
             isMooved = true;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
             OnItemDropped?.Invoke(this);
@@ -132,5 +133,6 @@ public class DragableObject : MonoBehaviour
     private void OnDestroy()
     {
         OnItemEaten?.Invoke(this);
+        ObjectManager.Instance.UnregisterItem(this);
     }
 }

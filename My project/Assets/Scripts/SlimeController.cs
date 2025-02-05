@@ -72,7 +72,16 @@ public class SlimeController : MonoBehaviour
         {
             StopCoroutine(co);
             co = null;
+            SlimeManager.Instance.CheckSlimes();
         }
+
+        
+        if (currentSize == maxSize)
+        {
+            isGrown = true;
+            SlimeManager.Instance.CheckSlimes();
+        }
+        
     }
     
     private IEnumerator MoveToObject(Vector3 targetPosition)
@@ -96,13 +105,11 @@ public class SlimeController : MonoBehaviour
             return;
         currentSize += 0.5f;
         transform.localScale *= 1.25f;
-        if (currentSize == maxSize)
-        {
-            if (currentState == SlimeState.Hungry)
-                currentState = SlimeState.Normal;
-            isGrown = true;
-            SlimeManager.Instance.CheckSlimes();
-        }
+        if (!(currentSize >= maxSize)) return;
+        if (currentState == SlimeState.Hungry)
+            currentState = SlimeState.Normal;
+        isGrown = true;
+        SlimeManager.Instance.CheckSlimes();
     }
 
     private void OnTriggerStay(Collider other)

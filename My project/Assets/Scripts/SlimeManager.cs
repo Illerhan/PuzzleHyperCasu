@@ -30,7 +30,7 @@ public class SlimeManager : MonoBehaviour
             
     }
 
-    public bool CheckSlimes()
+    public void CheckSlimes()
     {
         int i = 0;
         foreach (var slime in slimesList)
@@ -40,18 +40,8 @@ public class SlimeManager : MonoBehaviour
                 i++;
             }
         }
-
         if (i == slimesList.Count)
-        {
             MenuManager.instance.WinUI();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-            
-        
     }
     void Start()
     {

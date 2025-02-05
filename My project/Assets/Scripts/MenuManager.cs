@@ -135,6 +135,7 @@ public class MenuManager : MonoBehaviour
         loseUIGameObject.SetActive(false);
         winUIGameObject.SetActive(false);
         isUIDrawn = false;
+        
     }
 
     public void UpdateFinalMoveNumber(int numberOfMoves)
@@ -152,6 +153,15 @@ public class MenuManager : MonoBehaviour
     public void Retry()
     {
         ResetUI();
-        levelLoader.LoadLevel();
+        SceneManager.LoadScene("Level");
+        //levelLoader.LoadLevel();
+    }
+    
+    public void NextLevel()
+    {
+        ResetUI();
+        LevelManager.Instance.SetNextLevel();
+        SceneManager.LoadScene("Level");
+        //levelLoader.LoadLevel();
     }
 }
