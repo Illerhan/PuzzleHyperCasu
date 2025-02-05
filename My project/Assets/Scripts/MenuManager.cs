@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public GameObject loseUIGameObject;
     public GameObject winUIGameObject;
 
+    //étoiles et textes
+
     public Image star1;
     public TMP_Text textstar1;
 
@@ -24,15 +26,19 @@ public class MenuManager : MonoBehaviour
     public Sprite obtainedStarImage;
     public Sprite emptyStarImage;
 
+    //score pour chaque étoile
+
+    private int score_pl1;
+    private int score_pl2;
+    private int score_pl3;
+
     //bool pour éviter des situations où on affiche les 2 interfaces en méme temps
     bool isUIDrawn = false;
 
 
     private int placeholderInt;
  
-    private int score_pl1;
-    private int score_pl2;
-    private int score_pl3;
+
 
 
     //singleton
@@ -65,6 +71,9 @@ public class MenuManager : MonoBehaviour
         //interface de win activée
         if (!isUIDrawn)
         {
+            SetMoveNumbers();
+            CheckStar();
+
             isUIDrawn = true;
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
@@ -72,9 +81,24 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    /*
+
+    void SetMoveNumbers()
+    {
+        //1 = plus petit nombre, 3 = plus grand
+        score_pl1 = levelLoader.currentLevel.nbMovesToGainStars[0].Moves;
+        score_pl2 = levelLoader.currentLevel.nbMovesToGainStars[1].Moves;
+        score_pl3 = levelLoader.currentLevel.nbMovesToGainStars[2].Moves;
+
+        //On assigne les bonnes valeurs
+        textstar1.text = score_pl3.ToString();
+        textstar2.text = score_pl3.ToString();
+        textstar3.text = score_pl3.ToString();
+    }
+
+    
     void CheckStar()
     {
+
         //De base toutes les étoiles sont vides
         star1.sprite = emptyStarImage;
         star2.sprite = emptyStarImage;
@@ -104,7 +128,7 @@ public class MenuManager : MonoBehaviour
             //No stars ???
         }
     }
-    */
+    
 
     public void ResetUI()
     {
