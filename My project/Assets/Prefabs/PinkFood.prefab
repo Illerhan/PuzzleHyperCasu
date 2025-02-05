@@ -125,7 +125,7 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   spawnZone: {x: 0, y: 0, z: 0}
   spawnZoneRadius: 5
-  type: {fileID: 11400000, guid: 0f69ca12ac989d547bb0c6673e4c984e, type: 2}
+  type: {fileID: 11400000, guid: cc61e2b7574688e46a707f9c769d01d8, type: 2}
   rangePrefab: {fileID: 6106873361330438305, guid: dead7dde630f12642b836e34f1c35dc6, type: 3}
   indexInConvoyeur: 0
 --- !u!54 &396880529189605431
