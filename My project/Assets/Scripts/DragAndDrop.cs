@@ -9,6 +9,8 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class DragableObject : MonoBehaviour
 {
+    
+    
     Vector3 mousePosition;
     private bool isMooved;
     private GameObject range;
@@ -20,12 +22,26 @@ public class DragableObject : MonoBehaviour
 
     public static event Action<DragableObject> OnItemDropped;
     public static event Action<DragableObject> OnItemEaten;
+    public static event Action<DragableObject> OnObjectMoved;
     public GameObject rangePrefab;
-    
+    public int indexInConvoyeur;
+    public bool IsMooved
+    {
+        get => isMooved;
+        set
+        {
+            if (isMooved != value) // Notify only if value changes
+            {
+                isMooved = value;
+                OnObjectMoved?.Invoke(this); // Notify convoyeur
+            }
+        }
+    }
 
     private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
+        
         
     }
 
@@ -34,11 +50,12 @@ public class DragableObject : MonoBehaviour
         return Camera.main.WorldToScreenPoint(transform.position);
     }
     
+    
     private void OnMouseDown()
     {
         if (isFirstMove)
         {
-            initialPosition = this.transform.position;
+            initialPosition = transform.position;
             spawnZone = initialPosition;
             isFirstMove = false;
         }
@@ -62,13 +79,22 @@ public class DragableObject : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        
         if (isMooved)
         {
-            SlimeController slim = other.GetComponent<SlimeController>();
-            if (slim.slimeData.compatibleItemTag != type.itemName)
+            if (other.CompareTag("Slime"))
             {
-                Debug.Log("Hola");
-                slim.Bounce();
+                SlimeController slim = other.GetComponent<SlimeController>();
+                
+                if (slim.slimeData.compatibleItemTag != type.itemName)
+                {
+                    Debug.Log("Hola");
+                    slim.Bounce();
+                    Destroy(this);
+                    return;
+                }
+                slim.GrowSlim();
+                Destroy(this);
             }
         }
     }
@@ -85,9 +111,13 @@ public class DragableObject : MonoBehaviour
         {
             Debug.Log("HI");
             isMooved = true;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
             OnItemDropped?.Invoke(this);
+            OnObjectMoved?.Invoke(this);
+            LevelLoader.actionCount++;
+            MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
         }
         
     }
@@ -105,5 +135,6 @@ public class DragableObject : MonoBehaviour
     private void OnDestroy()
     {
         OnItemEaten?.Invoke(this);
+        ObjectManager.Instance.UnregisterItem(this);
     }
 }

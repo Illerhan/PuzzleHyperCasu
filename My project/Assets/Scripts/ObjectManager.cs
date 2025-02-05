@@ -8,6 +8,7 @@ public class ObjectManager : MonoBehaviour
     public static ObjectManager Instance;
 
     private Dictionary<DragableObject, Vector3> itemPosition = new Dictionary<DragableObject, Vector3>();
+    
 
     private void Awake()
     {
