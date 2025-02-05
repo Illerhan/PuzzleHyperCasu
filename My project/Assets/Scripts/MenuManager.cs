@@ -36,7 +36,7 @@ public class MenuManager : MonoBehaviour
     bool isUIDrawn = false;
 
 
-    private int placeholderInt;
+    private int finalNumberOfMoves;
  
 
 
@@ -105,20 +105,20 @@ public class MenuManager : MonoBehaviour
         star3.sprite = emptyStarImage;
 
         //On remplit celles qu'on posséde
-        if (placeholderInt <= score_pl1)
+        if (finalNumberOfMoves <= score_pl1)
         {
             //3 stars
             star1.sprite = obtainedStarImage;
             star2.sprite = obtainedStarImage;
             star3.sprite = obtainedStarImage;
         }
-        else if(placeholderInt <= score_pl2)
+        else if(finalNumberOfMoves <= score_pl2)
         {
             star1.sprite = obtainedStarImage;
             star2.sprite = obtainedStarImage;
             //2 stars
         }
-        else if(placeholderInt <= score_pl3)
+        else if(finalNumberOfMoves <= score_pl3)
         {
             star1.sprite = obtainedStarImage;
             //1 star
@@ -135,6 +135,11 @@ public class MenuManager : MonoBehaviour
         loseUIGameObject.SetActive(false);
         winUIGameObject.SetActive(false);
         isUIDrawn = false;
+    }
+
+    public void UpdateFinalMoveNumber(int numberOfMoves)
+    {
+        numberOfMoves = finalNumberOfMoves;
     }
 
 
