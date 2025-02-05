@@ -1,11 +1,5 @@
 using System;
-using System.Security.Cryptography;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
-
 
 public class DragableObject : MonoBehaviour
 {
