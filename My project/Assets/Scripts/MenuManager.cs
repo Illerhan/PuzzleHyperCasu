@@ -82,17 +82,14 @@ public class MenuManager : MonoBehaviour
         
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
-            Debug.Log(2);
             Win1Star.sprite = obtainedStarImage;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
-                Debug.Log(3);
                 Win2Star.sprite = obtainedStarImage;
                 
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
-                    Debug.Log(4);
                     Win3Star.sprite = obtainedStarImage;
                 }
             }
@@ -111,8 +108,8 @@ public class MenuManager : MonoBehaviour
     public void UpdateFinalMoveNumber(int numberOfMoves)
     {
         finalNumberOfMoves = numberOfMoves;
-        levelLoader.totalmoves--;
-        levelLoader.movesLeft.text = levelLoader.totalmoves.ToString();
+        levelLoader.movesDone++;
+        levelLoader.movesLeft.text = levelLoader.movesDone.ToString();
     }
 
 
@@ -126,7 +123,7 @@ public class MenuManager : MonoBehaviour
     {
         ResetUI();
         SceneManager.LoadScene("Level");
-        //levelLoader.LoadLevel();
+        
     }
     
     public void NextLevel()
@@ -134,6 +131,6 @@ public class MenuManager : MonoBehaviour
         ResetUI();
         LevelManager.Instance.SetNextLevel();
         SceneManager.LoadScene("Level");
-        //levelLoader.LoadLevel();
+        
     }
 }

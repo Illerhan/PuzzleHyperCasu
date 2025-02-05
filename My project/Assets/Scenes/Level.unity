@@ -337,7 +337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1474219954}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
@@ -4261,7 +4261,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1474219954}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
@@ -4468,9 +4468,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1474219954}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: Retry
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4625,7 +4625,7 @@ MonoBehaviour:
   levelContainer: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
   currentLevel: {fileID: 11400000, guid: 90c9786be4b39d44d84582879818b95b, type: 2}
   movesLeft: {fileID: 1293948313}
-  movesDone: 0
+  totalmoves: 10
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
   textstarsMoves:
@@ -10090,7 +10090,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1474219954}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: Onback
         m_Mode: 1
@@ -16890,7 +16890,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1474219954}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: Onback
         m_Mode: 1
