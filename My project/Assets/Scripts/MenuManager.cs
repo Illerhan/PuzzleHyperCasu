@@ -28,8 +28,6 @@ public class MenuManager : MonoBehaviour
 
     //score pour chaque étoile
 
-    public LevelLoader lvlLoader;
-
     private int score_pl1;
     private int score_pl2;
     private int score_pl3;
@@ -100,8 +98,6 @@ public class MenuManager : MonoBehaviour
     
     void CheckStar()
     {
-
-       
 
         //De base toutes les étoiles sont vides
         star1.sprite = emptyStarImage;
