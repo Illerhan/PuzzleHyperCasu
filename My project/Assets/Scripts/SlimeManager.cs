@@ -40,8 +40,13 @@ public class SlimeManager : MonoBehaviour
                 i++;
             }
         }
+
         if (i == slimesList.Count)
+        {
             MenuManager.instance.WinUI();
+            LevelManager.Instance.UnlockedLevels();
+        }
+            
     }
     void Start()
     {

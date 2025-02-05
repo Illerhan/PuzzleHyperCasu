@@ -51,7 +51,6 @@ public class LevelManager : MonoBehaviour
             }
 
         }
-        //unlockedlevels = new List<bool>(buttonList.Count);
         
         
     }
@@ -79,6 +78,13 @@ public class LevelManager : MonoBehaviour
         int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
         currentLevel.selectedLevel = currentLevel.levelSo[index + 1];
         SceneManager.LoadScene("Level");
+    }
+
+    public void UnlockedLevels()
+    {
+        int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
+        unlockedlevels[index] = true;
+        Debug.Log(index +" "+  unlockedlevels[index]);
     }
 }
 
