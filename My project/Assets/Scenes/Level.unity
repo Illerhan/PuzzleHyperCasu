@@ -24163,7 +24163,7 @@ MonoBehaviour:
   winUIGameObject: {fileID: 1014293355}
   winBackground: {fileID: 1014293357}
   winBgAlpha: 235
-  bgFadeTime: 1
+  bgFadeTime: 0.3
   Win1Star: {fileID: 980067741}
   Win2Star: {fileID: 1558770850}
   Win3Star: {fileID: 1141723308}
