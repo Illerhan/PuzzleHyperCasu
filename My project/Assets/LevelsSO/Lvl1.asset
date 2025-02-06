@@ -23,6 +23,6 @@ MonoBehaviour:
   - Moves: 1
   - Moves: 2
   - Moves: 3
-  hasTutoFinger: 0
+  hasTutoFinger: 1
   hasTutoText: 1
   tutoTextToWrite: Feed the slime to win !
