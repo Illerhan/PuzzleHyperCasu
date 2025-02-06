@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
         buttonList = new List<GameObject>();
       
         int count = buttonLevelsContainers.transform.childCount;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count-1; i++)
         {
             GameObject child = buttonLevelsContainers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
             buttonList.Add(child);
