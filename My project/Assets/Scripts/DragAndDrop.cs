@@ -19,6 +19,7 @@ public class DragableObject : MonoBehaviour
     public static event Action<DragableObject> OnObjectMoved;
     public GameObject rangePrefab;
     public int indexInConvoyeur;
+    
     public bool IsMooved
     {
         get => isMooved;
@@ -35,9 +36,6 @@ public class DragableObject : MonoBehaviour
     private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
-        
-        
-        
     }
 
     private Vector3 getMousePosition()
@@ -54,9 +52,13 @@ public class DragableObject : MonoBehaviour
             spawnZone = initialPosition;
             isFirstMove = false;
         }
-        range = Instantiate(rangePrefab);
-        range.transform.localScale = new Vector3(type.influenceRadius*1.5f,1,type.influenceRadius*1.5f);
-        mousePosition = Input.mousePosition - getMousePosition();
+
+        if (!isMooved)
+        {
+            range = Instantiate(rangePrefab);
+            range.transform.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
+            mousePosition = Input.mousePosition - getMousePosition();
+        }
     }
 
     private void OnMouseDrag()
@@ -69,31 +71,25 @@ public class DragableObject : MonoBehaviour
                 screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
                 transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
                 range.transform.position = transform.position;
-
             }
         }
-        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        
-        if (isMooved)
+        if (isMooved && other.CompareTag("Slime"))
         {
-            if (other.CompareTag("Slime"))
+            SlimeController slim = other.GetComponent<SlimeController>();
+            
+            if (slim.slimeData.compatibleItemTag != type.itemName)
             {
-                SlimeController slim = other.GetComponent<SlimeController>();
-                
-                if (slim.slimeData.compatibleItemTag != type.itemName)
-                {
-                    Debug.Log("Hola");
-                    slim.Bounce();
-                    Destroy(this);
-                    return;
-                }
-                slim.GrowSlim();
+                Debug.Log("Hola");
+                slim.Bounce();
                 Destroy(this);
             }
+            
+            slim.GrowSlim();
+            Destroy(this);
         }
     }
 
@@ -103,14 +99,10 @@ public class DragableObject : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (plane.Raycast(ray, out float distance))
-        {
             transform.position = ray.GetPoint(distance);
-        }
-
+        
         if (IsInsideSpawnZone(transform.position))
-        {
             transform.position = initialPosition;
-        }
         else
         {
             isMooved = true;
@@ -139,6 +131,10 @@ public class DragableObject : MonoBehaviour
         OnItemEaten?.Invoke(this);
         ObjectManager.Instance.UnregisterItem(this);
         SlimeManager.Instance.CheckSlimes();
-        
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, type.influenceRadius);
     }
 }
