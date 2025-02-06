@@ -39,7 +39,7 @@ public class LevellSO : ScriptableObject
     public LevelFood foodToSpawn;
     public LevelMoves[] nbMovesToGainStars;
 
-    //pas encore implémenté
+    
     public bool hasTutoFinger = false;
     [Space(10)]
 
