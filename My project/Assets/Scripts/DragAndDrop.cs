@@ -46,23 +46,25 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
+        if (isMooved) return;
+        
         if (isFirstMove)
         {
             initialPosition = transform.position;
             spawnZone = initialPosition;
             isFirstMove = false;
         }
-
-        if (!isMooved)
-        {
-            range = Instantiate(rangePrefab);
-            range.transform.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
-            mousePosition = Input.mousePosition - getMousePosition();
-        }
+        
+        range = Instantiate(rangePrefab);
+        range.transform.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
+        mousePosition = Input.mousePosition - getMousePosition();
+        
     }
 
     private void OnMouseDrag()
     {
+        if(isMooved) return;
+        
         if(!isMooved && Camera.main)
         {
             Vector3 screenMousePos = Input.mousePosition;
@@ -72,6 +74,36 @@ public class DragableObject : MonoBehaviour
         }
     }
 
+    private void OnMouseUp()
+    {
+        
+        Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (plane.Raycast(ray, out float distance))
+            transform.position = ray.GetPoint(distance);
+        
+        if(isMooved) return;
+
+        if (IsInsideSpawnZone(transform.position))
+        {
+            transform.position = initialPosition;
+            isFirstMove = false;
+            isMooved = false;
+            Destroy(range.gameObject);
+        }
+        else if(!isMooved && !IsInsideSpawnZone(transform.position))
+        {
+            isMooved = true;
+            ObjectManager.Instance.UpdateItemPosition(this);
+            Destroy(range.gameObject);
+            OnItemDropped?.Invoke(this);
+            OnObjectMoved?.Invoke(this);
+            LevelLoader.actionCount++;
+            MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
+        }
+    }
+    
     private void OnTriggerStay(Collider other)
     {
         if (isMooved && other.CompareTag("Slime"))
@@ -89,28 +121,7 @@ public class DragableObject : MonoBehaviour
             Destroy(this);
         }
     }
-
-    private void OnMouseUp()
-    {
-        Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (plane.Raycast(ray, out float distance))
-            transform.position = ray.GetPoint(distance);
-        
-        if (IsInsideSpawnZone(transform.position))
-            transform.position = initialPosition;
-        else if(!isMooved && !IsInsideSpawnZone(transform.position))
-        {
-            isMooved = true;
-            ObjectManager.Instance.UpdateItemPosition(this);
-            Destroy(range.gameObject);
-            OnItemDropped?.Invoke(this);
-            OnObjectMoved?.Invoke(this);
-            LevelLoader.actionCount++;
-            MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
-        }
-    }
+    
     private bool IsInsideSpawnZone(Vector3 position)
     {
         return Vector3.Distance(position, spawnZone) <= spawnZoneRadius;
