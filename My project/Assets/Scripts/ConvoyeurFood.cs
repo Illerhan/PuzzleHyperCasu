@@ -44,9 +44,6 @@ public class ConvoyeurFood : MonoBehaviour
         DragableObject.OnObjectMoved -= HandleFoodMoved;
     }
     
-    
-
-    // Update is called once per frame
     void Update()
     {
         if (isMoving)
