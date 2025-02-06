@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6281536871219746729}
   - component: {fileID: 3803254496406396914}
   - component: {fileID: 5993864375898689847}
-  - component: {fileID: 1692267216926946115}
   - component: {fileID: 8766699516381930024}
   - component: {fileID: 7539678082703562040}
+  - component: {fileID: 5928623051373380447}
   m_Layer: 0
   m_Name: OrangeFood
   m_TagString: OrangeFood
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 3497896979896397978}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.98, y: -4.4, z: -3.13}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6604734122222699480}
@@ -90,29 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1692267216926946115
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3497896979896397978}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8766699516381930024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +135,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5928623051373380447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497896979896397978}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8248740088711158446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,27 +170,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.168085
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.168085
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.168085
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21799994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3013422554227104118, guid: bb017df1e5fdb284ea29dfc1f2b5f7f4, type: 3}
       propertyPath: m_LocalRotation.w

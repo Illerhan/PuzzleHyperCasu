@@ -26,7 +26,8 @@ public class SlimeController : MonoBehaviour
 
     public Rigidbody rb;
 
-    [SerializeField] private Animator anim;
+    [SerializeField] private Animator animBody;
+    [SerializeField] private Animator animFace;
     
     void Start()
     {
@@ -92,7 +93,7 @@ public class SlimeController : MonoBehaviour
     {
         if (isGrown) return;
         
-        anim.Play("Manger");
+        animBody.Play("Manger");
         
         currentSize += 1;
         transform.localScale *= 1.25f;
@@ -109,6 +110,22 @@ public class SlimeController : MonoBehaviour
     private void Update()
     {
         CheckToMergeSlime();
+
+        switch (currentState)
+        {
+            case SlimeState.Normal:
+                animFace.Play("Visage dodo test2");
+                break;
+            case SlimeState.Hungry:
+                animFace.Play("Faim");
+                break;
+            case SlimeState.Sleeping:
+                animFace.Play("Visage dodo test2 0");
+                break;
+            default:
+                break;
+        }
+        
     }
 
     void CheckToMergeSlime()
@@ -144,12 +161,14 @@ public class SlimeController : MonoBehaviour
         {
             // Game Over
             Debug.Log("GameOver");
-            MenuManager.instance.LoseUI();
+            StartCoroutine(MenuManager.instance.LoseUI());
             return;
         }
         
         Debug.Log($"Ate {smallestSlime.slimeData.slimeName}");
         Destroy(smallestSlime.gameObject);
+        
+        animFace.Play("Miam Miam");
         
         GrowSlime();
     }
@@ -158,7 +177,7 @@ public class SlimeController : MonoBehaviour
     {
         Debug.Log("Bounce");
 
-        anim.Play("Saut");
+        animFace.Play("Saut");
         
         SlimeController[] hittedSlime = SlimeManager.Instance.GetSlimes();
         

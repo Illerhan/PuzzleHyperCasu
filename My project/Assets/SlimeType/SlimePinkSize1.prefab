@@ -164,7 +164,8 @@ MonoBehaviour:
   speed: 10
   currentState: 0
   rb: {fileID: 1593117213218511467}
-  anim: {fileID: 3841018357226163979}
+  animBody: {fileID: 3841018357226163979}
+  animFace: {fileID: 2448961219507722724}
 --- !u!54 &1593117213218511467
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -269,6 +270,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efb7e41dc7243564a8a18a6dd8046139, type: 3}
+--- !u!95 &2448961219507722724 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2752751449665061061, guid: efb7e41dc7243564a8a18a6dd8046139, type: 3}
+  m_PrefabInstance: {fileID: 562890145419581729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &3841018357226163979 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3639401366737458730, guid: efb7e41dc7243564a8a18a6dd8046139, type: 3}

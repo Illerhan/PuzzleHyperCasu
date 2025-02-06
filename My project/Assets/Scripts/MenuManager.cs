@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class MenuManager : MonoBehaviour
     [Space(10)]
     public float bgFadeTime = 1f;
     //false : fade in le win bg, true : fade in le lose bg
-    bool isWinBg = false;
+    [HideInInspector] public bool playerWon = false;
 
     //étoiles
     [Space(10)]
@@ -62,29 +63,34 @@ public class MenuManager : MonoBehaviour
         ResetUI();
     }
 
-    public void LoseUI()
+    public IEnumerator LoseUI()
     {
         //interface de lose activée
         if (!isUIDrawn)
         {
-            isWinBg = false;
+            playerWon = false;
             bgClockStarted = true;
             isUIDrawn = true;
+            
+            yield return new WaitForSeconds(0.5f);
+            
             loseUIGameObject.SetActive(true);
         }
 
     }
 
-    public void WinUI()
+    public IEnumerator WinUI()
     {
         //interface de win activée
         if (!isUIDrawn)
         {
-            isWinBg = true;
+            playerWon = true;
             bgClockStarted = true;
             CheckStar();
-
             isUIDrawn = true;
+
+            yield return new WaitForSeconds(0.5f);
+            
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
         }
@@ -125,7 +131,7 @@ public class MenuManager : MonoBehaviour
         bgClock = 0;
         bgClockStarted = false;
 
-        isWinBg = false;
+        playerWon = false;
 
         isUIDrawn = false;
         
@@ -173,7 +179,7 @@ public class MenuManager : MonoBehaviour
                 bgClockStarted = false;
             }
 
-            if (isWinBg)
+            if (playerWon)
             {
                 //transition du winbg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)

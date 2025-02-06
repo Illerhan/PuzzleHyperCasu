@@ -46,7 +46,7 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
-        if (isMooved) return;
+        if (isMooved || MenuManager.instance.playerWon) return;
         
         if (isFirstMove)
         {
@@ -63,7 +63,7 @@ public class DragableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if(isMooved) return;
+        if(isMooved || MenuManager.instance.playerWon) return;
         
         if(!isMooved && Camera.main)
         {
@@ -76,6 +76,7 @@ public class DragableObject : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if(MenuManager.instance.playerWon) return;
         
         Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -39,7 +39,7 @@ public class SlimeManager : MonoBehaviour
                 return;
             }
         }
-        MenuManager.instance.WinUI();
+        StartCoroutine(MenuManager.instance.WinUI());
         
         if(LevelManager.Instance)
             LevelManager.Instance.UnlockedLevels();

@@ -4639,60 +4639,24 @@ MonoBehaviour:
   tutoTextObject: {fileID: 599404846}
   tutoText: {fileID: 599404848}
   convoyeurfood: {fileID: 1820255348}
-  tutoHandObject: {fileID: 823485891}
+  tutoHandObject: {fileID: 0}
   moveCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeHand: 2
+  timeHand: 0
   vanishCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  vanishTime: 0.5
-  breakTime: 0.1
-  startPos: {fileID: 1848397044}
-  endPos: {fileID: 1319923907}
+  vanishTime: 0
+  breakTime: 0
+  startPos: {fileID: 0}
+  endPos: {fileID: 0}
 --- !u!4 &696317027
 Transform:
   m_ObjectHideFlags: 0
@@ -10450,7 +10414,7 @@ Transform:
   m_GameObject: {fileID: 759160635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.19, y: 0, z: 0}
+  m_LocalPosition: {x: -9.39, y: 1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16263,7 +16227,7 @@ Transform:
   m_GameObject: {fileID: 913963259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.83, y: 0, z: 0}
+  m_LocalPosition: {x: -6.57, y: 1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24720,103 +24684,11 @@ MonoBehaviour:
   winBackground: {fileID: 718428370}
   winBgAlpha: 235
   bgFadeTime: 0.3
-  bgCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  playerWon: 0
   Win1Star: {fileID: 980067741}
   Win2Star: {fileID: 1558770850}
   Win3Star: {fileID: 1141723308}
   obtainedStarImage: {fileID: 21300000, guid: eea044393e27cbb4cba118d1e1c019a7, type: 3}
-  verticalSquish:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.49702284
-      value: 0.49985087
-      inSlope: -5.8282294
-      outSlope: -5.8282294
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.034544475
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  horizontalSquish:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.21824479
-      value: 0.5069233
-      inSlope: -1.1681451
-      outSlope: -1.1681451
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.082478136
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  squishTime: 0.3
-  loseSquishable: {fileID: 1151183794}
-  winSquishable: {fileID: 770247290}
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27491,7 +27363,7 @@ Transform:
   m_GameObject: {fileID: 1913738785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.19, y: 0, z: 0}
+  m_LocalPosition: {x: -3.81, y: 1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
