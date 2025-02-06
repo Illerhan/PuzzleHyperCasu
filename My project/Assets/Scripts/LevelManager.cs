@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public int starsNumber;
 
     public SavingData savingData;
-    public LevelData levelData;
+    private LevelData levelData = new LevelData();
     
     private void Awake()
     {
@@ -79,6 +79,7 @@ public class LevelManager : MonoBehaviour
     {
         int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
         unlockedlevels[index] = true;
+        Debug.Log(levelData.stars[index]);
         
 
 

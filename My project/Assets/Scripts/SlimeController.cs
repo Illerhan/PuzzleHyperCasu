@@ -97,7 +97,7 @@ public class SlimeController : MonoBehaviour
         SlimeManager.Instance.CheckSlimes();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         SlimeController smallestSlime = null;
         
