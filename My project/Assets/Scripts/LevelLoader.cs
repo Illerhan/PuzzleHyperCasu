@@ -104,12 +104,18 @@ public class LevelLoader : MonoBehaviour
         {
             tutoHandObject.transform.position = startPos.position;
             tutoHandClock = 0;
+
+            //On commence par faire apparaitre la main avec Vanish Clock + fade out en false (et on reset les autres clocks)
             hasBreakClockStarted = false;
-            hasVanishClockStarted = false;
-            hasTutoClockStarted = true;
+            hasTutoClockStarted = false;
+
+            isFadeOut = false;
+            hasVanishClockStarted = true;
+            
         }
         else
         {
+            //On arrête toutes les clocks
             hasTutoClockStarted = false;
             hasBreakClockStarted = false;
             hasVanishClockStarted = false;

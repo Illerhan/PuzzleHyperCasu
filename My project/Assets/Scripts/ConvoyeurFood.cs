@@ -104,7 +104,7 @@ public class ConvoyeurFood : MonoBehaviour
         activeItems.Add(newFood);
         if (convoyerAnimator != null)
         {
-            convoyerAnimator.Play("Take 001");
+            convoyerAnimator.SetTrigger("NewFruit");
         }
         isMoving = true;
     }
