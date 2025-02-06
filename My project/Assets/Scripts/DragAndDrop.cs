@@ -64,8 +64,11 @@ public class DragableObject : MonoBehaviour
         {
             if (Camera.main != null)
             {
-                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-                range.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+                Vector3 screenMousePos = Input.mousePosition;
+                screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+                transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
+                range.transform.position = transform.position;
+
             }
         }
         
@@ -95,17 +98,21 @@ public class DragableObject : MonoBehaviour
 
     private void OnMouseUp()
     {
+        Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            transform.position = ray.GetPoint(distance);
+        }
+
         if (IsInsideSpawnZone(transform.position))
         {
-            ObjectManager.Instance.UpdateItemPosition(this);
-            Destroy(range.gameObject);
             transform.position = initialPosition;
         }
         else
         {
-            Debug.Log("HI");
             isMooved = true;
-            transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
             OnItemDropped?.Invoke(this);
@@ -113,7 +120,6 @@ public class DragableObject : MonoBehaviour
             LevelLoader.actionCount++;
             MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
         }
-        
     }
     private bool IsInsideSpawnZone(Vector3 position)
     {
