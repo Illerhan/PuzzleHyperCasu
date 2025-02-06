@@ -104,7 +104,7 @@ public class DragableObject : MonoBehaviour
         }
     }
     
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (isMooved && other.CompareTag("Slime"))
         {
@@ -114,11 +114,11 @@ public class DragableObject : MonoBehaviour
             {
                 Debug.Log("Hola");
                 slim.Bounce();
-                Destroy(this);
+                Destroy(gameObject);
             }
             
-            slim.GrowSlim();
-            Destroy(this);
+            slim.GrowSlime();
+            Destroy(gameObject);
         }
     }
     

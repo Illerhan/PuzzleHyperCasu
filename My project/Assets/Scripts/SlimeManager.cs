@@ -14,6 +14,11 @@ public class SlimeManager : MonoBehaviour
             Instance = this;
     }
 
+    public SlimeController[] GetSlimes()
+    {
+        return slimesList.ToArray();
+    }
+    
     public void RegisterSlime(SlimeController slime)
     {
         slimesList.Add(slime);

@@ -1,6 +1,8 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using Task = System.Threading.Tasks.Task;
 
 
 public class SlimeController : MonoBehaviour
@@ -56,8 +58,11 @@ public class SlimeController : MonoBehaviour
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
         if (distance <= droppedItem.GetInfluenceRadius())
         {
-            co = MoveToObject(droppedItem.transform.position);
-            StartCoroutine(co);
+            //Wake up slime
+            if (currentState == SlimeState.Sleeping && targetItem != null)
+                currentState = SlimeState.Normal;
+            
+            MoveToObject(droppedItem.transform.position);
         }
     }
 
@@ -67,21 +72,25 @@ public class SlimeController : MonoBehaviour
         Destroy(droppedItem.gameObject);
     }
     
-    private IEnumerator MoveToObject(Vector3 targetPosition)
+    private async void MoveToObject(Vector3 targetPosition)
     {
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            yield return null;
+            if(gameObject.IsDestroyed()) return;
+            
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);  
+            await Task.Yield();
         }
 
+        CheckToMergeSlime();
+        
         targetItem = null;
-        GrowSlim();
+        GrowSlime();
         
         Debug.Log($"{slimeData.slimeName} reached its compatible item!");
     }
 
-    public void GrowSlim()
+    public void GrowSlime()
     {
         if (isGrown) return;
         
@@ -99,50 +108,43 @@ public class SlimeController : MonoBehaviour
         SlimeManager.Instance.CheckSlimes();
     }
 
-    private void Update()
+    void CheckToMergeSlime()
     {
         SlimeController smallestSlime = null;
         
-        Collider[] slimeInRange = Physics.OverlapSphere(transform.position,1f);
-        foreach (Collider col in slimeInRange)
+        SlimeController[] slimeInRange = SlimeManager.Instance.GetSlimes();
+        foreach (var slime in slimeInRange)
         {
-            SlimeController otherSlim = col.GetComponent<SlimeController>();
-            if (otherSlim != null && otherSlim != this)
+            if (slime != this && currentSize >= slime.currentSize)
             {
-                if (currentSize >= otherSlim.currentSize)
+                if(Vector3.Distance(slime.transform.position, transform.position) > 1)
+                    continue;
+                
+                smallestSlime = slime;
+                
+                if (slime.currentSize < smallestSlime.currentSize)
                 {
-                    if (smallestSlime == null || otherSlim.currentSize < smallestSlime.currentSize)
-                    {
-                        smallestSlime = otherSlim;
-                    }
+                    smallestSlime = slime;
+                    break;
                 }
             }
         }
         
         SlimeManager.Instance.CheckSlimes();
 
-        if (smallestSlime != null)
+        if (smallestSlime == null) return;
+        
+        if (smallestSlime.slimeData.slimeColor != slimeData.slimeColor)
         {
-            if (smallestSlime.slimeData.slimeColor != slimeData.slimeColor)
-            {
-                // Game Over
-                Debug.Log("SayHi");
-                MenuManager.instance.LoseUI();
-                return;
-            }
-            
-            Destroy(smallestSlime.gameObject);
-            Debug.Log($"Ate {smallestSlime.slimeData.slimeName}");
-            GrowSlim();
-
-            // If sleeping, wake up and move to target
-            if (currentState == SlimeState.Sleeping && targetItem != null)
-            {
-                co = MoveToObject(targetItem.transform.position);
-                currentState = SlimeState.Normal;
-                StartCoroutine(co);
-            }
+            // Game Over
+            Debug.Log("GameOver");
+            MenuManager.instance.LoseUI();
+            return;
         }
+        
+        Destroy(smallestSlime.gameObject);
+        Debug.Log($"Ate {smallestSlime.slimeData.slimeName}");
+        GrowSlime();
     }
 
     public void Bounce()
