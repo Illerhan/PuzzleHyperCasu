@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,11 +6,11 @@ public class SlimeManager : MonoBehaviour
 {
 
     public static SlimeManager Instance;
-
     [SerializeField] private List<SlimeController> slimesList = new List<SlimeController>();
 
     private void Awake()
     {
+        
         if (Instance == null)
             Instance = this;
     }
@@ -38,7 +39,7 @@ public class SlimeManager : MonoBehaviour
             }
         }
         MenuManager.instance.WinUI();
-        LevelManager.Instance.UnlockedLevels();
+        MenuManager.instance.levelLoader.SavingStarsData();
     }
     void Start()
     {

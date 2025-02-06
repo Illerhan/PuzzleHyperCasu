@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -245,5 +246,23 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
+    public void SavingStarsData()
+    {
+        string levelName = currentLevel.name; 
+        string levelString = levelName.Substring(3); 
+
+        int levelNumber;
+        if (int.TryParse(levelString, out levelNumber))
+        {
+            levelNumber -= 1;
+            GetComponent<SavingData>().levelData.stars[levelNumber] = MenuManager.instance.starsNumber;
+            GetComponent<SavingData>().SaveGameData();
+        }
+        else
+        {
+            Debug.LogError("Save failed");
+        }
+        
+    }
 
 }

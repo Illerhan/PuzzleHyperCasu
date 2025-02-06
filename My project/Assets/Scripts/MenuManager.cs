@@ -23,6 +23,7 @@ public class MenuManager : MonoBehaviour
     public float bgFadeTime = 1f;
     public AnimationCurve bgCurve;
 
+    public int starsNumber =-1;
 
     //false : fade in le win bg, true : fade in le lose bg
     bool isWinBg = false;
@@ -101,19 +102,20 @@ public class MenuManager : MonoBehaviour
     
     void CheckStar()
     {
+        starsNumber=0;
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
             Win1Star.sprite = obtainedStarImage;
-            //LevelManager.Instance.starsNumber++;
+            starsNumber=1;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
                 Win2Star.sprite = obtainedStarImage;
-                //LevelManager.Instance.starsNumber++;
+                starsNumber=2;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
                     Win3Star.sprite = obtainedStarImage;
-                    //LevelManager.Instance.starsNumber++;
+                    starsNumber=3;
                 }
             }
         }
