@@ -28,6 +28,8 @@ public class SlimeController : MonoBehaviour
 
     [SerializeField] private Animator animBody;
     [SerializeField] private Animator animFace;
+
+    [SerializeField] private ParticleSystem pS;
     
     void Start()
     {
@@ -115,14 +117,21 @@ public class SlimeController : MonoBehaviour
         {
             case SlimeState.Normal:
                 animFace.Play("Visage dodo test2");
+                if(pS.IsAlive())
+                    pS.Stop();
                 break;
             case SlimeState.Hungry:
                 animFace.Play("Faim");
+                if(pS.IsAlive())
+                    pS.Stop();
                 break;
             case SlimeState.Sleeping:
                 animFace.Play("Visage dodo test2 0");
+                if(!pS.IsAlive())
+                    pS.Play();
                 break;
             default:
+                Debug.Log("No state");
                 break;
         }
         
