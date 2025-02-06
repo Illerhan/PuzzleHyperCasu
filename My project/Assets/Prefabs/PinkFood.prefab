@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 396880529189605431}
   m_Layer: 0
   m_Name: PinkFood
-  m_TagString: GreenFood
+  m_TagString: PinkFood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,14 +29,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8946947292034177543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.19, y: -4.26, z: -3.13}
-  m_LocalScale: {x: 0.48873, y: 0.41929, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 0.6, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4105812445454886381}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!33 &2006141205428377747
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8946947292034177543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -110,7 +110,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.22, y: 0, z: -0.17}
 --- !u!114 &4375684933971577165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,16 +169,28 @@ PrefabInstance:
       value: PINK
       objectReference: {fileID: 0}
     - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.107
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.865
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.491
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3425135186422856254, guid: 0b6cb06d5e58a2e44aef40db1718f8ec, type: 3}
       propertyPath: m_LocalRotation.w
