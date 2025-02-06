@@ -59,3 +59,6 @@ MonoBehaviour:
   - Moves: 3
   - Moves: 4
   - Moves: 5
+  hasTutoFinger: 0
+  hasTutoText: 1
+  tutoTextToWrite: Slimes can't see through grass !
