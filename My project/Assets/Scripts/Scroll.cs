@@ -80,7 +80,7 @@ public class Scroll : MonoBehaviour
 
     public void MoveBackground(Vector2 normalizedpos)
     {
-        actualpos = new Vector3(-13,(1 - normalizedpos.y) * startpos.y - 30,(1 - normalizedpos.y) * startpos.z + 50);
+        actualpos = new Vector3(-13,(1 - normalizedpos.y) * startpos.y-30,(1 - normalizedpos.y) * startpos.z + 50);
         
         background.transform.position= actualpos;
         
