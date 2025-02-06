@@ -140,7 +140,8 @@ public class MenuManager : MonoBehaviour
     {
         finalNumberOfMoves = numberOfMoves;
         levelLoader.movesDone++;
-        levelLoader.movesLeft.text = levelLoader.movesDone.ToString();
+        int moves = 6 - numberOfMoves;
+        levelLoader.movesLeft.text = moves.ToString();
     }
 
 

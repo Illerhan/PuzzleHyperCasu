@@ -31,7 +31,7 @@ public class LevelLoader : MonoBehaviour
     {
         
         LoadLevel();
-        movesLeft.text = movesDone.ToString();
+        movesLeft.text = 6.ToString();
         
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
         for (int i = 0; i < textstarsMoves.Count; i++)
