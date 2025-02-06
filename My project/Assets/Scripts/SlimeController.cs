@@ -22,6 +22,7 @@ public class SlimeController : MonoBehaviour
     private bool isGrown = false;
     public float speed = 30f;
     public SlimeState currentState = SlimeState.Normal;
+    
     void Start()
     {
         transform.localScale *= currentSize;
@@ -83,21 +84,23 @@ public class SlimeController : MonoBehaviour
 
     public void GrowSlim()
     {
-        if (isGrown)
-            return;
+        if (isGrown) return;
+        
         currentSize += 1;
         transform.localScale *= 1.25f;
+        
         if (currentSize >= maxSize)
         {
             if (currentState == SlimeState.Hungry)
                 currentState = SlimeState.Normal;
+
             isGrown = true;
-            
         }
+        
         SlimeManager.Instance.CheckSlimes();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
         SlimeController smallestSlime = null;
         
@@ -115,8 +118,9 @@ public class SlimeController : MonoBehaviour
                     }
                 }
             }
-            SlimeManager.Instance.CheckSlimes();
         }
+        
+        SlimeManager.Instance.CheckSlimes();
 
         if (smallestSlime != null)
         {
@@ -182,12 +186,5 @@ public class SlimeController : MonoBehaviour
         }
 
         return false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
-        
     }
 }

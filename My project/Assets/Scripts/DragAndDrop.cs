@@ -136,9 +136,9 @@ public class DragableObject : MonoBehaviour
 
     private void OnDestroy()
     {
-        SlimeManager.Instance.CheckSlimes();
         OnItemEaten?.Invoke(this);
         ObjectManager.Instance.UnregisterItem(this);
+        SlimeManager.Instance.CheckSlimes();
         
     }
 }
