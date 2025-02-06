@@ -87,8 +87,9 @@ public class ConvoyeurFood : MonoBehaviour
 
     void SpawnNewFood(int positionIndex)
     {
-        if (itemQueue.Count <= 0) 
+        if (itemQueue.Count <= 0)
             return;
+        
         DragableObject foodData = itemQueue.Dequeue();
         
         Vector3 offScreenPosition = positions[positions.Length - 1].position;

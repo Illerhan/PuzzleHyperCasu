@@ -30,7 +30,6 @@ public class MenuManager : MonoBehaviour
     public Image Win2Star;
     public Image Win3Star;
     
-
     public Sprite obtainedStarImage;
 
     //score pour chaque étoile
@@ -41,15 +40,13 @@ public class MenuManager : MonoBehaviour
 
     //bool pour éviter des situations où on affiche les 2 interfaces en méme temps
     bool isUIDrawn = false;
-
-
+    
     private int finalNumberOfMoves;
 
     //gestion du temps pour l'UI
     bool bgClockStarted = false;
     float bgClock = 0;
-
-
+    
     //singleton
     public static MenuManager instance;
     
@@ -94,7 +91,6 @@ public class MenuManager : MonoBehaviour
         
     }
     
-    
     void CheckStar()
     {
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
@@ -116,7 +112,6 @@ public class MenuManager : MonoBehaviour
         finalNumberOfMoves = 0;
     }
     
-
     public void ResetUI()
     {
         loseUIGameObject.SetActive(false);
@@ -144,8 +139,7 @@ public class MenuManager : MonoBehaviour
         int moves = 6 - numberOfMoves;
         levelLoader.movesLeft.text = moves.ToString();
     }
-
-
+    
     public void Onback()
     {
         SceneManager.LoadScene("LevelMap");
@@ -154,23 +148,24 @@ public class MenuManager : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene("Level");
-        
     }
     
     public void NextLevel()
     {
         LevelManager.Instance.SetNextLevel();
     }
-
-
+    
     private void Update()
     {
+        
+        /*if(LevelLoader.actionCount >= LevelLoader.Instance.currentLevel.)
+            LoseUI();*/
+        
         if (bgClockStarted)
         {
             if(bgClock < bgFadeTime)
             {
                 bgClock += Time.deltaTime;
-                
                 //Debug.Log(bgClock);
             }
             else
@@ -184,8 +179,6 @@ public class MenuManager : MonoBehaviour
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
                 winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
                 //Debug.Log(winBgAlpha * bgClock / bgFadeTime);
-
-                
             }
             else
             {
@@ -195,8 +188,5 @@ public class MenuManager : MonoBehaviour
                 //Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
             }
         }
-
     }
-
-
 }

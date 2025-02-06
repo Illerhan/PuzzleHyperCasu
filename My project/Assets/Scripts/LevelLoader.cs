@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using UnityEngine.Tilemaps;
@@ -22,10 +24,13 @@ public class LevelLoader : MonoBehaviour
     
     public static int actionCount = 0 ;
 
-    
-    
-    
-    
+    public static LevelLoader Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
