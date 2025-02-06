@@ -22,18 +22,15 @@ public class SlimeManager : MonoBehaviour
     public void RegisterSlime(SlimeController slime)
     {
         slimesList.Add(slime);
-
     }
+    
     public void UnregisterSlime(SlimeController slime)
     {
         if(slimesList.Contains(slime))
-        {
             slimesList.Remove(slime);
-        }
-            
     }
 
-    public void CheckSlimes()
+    void CheckSlimes()
     {
         foreach (var slime in slimesList)
         {
@@ -45,14 +42,9 @@ public class SlimeManager : MonoBehaviour
         MenuManager.instance.WinUI();
         LevelManager.Instance.UnlockedLevels();
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        CheckSlimes();
     }
 }

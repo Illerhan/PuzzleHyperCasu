@@ -136,7 +136,6 @@ public class DragableObject : MonoBehaviour
     {
         OnItemEaten?.Invoke(this);
         ObjectManager.Instance.UnregisterItem(this);
-        SlimeManager.Instance.CheckSlimes();
     }
 
     private void OnDrawGizmos()

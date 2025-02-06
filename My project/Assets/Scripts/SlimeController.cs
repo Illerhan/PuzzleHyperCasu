@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
@@ -24,6 +25,8 @@ public class SlimeController : MonoBehaviour
     private bool isGrown = false;
     public float speed = 30f;
     public SlimeState currentState = SlimeState.Normal;
+
+    public Rigidbody rb;
     
     void Start()
     {
@@ -62,7 +65,7 @@ public class SlimeController : MonoBehaviour
             if (currentState == SlimeState.Sleeping && targetItem != null)
                 currentState = SlimeState.Normal;
             
-            MoveToObject(droppedItem.transform.position);
+            StartCoroutine(MoveToObject(droppedItem.transform.position));
         }
     }
 
@@ -72,20 +75,15 @@ public class SlimeController : MonoBehaviour
         Destroy(droppedItem.gameObject);
     }
     
-    private async void MoveToObject(Vector3 targetPosition)
+    private IEnumerator MoveToObject(Vector3 targetPosition)
     {
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f && !gameObject.IsDestroyed())
         {
-            if(gameObject.IsDestroyed()) return;
-            
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);  
-            await Task.Yield();
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
         }
-
-        CheckToMergeSlime();
         
         targetItem = null;
-        GrowSlime();
         
         Debug.Log($"{slimeData.slimeName} reached its compatible item!");
     }
@@ -104,8 +102,11 @@ public class SlimeController : MonoBehaviour
 
             isGrown = true;
         }
-        
-        SlimeManager.Instance.CheckSlimes();
+    }
+
+    private void Update()
+    {
+        CheckToMergeSlime();
     }
 
     void CheckToMergeSlime()
@@ -113,24 +114,27 @@ public class SlimeController : MonoBehaviour
         SlimeController smallestSlime = null;
         
         SlimeController[] slimeInRange = SlimeManager.Instance.GetSlimes();
+        
         foreach (var slime in slimeInRange)
         {
-            if (slime != this && currentSize >= slime.currentSize)
+            if (slime == this) continue;
+            
+            if(currentSize >= slime.currentSize)
             {
                 if(Vector3.Distance(slime.transform.position, transform.position) > 1)
                     continue;
                 
                 smallestSlime = slime;
                 
-                if (slime.currentSize < smallestSlime.currentSize)
+                if (slime.currentSize <= smallestSlime.currentSize)
                 {
+                    Debug.Log("Assign smallest Slime");
                     smallestSlime = slime;
                     break;
                 }
             }
         }
         
-        SlimeManager.Instance.CheckSlimes();
 
         if (smallestSlime == null) return;
         
@@ -142,30 +146,27 @@ public class SlimeController : MonoBehaviour
             return;
         }
         
-        Destroy(smallestSlime.gameObject);
         Debug.Log($"Ate {smallestSlime.slimeData.slimeName}");
+        Destroy(smallestSlime.gameObject);
+        
         GrowSlime();
     }
 
     public void Bounce()
     {
-        Debug.Log("Hola");
-        Collider[] hitSlimes = Physics.OverlapSphere(transform.position, pulseRadius);
+        Debug.Log("Bounce");
 
-        foreach (Collider slim in hitSlimes)
+        SlimeController[] hittedSlime = SlimeManager.Instance.GetSlimes();
+        
+        foreach (var slime in hittedSlime)
         {
-            if (slim.GameObject() != gameObject)
-            {
-                if (slim.CompareTag("Slime") && slim.GetComponent<SlimeController>().slimeData.slimeName != slimeData.slimeName)
-                {
-                    Rigidbody rb = slim.GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        Vector3 forceDirection = (slim.transform.position - transform.position).normalized;
-                        rb.AddForce(forceDirection * pulseForce,ForceMode.Impulse);
-                    }
-                }
-            }
+            if(Vector3.Distance(slime.transform.position, transform.position) > pulseRadius || slime == this)
+                continue;
+            
+            if (slime.slimeData.slimeName == slimeData.slimeName) continue;
+            
+            Vector3 forceDirection = (slime.transform.position - transform.position).normalized;
+            rb.AddForce(forceDirection * pulseForce,ForceMode.Impulse);
         }
     }
 
