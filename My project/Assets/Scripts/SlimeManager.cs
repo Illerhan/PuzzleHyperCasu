@@ -20,6 +20,11 @@ public class SlimeManager : MonoBehaviour
         slimesList.Add(slime);
 
     }
+    
+    public SlimeController[] GetSlimes()
+    {
+        return slimesList.ToArray();
+    }
     public void UnregisterSlime(SlimeController slime)
     {
         if(slimesList.Contains(slime))
@@ -38,7 +43,7 @@ public class SlimeManager : MonoBehaviour
                 return;
             }
         }
-        MenuManager.instance.WinUI();
+        StartCoroutine(MenuManager.instance.WinUI());
         MenuManager.instance.levelLoader.SavingStarsData();
     }
     void Start()
