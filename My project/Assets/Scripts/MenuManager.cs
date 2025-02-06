@@ -52,16 +52,17 @@ public class MenuManager : MonoBehaviour
 
     //singleton
     public static MenuManager instance;
+    
     private void Awake()
     {
         // activate singleton
-        if (instance == null)
+        if (instance != null)
+            Destroy(this);
+        else
             instance = this;
-
+        
         //on cache les interfaces
         ResetUI();
-
-        
     }
 
     public void LoseUI()
@@ -147,22 +148,18 @@ public class MenuManager : MonoBehaviour
 
     public void Onback()
     {
-        ResetUI();
         SceneManager.LoadScene("LevelMap");
     }
 
     public void Retry()
     {
-        ResetUI();
         SceneManager.LoadScene("Level");
         
     }
     
     public void NextLevel()
     {
-        ResetUI();
         LevelManager.Instance.SetNextLevel();
-        SceneManager.LoadScene("Level");
     }
 
 
@@ -186,7 +183,7 @@ public class MenuManager : MonoBehaviour
                 //transition du winbg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
                 winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
-                Debug.Log(winBgAlpha * bgClock / bgFadeTime);
+                //Debug.Log(winBgAlpha * bgClock / bgFadeTime);
 
                 
             }
@@ -195,7 +192,7 @@ public class MenuManager : MonoBehaviour
                 //transition du losebg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
                 loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
-                Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
+                //Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
             }
         }
 

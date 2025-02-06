@@ -21,7 +21,9 @@ public class LevelManager : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
+            Destroy(this);
+        else
             Instance = this;
     }
     
@@ -79,10 +81,6 @@ public class LevelManager : MonoBehaviour
     {
         int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
         unlockedlevels[index] = true;
-        
-
-
-
     }
 }
 

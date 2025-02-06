@@ -31,7 +31,7 @@ public class LevelLoader : MonoBehaviour
     {
         
         LoadLevel();
-        movesLeft.text = 6.ToString();
+        movesLeft.text = "6";
         
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
         for (int i = 0; i < textstarsMoves.Count; i++)
@@ -44,10 +44,10 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel()
     {
-        foreach (Transform child in tilemap.transform)
+        /*foreach (Transform child in tilemap.transform)
         {
-            GameObject.Destroy(child.gameObject);
-        }
+            Destroy(child.gameObject);
+        }*/
         
         currentLevel = levelContainer.selectedLevel;
         

@@ -13,7 +13,7 @@ public class SlimeController : MonoBehaviour
     }
     
     public SlimeData slimeData;
-    private DragableObject targetItem = null;
+    [SerializeField] DragableObject targetItem;
     public int currentSize = 1;
     [SerializeField] private float pulseRadius;
     [SerializeField] private float pulseForce;
@@ -74,8 +74,7 @@ public class SlimeController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
-        
-        Destroy(targetItem.gameObject);
+
         targetItem = null;
         GrowSlim();
         

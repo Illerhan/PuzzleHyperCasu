@@ -63,15 +63,12 @@ public class DragableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if(!isMooved)
+        if(!isMooved && Camera.main)
         {
-            if (Camera.main != null)
-            {
-                Vector3 screenMousePos = Input.mousePosition;
-                screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
-                transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
-                range.transform.position = transform.position;
-            }
+            Vector3 screenMousePos = Input.mousePosition;
+            screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+            transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
+            range.transform.position = transform.position;
         }
     }
 
@@ -103,7 +100,7 @@ public class DragableObject : MonoBehaviour
         
         if (IsInsideSpawnZone(transform.position))
             transform.position = initialPosition;
-        else
+        else if(!isMooved && !IsInsideSpawnZone(transform.position))
         {
             isMooved = true;
             ObjectManager.Instance.UpdateItemPosition(this);
@@ -112,7 +109,6 @@ public class DragableObject : MonoBehaviour
             OnObjectMoved?.Invoke(this);
             LevelLoader.actionCount++;
             MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
-            
         }
     }
     private bool IsInsideSpawnZone(Vector3 position)
@@ -120,7 +116,6 @@ public class DragableObject : MonoBehaviour
         return Vector3.Distance(position, spawnZone) <= spawnZoneRadius;
     }
     
-
     public float GetInfluenceRadius()
     {
         return type.influenceRadius;
