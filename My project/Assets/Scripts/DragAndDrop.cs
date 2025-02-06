@@ -37,6 +37,7 @@ public class DragableObject : MonoBehaviour
         ObjectManager.Instance.RegisterItem(this);
         
         
+        
     }
 
     private Vector3 getMousePosition()
@@ -119,6 +120,7 @@ public class DragableObject : MonoBehaviour
             OnObjectMoved?.Invoke(this);
             LevelLoader.actionCount++;
             MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
+            
         }
     }
     private bool IsInsideSpawnZone(Vector3 position)
@@ -134,8 +136,9 @@ public class DragableObject : MonoBehaviour
 
     private void OnDestroy()
     {
+        SlimeManager.Instance.CheckSlimes();
         OnItemEaten?.Invoke(this);
         ObjectManager.Instance.UnregisterItem(this);
-        SlimeManager.Instance.CheckSlimes();
+        
     }
 }

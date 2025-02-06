@@ -114,7 +114,7 @@ public class SlimeController : MonoBehaviour
             SlimeController otherSlim = col.GetComponent<SlimeController>();
             if (otherSlim != null && otherSlim != this)
             {
-                if (currentSize > otherSlim.currentSize)
+                if (currentSize >= otherSlim.currentSize)
                 {
                     if (smallestSlime == null || otherSlim.currentSize < smallestSlime.currentSize)
                     {
@@ -122,6 +122,7 @@ public class SlimeController : MonoBehaviour
                     }
                 }
             }
+            SlimeManager.Instance.CheckSlimes();
         }
 
         if (smallestSlime != null)

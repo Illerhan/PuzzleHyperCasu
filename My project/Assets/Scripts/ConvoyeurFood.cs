@@ -15,6 +15,8 @@ public class ConvoyeurFood : MonoBehaviour
     private Queue<DragableObject> itemQueue = new Queue<DragableObject>();
     private List<DragableObject> activeItems = new List<DragableObject>();
     private bool isMoving = false;
+    private Animator convoyerAnimator;
+    [SerializeField] private GameObject convoyerPrefab;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -29,6 +31,11 @@ public class ConvoyeurFood : MonoBehaviour
         for (int i = 0; i < positions.Length; i++)
         {
             SpawnNewFood(i);
+        }
+        
+        if (convoyerPrefab != null)
+        {
+            convoyerAnimator = convoyerPrefab.GetComponent<Animator>();
         }
     }
 
@@ -94,7 +101,10 @@ public class ConvoyeurFood : MonoBehaviour
         newFood.indexInConvoyeur = positionIndex;
         
         activeItems.Add(newFood);
-
+        if (convoyerAnimator != null)
+        {
+            convoyerAnimator.Play("Take 001");
+        }
         isMoving = true;
     }
 
