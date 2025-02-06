@@ -5105,7 +5105,19 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 471359826}
+        m_TargetAssemblyTypeName: Scroll, Assembly-CSharp
+        m_MethodName: MoveBackground
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &471359826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5120,6 +5132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 471359825}
   speed: 25
+  background: {fileID: 1492700171}
+  endpos: {x: -13, y: -40, z: 290}
   curve:
     serializedVersion: 2
     m_Curve:
@@ -13199,7 +13213,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144208322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 900}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13418,7 +13432,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161022718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 431.08185}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17445,6 +17459,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485993836}
   m_CullTransparentMesh: 1
+--- !u!4 &1492700171 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
+  m_PrefabInstance: {fileID: 1712724686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1495282414
 GameObject:
   m_ObjectHideFlags: 0
@@ -18315,7 +18334,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627999244}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1261.8942}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19545,19 +19564,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 568.5
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 540
+      value: 590
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9031368
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.429353
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalRotation.y
@@ -19569,7 +19588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -50.853
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 701152012391686989, guid: 98e3c9d714bc73a4aaad789a0cb62353, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -23877,7 +23896,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 546399294}
   - {fileID: 103408251}
-  - {fileID: 1712724686}
   - {fileID: 876062660}
   - {fileID: 1614566104}
   - {fileID: 1308440952}
+  - {fileID: 1712724686}
