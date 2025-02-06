@@ -14,5 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToSpawn: []
   slimeToSpawn:
-  - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
-    slimePosition: {x: 1, y: -4.5, z: -0.5}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: 1.5, y: -4.5, z: -0.75}
+    defaultState: 0
+  foodToSpawn:
+    foodOrder: {fileID: 11400000, guid: 9b8ce1383dcec7648a05528142719c38, type: 2}
+  nbMovesToGainStars:
+  - Moves: 2
+  - Moves: 3
+  - Moves: 4

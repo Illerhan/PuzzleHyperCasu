@@ -16,5 +16,13 @@ MonoBehaviour:
   slimeToSpawn:
   - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
     slimePosition: {x: 1, y: -0.5, z: -1}
+    defaultState: 0
   - slimePrefab: {fileID: 443885727715651613, guid: 1b72362598735fe45a70d18213b7708a, type: 3}
     slimePosition: {x: -2.5, y: -5, z: -1}
+    defaultState: 0
+  foodToSpawn:
+    foodOrder: {fileID: 11400000, guid: eb52d8f00f0cf4741b74c84777f73071, type: 2}
+  nbMovesToGainStars:
+  - Moves: 2
+  - Moves: 3
+  - Moves: 4

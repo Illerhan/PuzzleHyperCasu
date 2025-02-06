@@ -1,29 +1,34 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Mime;
-using NUnit.Framework;
 using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.PlasticSCM.Editor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class LevelManager : MonoBehaviour
 {
     public GameObject buttonLevelsContainers;
     private List<GameObject> buttonList;
-    public List<ScriptableObject> levels;
     public LevelContainer currentLevel;
+    public List<bool> unlockedlevels;
+    public Color lockColor;
+    public static LevelManager Instance;
+    public int starsNumber;
 
+    public SavingData savingData;
+    public LevelData levelData;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     
     private void Start()
     {
+        starsNumber = 0;
         buttonList = new List<GameObject>();
-        levels = new List<ScriptableObject>();
       
         int count = buttonLevelsContainers.transform.childCount;
         for (int i = 0; i < count; i++)
@@ -31,19 +36,53 @@ public class LevelManager : MonoBehaviour
             GameObject child = buttonLevelsContainers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
             buttonList.Add(child);
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
-            buttonList[i].name = (i + 1).ToString();
-
+            buttonList[i].name = (i).ToString();
+            
+            if (i!= 0 && !unlockedlevels[i-1])
+            {
+                buttonList[i].GetComponent<Image>().color = lockColor;
+                buttonList[i].transform.GetChild(1).gameObject.SetActive(true);
+                
+            }
 
         }
+        
         
     }
 
     public void StartLevel()
     {
+        
         int index = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-        Debug.Log("Load Level " + index);
-        currentLevel.selectedLevel = currentLevel.levelSo[index];
-        SceneManager.LoadScene("testScene");
+        
+        if ( index == 0 || unlockedlevels[index-1])
+        {
+            currentLevel.selectedLevel = currentLevel.levelSo[index];
+            SceneManager.LoadScene("Level");
+           
+        }
+        else
+        {
+            buttonList[index].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Trigger");
+            Debug.Log("lock, level" + (index+1));
+        }
+    }
+
+    public void SetNextLevel()
+    {
+        int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
+        currentLevel.selectedLevel = currentLevel.levelSo[index + 1];
+        SceneManager.LoadScene("Level");
+    }
+
+    public void UnlockedLevels() //considère le niveau comme complété et sauvegarde le nombre max d'étoile obtenue
+    {
+        int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
+        unlockedlevels[index] = true;
+        
+
+
+
     }
 }
 

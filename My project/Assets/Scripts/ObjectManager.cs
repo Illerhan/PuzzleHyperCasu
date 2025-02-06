@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
@@ -8,6 +6,7 @@ public class ObjectManager : MonoBehaviour
     public static ObjectManager Instance;
 
     private Dictionary<DragableObject, Vector3> itemPosition = new Dictionary<DragableObject, Vector3>();
+    
 
     private void Awake()
     {

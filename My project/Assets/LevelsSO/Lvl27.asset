@@ -13,20 +13,79 @@ MonoBehaviour:
   m_Name: Lvl27
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - prefab: {fileID: 0}
-    tilePosition: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 0, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 1, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 2, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 5, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 8, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 9, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 10, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 8, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 9, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 10, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 11, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 12, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 11, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 5, y: 11, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 4, y: 11, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 3, y: 11, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 2, y: 11, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 12, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 5, y: 12, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 4, y: 12, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 3, y: 12, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 2, y: 12, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
     slimePosition: {x: -0.5, y: 0.75, z: -0.5}
+    defaultState: 2
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 2.5, y: 3, z: -0.5}
+    slimePosition: {x: 2.5, y: -3, z: -0.5}
+    defaultState: 0
   - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
     slimePosition: {x: 3.5, y: 0.75, z: -0.5}
+    defaultState: 2
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
     slimePosition: {x: -0.5, y: -5.75, z: -0.5}
+    defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
     slimePosition: {x: -2.5, y: 0.75, z: -0.5}
+    defaultState: 2
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
     slimePosition: {x: -0.5, y: -3, z: -0.5}
+    defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
     slimePosition: {x: -4, y: -3, z: -0.5}
+    defaultState: 0
+  foodToSpawn:
+    foodOrder: {fileID: 11400000, guid: 769ca42a90aee7f4a98b6fc79b47d53e, type: 2}
+  nbMovesToGainStars:
+  - Moves: 4
+  - Moves: 5
+  - Moves: 6

@@ -13,12 +13,34 @@ MonoBehaviour:
   m_Name: Lvl12
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - prefab: {fileID: 0}
-    tilePosition: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 2, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 3, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 4, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 5, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 5, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 8, y: 5, z: 0}
   slimeToSpawn:
-  - slimePrefab: {fileID: 1779291099969455821, guid: a64e59788ad74c14a93aad724b5765f7, type: 3}
-    slimePosition: {x: -0.75, y: 4.25, z: -1.25}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: -2.5, y: 0.5, z: -0.75}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: -2.5, y: -3.5, z: -0.75}
+    defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -1.25, y: 1.25, z: -0.5}
-  - slimePrefab: {fileID: 443885727715651613, guid: 1b72362598735fe45a70d18213b7708a, type: 3}
-    slimePosition: {x: -2, y: -5.25, z: -1}
+    slimePosition: {x: 1.5, y: 0.5, z: -0.75}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: 1.5, y: -5.5, z: -0.75}
+    defaultState: 0
+  foodToSpawn:
+    foodOrder: {fileID: 11400000, guid: 980db67cc74724a428e46f131b5c136d, type: 2}
+  nbMovesToGainStars:
+  - Moves: 4
+  - Moves: 5
+  - Moves: 6

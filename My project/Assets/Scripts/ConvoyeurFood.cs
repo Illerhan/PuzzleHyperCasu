@@ -1,8 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -14,13 +10,16 @@ public class ConvoyeurFood : MonoBehaviour
     public Transform[] positions; // Fixed positions for 4 objects
     public float moveSpeed = 2f;   // Movement speed
     public FoodOrder foodList;    // Reference to predefined items
-
+    public Transform parentFood;
+    private int foodCount = 0;
     private Queue<DragableObject> itemQueue = new Queue<DragableObject>();
     private List<DragableObject> activeItems = new List<DragableObject>();
     private bool isMoving = false;
+    private Animator convoyerAnimator;
+    [SerializeField] private GameObject convoyerPrefab;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         DragableObject.OnObjectMoved += HandleFoodMoved;
         
@@ -33,12 +32,18 @@ public class ConvoyeurFood : MonoBehaviour
         {
             SpawnNewFood(i);
         }
+        
+        if (convoyerPrefab != null)
+        {
+            convoyerAnimator = convoyerPrefab.GetComponent<Animator>();
+        }
     }
-    
+
     void OnDestroy()
     {
         DragableObject.OnObjectMoved -= HandleFoodMoved;
     }
+    
     
 
     // Update is called once per frame
@@ -57,10 +62,17 @@ public class ConvoyeurFood : MonoBehaviour
         for (int i = 0; i < activeItems.Count; i++)
         {
             DragableObject item = activeItems[i];
+            
+            item.indexInConvoyeur = i;
+            
+            if (item.IsMooved)
+                continue;
+            
             Vector3 targetPos = positions[i].position;
 
             item.transform.position =
                 Vector3.MoveTowards(item.transform.position, targetPos, moveSpeed * Time.deltaTime);
+            
             if (Vector3.Distance(item.transform.position, targetPos) > 0.01f)
             {
                 allReached = false;
@@ -78,12 +90,22 @@ public class ConvoyeurFood : MonoBehaviour
         if (itemQueue.Count <= 0) 
             return;
         DragableObject foodData = itemQueue.Dequeue();
-
-        DragableObject newFood = Instantiate(foodData.type.foodPrefab, spawnPoint.position, Quaternion.identity);
-        activeItems.Add(newFood);
+        
+        Vector3 offScreenPosition = positions[positions.Length - 1].position;
+        offScreenPosition.x += 3f;
+        
+        DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity, parentFood);
+        foodCount++;
+        if (foodCount <= 3)
+            newFood.transform.position = positions[positionIndex].position;
         newFood.indexInConvoyeur = positionIndex;
-
-        newFood.transform.position = positions[positionIndex].position;
+        
+        activeItems.Add(newFood);
+        if (convoyerAnimator != null)
+        {
+            convoyerAnimator.Play("Take 001");
+        }
+        isMoving = true;
     }
 
     public void DroppedFood(int index)
@@ -91,14 +113,20 @@ public class ConvoyeurFood : MonoBehaviour
         if(index < 0 || index >= activeItems.Count) 
             return;
         DragableObject droppedItem = activeItems[index];
+        droppedItem.IsMooved = true;
         activeItems.RemoveAt(index);
-        SpawnNewFood(positions.Length-1);
-
+        
+        for (int i = index; i < activeItems.Count; i++)
+        {
+            activeItems[i].indexInConvoyeur = i;
+        }
+        SpawnNewFood(activeItems.Count);
         isMoving = true;
     }
     
     private void HandleFoodMoved(DragableObject food)
     {
+
         DroppedFood(food.indexInConvoyeur);
     }
     //Graou

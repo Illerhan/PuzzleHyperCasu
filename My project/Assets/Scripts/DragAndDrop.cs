@@ -1,14 +1,10 @@
 using System;
-using System.Security.Cryptography;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
-
 
 public class DragableObject : MonoBehaviour
 {
+    
+    
     Vector3 mousePosition;
     private bool isMooved;
     private GameObject range;
@@ -23,7 +19,6 @@ public class DragableObject : MonoBehaviour
     public static event Action<DragableObject> OnObjectMoved;
     public GameObject rangePrefab;
     public int indexInConvoyeur;
-    
     public bool IsMooved
     {
         get => isMooved;
@@ -41,6 +36,8 @@ public class DragableObject : MonoBehaviour
     {
         ObjectManager.Instance.RegisterItem(this);
         
+        
+        
     }
 
     private Vector3 getMousePosition()
@@ -48,11 +45,12 @@ public class DragableObject : MonoBehaviour
         return Camera.main.WorldToScreenPoint(transform.position);
     }
     
+    
     private void OnMouseDown()
     {
         if (isFirstMove)
         {
-            initialPosition = this.transform.position;
+            initialPosition = transform.position;
             spawnZone = initialPosition;
             isFirstMove = false;
         }
@@ -67,8 +65,11 @@ public class DragableObject : MonoBehaviour
         {
             if (Camera.main != null)
             {
-                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-                range.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+                Vector3 screenMousePos = Input.mousePosition;
+                screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+                transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
+                range.transform.position = transform.position;
+
             }
         }
         
@@ -76,34 +77,51 @@ public class DragableObject : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        
         if (isMooved)
         {
-            SlimeController slim = other.GetComponent<SlimeController>();
-            if (slim.slimeData.compatibleItemTag != type.itemName)
+            if (other.CompareTag("Slime"))
             {
-                Debug.Log("Hola");
-                slim.Bounce();
+                SlimeController slim = other.GetComponent<SlimeController>();
+                
+                if (slim.slimeData.compatibleItemTag != type.itemName)
+                {
+                    Debug.Log("Hola");
+                    slim.Bounce();
+                    Destroy(this);
+                    return;
+                }
+                slim.GrowSlim();
+                Destroy(this);
             }
         }
     }
 
     private void OnMouseUp()
     {
+        Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            transform.position = ray.GetPoint(distance);
+        }
+
         if (IsInsideSpawnZone(transform.position))
         {
-            ObjectManager.Instance.UpdateItemPosition(this);
-            Destroy(range.gameObject);
             transform.position = initialPosition;
         }
         else
         {
-            Debug.Log("HI");
             isMooved = true;
             ObjectManager.Instance.UpdateItemPosition(this);
             Destroy(range.gameObject);
+            OnItemDropped?.Invoke(this);
             OnObjectMoved?.Invoke(this);
+            LevelLoader.actionCount++;
+            MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
+            
         }
-        
     }
     private bool IsInsideSpawnZone(Vector3 position)
     {
@@ -118,6 +136,9 @@ public class DragableObject : MonoBehaviour
 
     private void OnDestroy()
     {
+        SlimeManager.Instance.CheckSlimes();
         OnItemEaten?.Invoke(this);
+        ObjectManager.Instance.UnregisterItem(this);
+        
     }
 }
