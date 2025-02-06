@@ -164,6 +164,7 @@ MonoBehaviour:
   speed: 10
   currentState: 0
   rb: {fileID: 1593117213218511467}
+  anim: {fileID: 8815484947825004192}
 --- !u!54 &1593117213218511467
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -263,5 +264,10 @@ PrefabInstance:
 --- !u!4 &251808515823564918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5452097846805815548, guid: efb7e41dc7243564a8a18a6dd8046139, type: 3}
+  m_PrefabInstance: {fileID: 5248704127027681418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8815484947825004192 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3639401366737458730, guid: efb7e41dc7243564a8a18a6dd8046139, type: 3}
   m_PrefabInstance: {fileID: 5248704127027681418}
   m_PrefabAsset: {fileID: 0}

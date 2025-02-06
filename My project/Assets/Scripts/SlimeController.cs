@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using Task = System.Threading.Tasks.Task;
 
 
 public class SlimeController : MonoBehaviour
@@ -27,6 +25,8 @@ public class SlimeController : MonoBehaviour
     public SlimeState currentState = SlimeState.Normal;
 
     public Rigidbody rb;
+
+    [SerializeField] private Animator anim;
     
     void Start()
     {
@@ -92,6 +92,8 @@ public class SlimeController : MonoBehaviour
     {
         if (isGrown) return;
         
+        anim.Play("Manger");
+        
         currentSize += 1;
         transform.localScale *= 1.25f;
         
@@ -156,6 +158,8 @@ public class SlimeController : MonoBehaviour
     {
         Debug.Log("Bounce");
 
+        anim.Play("Saut");
+        
         SlimeController[] hittedSlime = SlimeManager.Instance.GetSlimes();
         
         foreach (var slime in hittedSlime)
