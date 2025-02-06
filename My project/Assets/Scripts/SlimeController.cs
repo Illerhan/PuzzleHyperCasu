@@ -64,13 +64,6 @@ public class SlimeController : MonoBehaviour
     {
         Debug.Log("Food disapeared");
         Destroy(droppedItem.gameObject);
-        if (co != null && droppedItem != null)
-        {
-            StopCoroutine(co);
-            co = null;
-           
-        }
-        
     }
     
     private IEnumerator MoveToObject(Vector3 targetPosition)
@@ -114,7 +107,7 @@ public class SlimeController : MonoBehaviour
             SlimeController otherSlim = col.GetComponent<SlimeController>();
             if (otherSlim != null && otherSlim != this)
             {
-                if (currentSize > otherSlim.currentSize)
+                if (currentSize >= otherSlim.currentSize)
                 {
                     if (smallestSlime == null || otherSlim.currentSize < smallestSlime.currentSize)
                     {
@@ -122,6 +115,7 @@ public class SlimeController : MonoBehaviour
                     }
                 }
             }
+            SlimeManager.Instance.CheckSlimes();
         }
 
         if (smallestSlime != null)

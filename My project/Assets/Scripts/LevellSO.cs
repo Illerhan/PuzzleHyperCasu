@@ -38,4 +38,14 @@ public class LevellSO : ScriptableObject
     public LevelSlime[] slimeToSpawn;
     public LevelFood foodToSpawn;
     public LevelMoves[] nbMovesToGainStars;
+
+    
+    public bool hasTutoFinger = false;
+    [Space(10)]
+
+    public bool hasTutoText = false;
+    public string tutoTextToWrite;
+
+    
+    
 }

@@ -21,6 +21,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] int winBgAlpha;
     [Space(10)]
     public float bgFadeTime = 1f;
+    public AnimationCurve bgCurve;
+
+
     //false : fade in le win bg, true : fade in le lose bg
     bool isWinBg = false;
 
@@ -48,6 +51,8 @@ public class MenuManager : MonoBehaviour
     //gestion du temps pour l'UI
     bool bgClockStarted = false;
     float bgClock = 0;
+
+    float lerpFactor;
 
 
     //singleton
@@ -140,7 +145,8 @@ public class MenuManager : MonoBehaviour
     {
         finalNumberOfMoves = numberOfMoves;
         levelLoader.movesDone++;
-        levelLoader.movesLeft.text = levelLoader.movesDone.ToString();
+        int moves = 6 - numberOfMoves;
+        levelLoader.movesLeft.text = moves.ToString();
     }
 
 
@@ -172,8 +178,9 @@ public class MenuManager : MonoBehaviour
             if(bgClock < bgFadeTime)
             {
                 bgClock += Time.deltaTime;
-                
-                Debug.Log(bgClock);
+                lerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
+
+                //Debug.Log(bgClock);
             }
             else
             {
@@ -184,17 +191,25 @@ public class MenuManager : MonoBehaviour
             {
                 //transition du winbg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
-                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
-                Debug.Log(winBgAlpha * bgClock / bgFadeTime);
+
+
+                //winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
+                //Debug.Log(winBgAlpha * bgClock / bgFadeTime);
 
                 
+                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * lerpFactor / 255);
+
+
             }
             else
             {
                 //transition du losebg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
-                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
-                Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
+
+                //loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
+                //Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
+
+                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * lerpFactor / 255);
             }
         }
 
