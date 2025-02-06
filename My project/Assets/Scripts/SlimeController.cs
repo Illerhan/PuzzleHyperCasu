@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 
 public class SlimeController : MonoBehaviour
 {
@@ -17,11 +14,11 @@ public class SlimeController : MonoBehaviour
     
     public SlimeData slimeData;
     private DragableObject targetItem = null;
-    public float currentSize = 1;
+    public int currentSize = 1;
     [SerializeField] private float pulseRadius;
     [SerializeField] private float pulseForce;
     private IEnumerator co;
-    public float maxSize = 3;
+    public int maxSize = 3;
     private bool isGrown = false;
     public float speed = 30f;
     public SlimeState currentState = SlimeState.Normal;
@@ -58,7 +55,6 @@ public class SlimeController : MonoBehaviour
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
         if (distance <= droppedItem.GetInfluenceRadius())
         {
-            
             co = MoveToObject(droppedItem.transform.position);
             StartCoroutine(co);
         }
@@ -72,14 +68,7 @@ public class SlimeController : MonoBehaviour
         {
             StopCoroutine(co);
             co = null;
-            SlimeManager.Instance.CheckSlimes();
-        }
-
-        
-        if (currentSize == maxSize)
-        {
-            isGrown = true;
-            SlimeManager.Instance.CheckSlimes();
+           
         }
         
     }
@@ -103,12 +92,15 @@ public class SlimeController : MonoBehaviour
     {
         if (isGrown)
             return;
-        currentSize += 0.5f;
+        currentSize += 1;
         transform.localScale *= 1.25f;
-        if (!(currentSize >= maxSize)) return;
-        if (currentState == SlimeState.Hungry)
-            currentState = SlimeState.Normal;
-        isGrown = true;
+        if (currentSize >= maxSize)
+        {
+            if (currentState == SlimeState.Hungry)
+                currentState = SlimeState.Normal;
+            isGrown = true;
+            
+        }
         SlimeManager.Instance.CheckSlimes();
     }
 

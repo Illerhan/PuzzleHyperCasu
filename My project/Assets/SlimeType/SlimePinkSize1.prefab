@@ -123,10 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeData: {fileID: 11400000, guid: 713099c7969040a47b7721868b968952, type: 2}
-  currentSize: 1.5
+  currentSize: 1
   pulseRadius: 15
   pulseForce: 10
-  maxSize: 2.5
+  maxSize: 3
   speed: 10
   currentState: 0
 --- !u!54 &1593117213218511467

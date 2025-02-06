@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public class SlimeManager : MonoBehaviour
@@ -32,21 +30,15 @@ public class SlimeManager : MonoBehaviour
 
     public void CheckSlimes()
     {
-        int i = 0;
         foreach (var slime in slimesList)
         {
-            if (slime.currentSize == slime.maxSize)
+            if (slime.currentSize < slime.maxSize)
             {
-                i++;
+                return;
             }
         }
-
-        if (i == slimesList.Count)
-        {
-            MenuManager.instance.WinUI();
-            LevelManager.Instance.UnlockedLevels();
-        }
-            
+        MenuManager.instance.WinUI();
+        LevelManager.Instance.UnlockedLevels();
     }
     void Start()
     {
