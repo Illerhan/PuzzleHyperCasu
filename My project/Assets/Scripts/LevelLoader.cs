@@ -14,6 +14,10 @@ public class LevelLoader : MonoBehaviour
     public Tilemap tilemap;
     public TextMeshProUGUI level;
     public List<TextMeshProUGUI> textstarsMoves;
+
+    public GameObject tutoTextObject;
+    public TextMeshProUGUI tutoText;
+
     public ConvoyeurFood convoyeurfood;
     
     public static int actionCount = 0 ;
@@ -68,6 +72,29 @@ public class LevelLoader : MonoBehaviour
 
         convoyeurfood.foodList = currentLevel.foodToSpawn.foodOrder;
         actionCount = 0;
+
+        SetTutoTextActive(currentLevel.hasTutoText);
+        if (currentLevel.hasTutoText)
+        {
+            UpdateTutoText(currentLevel.tutoTextToWrite);
+        }
+
     }
     
+    public void SetTutoTextActive(bool isTextActivated)
+    {
+        if (tutoTextObject != null)
+        {
+            tutoTextObject.SetActive(isTextActivated);
+        }
+    }
+
+
+    void UpdateTutoText(string textToWrite)
+    {
+        tutoText.text = textToWrite;
+    }
+
+
+
 }
