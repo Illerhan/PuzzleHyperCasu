@@ -171,7 +171,7 @@ public class MenuManager : MonoBehaviour
             {
                 bgClock += Time.deltaTime;
                 
-                Debug.Log(bgClock);
+                //Debug.Log(bgClock);
             }
             else
             {
