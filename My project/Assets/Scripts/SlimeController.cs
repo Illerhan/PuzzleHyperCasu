@@ -64,13 +64,6 @@ public class SlimeController : MonoBehaviour
     {
         Debug.Log("Food disapeared");
         Destroy(droppedItem.gameObject);
-        if (co != null && droppedItem != null)
-        {
-            StopCoroutine(co);
-            co = null;
-           
-        }
-        
     }
     
     private IEnumerator MoveToObject(Vector3 targetPosition)
