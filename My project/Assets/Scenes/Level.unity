@@ -3896,15 +3896,15 @@ MonoBehaviour:
   m_text: It's the slime text ! It's the slime text ! It's the slime text ! It's
     the slime text !
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1edaed3e7aa13e9418afb3ff02fc7f79, type: 2}
+  m_sharedMaterial: {fileID: -7018888546180460204, guid: 1edaed3e7aa13e9418afb3ff02fc7f79, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292538623
+  m_fontColor: {r: 1, g: 0.9428388, b: 0.8537736, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3927,7 +3927,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4090,6 +4090,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634764892}
   m_CullTransparentMesh: 1
+--- !u!1 &639758814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7355873560953859436, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
+  m_PrefabInstance: {fileID: 810316442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &651382505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,7 +4634,6 @@ MonoBehaviour:
   levelContainer: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
   currentLevel: {fileID: 11400000, guid: 04d042bf5cb067f48b65e68d62a9544b, type: 2}
   movesLeft: {fileID: 1293948313}
-  movesDone: 0
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
   textstarsMoves:
@@ -4639,24 +4643,60 @@ MonoBehaviour:
   tutoTextObject: {fileID: 599404846}
   tutoText: {fileID: 599404848}
   convoyeurfood: {fileID: 1820255348}
-  tutoHandObject: {fileID: 0}
+  tutoHandObject: {fileID: 823485891}
   moveCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeHand: 0
+  timeHand: 1.5
   vanishCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.54840034
+      outSlope: 0.54840034
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.060209423
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.6006289
+      outSlope: 0.6006289
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051047146
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  vanishTime: 0
-  breakTime: 0
-  startPos: {fileID: 0}
-  endPos: {fileID: 0}
+  vanishTime: 0.2
+  breakTime: 0.2
+  startPos: {fileID: 1848397044}
+  endPos: {fileID: 1319923907}
 --- !u!4 &696317027
 Transform:
   m_ObjectHideFlags: 0
@@ -10676,11 +10716,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2021188252}
   m_SourcePrefab: {fileID: 100100000, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
---- !u!1 &810316443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 366789521042888029, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
-  m_PrefabInstance: {fileID: 810316442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823485891
 GameObject:
   m_ObjectHideFlags: 0
@@ -24680,13 +24715,33 @@ MonoBehaviour:
   loseUIGameObject: {fileID: 1283395511}
   loseBackground: {fileID: 738382915}
   loseBgAlpha: 244
+  timeBeforeLose: 1
   winUIGameObject: {fileID: 1014293355}
   winBackground: {fileID: 718428370}
   winBgAlpha: 235
+  timeBeforeWin: 1
   bgFadeTime: 0.3
   bgCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.3514152
+      outSlope: 1.3514152
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06282722
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -24695,7 +24750,81 @@ MonoBehaviour:
   Win1Star: {fileID: 980067741}
   Win2Star: {fileID: 1558770850}
   Win3Star: {fileID: 1141723308}
+  inGameStar1: {fileID: 1716324010}
+  inGameStar2: {fileID: 1466255508}
+  inGameStar3: {fileID: 2142077586}
   obtainedStarImage: {fileID: 21300000, guid: eea044393e27cbb4cba118d1e1c019a7, type: 3}
+  lostStarImage: {fileID: 21300000, guid: a9b96af3985ea614b95f240ae0b7ed7e, type: 3}
+  verticalSquish:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.36644515
+      value: 0.6531485
+      inSlope: -2.515724
+      outSlope: -2.515724
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13415504
+      outWeight: 0.06205304
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  horizontalSquish:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.34922776
+      value: 0.6190037
+      inSlope: -1.3426889
+      outSlope: -1.3426889
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12243567
+      outWeight: 0.076811664
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  squishTime: 0.5
+  loseSquishable: {fileID: 1151183794}
+  winSquishable: {fileID: 770247290}
+  waitBetweenStars: 0.4
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26926,7 +27055,7 @@ MonoBehaviour:
   moveSpeed: 10
   foodList: {fileID: 0}
   parentFood: {fileID: 1283654391}
-  convoyerPrefab: {fileID: 810316443}
+  convoyerPrefab: {fileID: 639758814}
 --- !u!4 &1820255349
 Transform:
   m_ObjectHideFlags: 0

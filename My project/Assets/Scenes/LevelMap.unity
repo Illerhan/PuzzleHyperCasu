@@ -22807,7 +22807,7 @@ Canvas:
   m_GameObject: {fileID: 876062656}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 546399293}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -35365,7 +35365,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1308440952}
   - component: {fileID: 1308440951}
-  - component: {fileID: 1308440953}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -35387,12 +35386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonLevelsContainers: {fileID: 2063071981}
   currentLevel: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
-  unlockedlevels: 00000000000000000000000000000000000000000000000000000000000000000000
+  obtainedStar: {fileID: 21300000, guid: eea044393e27cbb4cba118d1e1c019a7, type: 3}
   lockColor: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 1}
-  starsNumber: 0
-  savingData: {fileID: 0}
-  levelData:
-    stars: 
 --- !u!4 &1308440952
 Transform:
   m_ObjectHideFlags: 0
@@ -35408,18 +35403,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1308440953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308440950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0832a0eb419a1a941a632bb522a4b33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1308784549
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class SlimeController : MonoBehaviour
     public float speed = 30f;
     public SlimeState currentState = SlimeState.Normal;
 
-    public Rigidbody rb;
+    //public Rigidbody rb;
 
     [SerializeField] private Animator animBody;
     [SerializeField] private Animator animFace;
@@ -60,7 +60,7 @@ public class SlimeController : MonoBehaviour
             return;
 
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
-        if (distance <= droppedItem.GetInfluenceRadius())
+        if (distance <= droppedItem.GetInfluenceRadius()-2)
         {
             co = MoveToObject(droppedItem.transform.position);
             StartCoroutine(co);
@@ -94,13 +94,12 @@ public class SlimeController : MonoBehaviour
             return;
         animBody.Play("Manger");
         currentSize += 1;
-        transform.localScale *= 1.25f;
+        transform.localScale = new Vector3(currentSize,currentSize,currentSize);
         if (currentSize >= maxSize)
         {
             if (currentState == SlimeState.Hungry)
                 currentState = SlimeState.Normal;
             isGrown = true;
-
         }
 
         SlimeManager.Instance.CheckSlimes();
@@ -166,7 +165,7 @@ public class SlimeController : MonoBehaviour
                 continue;
             
             if (slime.slimeData.slimeName == slimeData.slimeName) continue;
-            
+            Rigidbody rb = slime.GetComponent<Rigidbody>();
             Vector3 forceDirection = (slime.transform.position - transform.position).normalized;
             rb.AddForce(forceDirection * pulseForce,ForceMode.Impulse);
         }
@@ -211,7 +210,7 @@ public class SlimeController : MonoBehaviour
             default:
                 break;
         }
-
+        SlimeManager.Instance.CheckSlimes();
 
     }
 
