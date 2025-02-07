@@ -8,6 +8,11 @@ public class Scroll : MonoBehaviour
 {
     public ScrollRect scrollRect;
     public float speed;
+
+    public Transform background;
+    private Vector3 startpos;
+    public Vector3 endpos;
+    private Vector3 actualpos;
     
     private float duration;
     private float position;
@@ -33,7 +38,10 @@ public class Scroll : MonoBehaviour
     }
 
     private void Start()
-    { 
+    {
+       
+        startpos =background.position;
+        actualpos = startpos;
         position = PlayerPrefs.GetFloat("ScrollPosition");
         if ( scrollRect.verticalNormalizedPosition == position)
         {
@@ -68,5 +76,14 @@ public class Scroll : MonoBehaviour
             duration = 0;
         }
         
+    }
+
+    public void MoveBackground(Vector2 normalizedpos)
+    {
+        actualpos = new Vector3(-13,(1 - normalizedpos.y) * startpos.y-30,(1 - normalizedpos.y) * startpos.z + 50);
+        
+        background.transform.position= actualpos;
+        
+
     }
 }

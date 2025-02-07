@@ -21,6 +21,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] int winBgAlpha;
     [Space(10)]
     public float bgFadeTime = 1f;
+    public AnimationCurve bgCurve;
+
+
     //false : fade in le win bg, true : fade in le lose bg
     bool isWinBg = false;
 
@@ -49,6 +52,24 @@ public class MenuManager : MonoBehaviour
     bool bgClockStarted = false;
     float bgClock = 0;
 
+    float fadeLerpFactor;
+
+    //effet de bounce/squish
+    [Space(5)]
+    public AnimationCurve verticalSquish;
+    public AnimationCurve horizontalSquish;
+    public float squishTime = 1;
+    [Space(5)]
+    public GameObject loseSquishable;
+    public GameObject winSquishable;
+
+
+    bool squishClockStarted = false;
+    float squishClock = 0;
+    float verticalSquishLerpFactor;
+    float horizontalSquishLerpFactor;
+
+    Vector3 newUIScale;
 
     //singleton
     public static MenuManager instance;
@@ -57,6 +78,7 @@ public class MenuManager : MonoBehaviour
         // activate singleton
         if (instance == null)
             instance = this;
+
 
         //on cache les interfaces
         ResetUI();
@@ -71,6 +93,7 @@ public class MenuManager : MonoBehaviour
         {
             isWinBg = false;
             bgClockStarted = true;
+            squishClockStarted = true;
             isUIDrawn = true;
             loseUIGameObject.SetActive(true);
         }
@@ -84,6 +107,7 @@ public class MenuManager : MonoBehaviour
         {
             isWinBg = true;
             bgClockStarted = true;
+            squishClockStarted = true;
             CheckStar();
 
             isUIDrawn = true;
@@ -128,6 +152,8 @@ public class MenuManager : MonoBehaviour
         //reset clocks
         bgClock = 0;
         bgClockStarted = false;
+        squishClock = 0;
+        squishClockStarted = false;
 
         isWinBg = false;
 
@@ -173,8 +199,9 @@ public class MenuManager : MonoBehaviour
             if(bgClock < bgFadeTime)
             {
                 bgClock += Time.deltaTime;
-                
-                Debug.Log(bgClock);
+                fadeLerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
+
+                //Debug.Log(bgClock);
             }
             else
             {
@@ -185,18 +212,52 @@ public class MenuManager : MonoBehaviour
             {
                 //transition du winbg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
-                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
-                Debug.Log(winBgAlpha * bgClock / bgFadeTime);
+
+
+                //winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * bgClock / bgFadeTime / 255);
+                //Debug.Log(winBgAlpha * bgClock / bgFadeTime);
 
                 
+                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * fadeLerpFactor / 255);
+
+
             }
             else
             {
                 //transition du losebg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
-                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
-                Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
+
+                //loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
+                //Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
+
+                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * fadeLerpFactor / 255);
             }
+        }
+
+
+        if (squishClockStarted)
+        {
+            if (squishClock < squishTime)
+            {
+                squishClock += Time.deltaTime;
+                verticalSquishLerpFactor = bgCurve.Evaluate(squishClock / squishTime);
+                horizontalSquishLerpFactor = horizontalSquish.Evaluate(squishClock / squishTime);
+                //Debug.Log(bgClock);
+            }
+            else
+            {
+                squishClockStarted = false;
+            }
+
+            if (isWinBg)
+            {
+                winSquishable.transform.localScale = new Vector3(horizontalSquishLerpFactor, verticalSquishLerpFactor, 1);
+            }
+            else
+            {
+                loseSquishable.transform.localScale = new Vector3(horizontalSquishLerpFactor, verticalSquishLerpFactor, 1);
+            }
+
         }
 
     }
