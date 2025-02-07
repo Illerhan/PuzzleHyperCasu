@@ -248,6 +248,8 @@ public class LevelLoader : MonoBehaviour
 
     public void SavingStarsData()
     {
+        //tout ça ça marche pas donc tant pis on va faire sans save
+        
         string levelName = currentLevel.name; 
         string levelString = levelName.Substring(3); 
 
@@ -255,13 +257,30 @@ public class LevelLoader : MonoBehaviour
         if (int.TryParse(levelString, out levelNumber))
         {
             levelNumber -= 1;
-            GetComponent<SavingData>().levelData.stars[levelNumber] = MenuManager.instance.starsNumber;
-            GetComponent<SavingData>().SaveGameData();
+            
+            //GetComponent<SavingData>().levelData.stars[levelNumber] = MenuManager.instance.starsNumber;
+            
+           // Debug.Log(levelNumber + " = " +  GetComponent<SavingData>().levelData.stars[levelNumber]);
+           // GetComponent<SavingData>().SaveGameData();
+        }
+        /*else
+        {
+            Debug.LogError("Save failed");
+        }*/
+
+
+       
+        if (PlayerPrefs.GetInt(levelNumber.ToString()) < MenuManager.instance.starsNumber)
+        {
+            PlayerPrefs.SetInt(levelNumber.ToString(), MenuManager.instance.starsNumber);
         }
         else
         {
-            Debug.LogError("Save failed");
+            Debug.Log("pas d'amélioration");
         }
+        
+        
+        
         
     }
 

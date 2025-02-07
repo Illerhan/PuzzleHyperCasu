@@ -4090,6 +4090,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634764892}
   m_CullTransparentMesh: 1
+--- !u!1 &639758814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7355873560953859436, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
+  m_PrefabInstance: {fileID: 810316442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &651382505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4639,24 +4644,60 @@ MonoBehaviour:
   tutoTextObject: {fileID: 599404846}
   tutoText: {fileID: 599404848}
   convoyeurfood: {fileID: 1820255348}
-  tutoHandObject: {fileID: 0}
+  tutoHandObject: {fileID: 823485891}
   moveCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeHand: 0
+  timeHand: 1.5
   vanishCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.54840034
+      outSlope: 0.54840034
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.060209423
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.6006289
+      outSlope: 0.6006289
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051047146
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  vanishTime: 0
-  breakTime: 0
-  startPos: {fileID: 0}
-  endPos: {fileID: 0}
+  vanishTime: 0.2
+  breakTime: 0.2
+  startPos: {fileID: 1848397044}
+  endPos: {fileID: 1319923907}
 --- !u!4 &696317027
 Transform:
   m_ObjectHideFlags: 0
@@ -10676,11 +10717,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2021188252}
   m_SourcePrefab: {fileID: 100100000, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
---- !u!1 &810316443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 366789521042888029, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
-  m_PrefabInstance: {fileID: 810316442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823485891
 GameObject:
   m_ObjectHideFlags: 0
@@ -24680,13 +24716,33 @@ MonoBehaviour:
   loseUIGameObject: {fileID: 1283395511}
   loseBackground: {fileID: 738382915}
   loseBgAlpha: 244
+  timeBeforeLose: 1
   winUIGameObject: {fileID: 1014293355}
   winBackground: {fileID: 718428370}
   winBgAlpha: 235
+  timeBeforeWin: 1
   bgFadeTime: 0.3
   bgCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.3514152
+      outSlope: 1.3514152
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06282722
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -24696,6 +24752,76 @@ MonoBehaviour:
   Win2Star: {fileID: 1558770850}
   Win3Star: {fileID: 1141723308}
   obtainedStarImage: {fileID: 21300000, guid: eea044393e27cbb4cba118d1e1c019a7, type: 3}
+  verticalSquish:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.26303634
+      value: 1.2506913
+      inSlope: -5.095365
+      outSlope: -5.095365
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.03360726
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  horizontalSquish:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3413777
+      value: 0.7227839
+      inSlope: -2.8527732
+      outSlope: -2.8527732
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.052043114
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  squishTime: 0.5
+  loseSquishable: {fileID: 1151183794}
+  winSquishable: {fileID: 770247290}
+  waitBetweenStars: 0.8
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26926,7 +27052,7 @@ MonoBehaviour:
   moveSpeed: 10
   foodList: {fileID: 0}
   parentFood: {fileID: 1283654391}
-  convoyerPrefab: {fileID: 810316443}
+  convoyerPrefab: {fileID: 639758814}
 --- !u!4 &1820255349
 Transform:
   m_ObjectHideFlags: 0
