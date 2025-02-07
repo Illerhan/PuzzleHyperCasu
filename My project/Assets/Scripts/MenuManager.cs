@@ -76,6 +76,15 @@ public class MenuManager : MonoBehaviour
 
     Vector3 newUIScale;
 
+    //temps pour chaque étoile
+    public float waitBetweenStars = 0.8f;
+    float starClock = 0;
+    bool starClockStarted = false;
+
+
+
+
+
     //singleton
     public static MenuManager instance;
     private void Awake()
@@ -132,29 +141,66 @@ public class MenuManager : MonoBehaviour
         }
         
     }
-    
-    
+
+
     void CheckStar()
     {
-        starsNumber=0;
+        starsNumber = 0;
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
+            
+            Win1Star.sprite = obtainedStarImage;
+            starsNumber = 1;
+
+            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
+            {
+
+                
+                Win2Star.sprite = obtainedStarImage;
+                starsNumber = 2;
+                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
+                {
+
+                    
+                    Win3Star.sprite = obtainedStarImage;
+                    starsNumber = 3;
+                }
+            }
+        }
+       
+        finalNumberOfMoves = 0;
+    }
+
+    //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
+    /*
+    public IEnumerator CheckStar2()
+    {
+        starsNumber =0;
+        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
+        {
+            yield return new WaitForSeconds(waitBetweenStars + squishTime);          
             Win1Star.sprite = obtainedStarImage;
             starsNumber=1;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
+               
+                yield return new WaitForSeconds(waitBetweenStars);
                 Win2Star.sprite = obtainedStarImage;
                 starsNumber=2;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
+                    
+                    yield return new WaitForSeconds(waitBetweenStars);
                     Win3Star.sprite = obtainedStarImage;
                     starsNumber=3;
                 }
             }
         }
+        yield return new WaitForSeconds(0);
         finalNumberOfMoves = 0;
     }
+    */
     
 
     public void ResetUI()
@@ -275,7 +321,20 @@ public class MenuManager : MonoBehaviour
             }
 
         }
-      
+
+        if (starClockStarted)
+        {
+            if (starClock < waitBetweenStars)
+            {
+                starClock += Time.deltaTime;
+            }
+            else
+            {
+                starClockStarted = false;
+            }
+
+
+        }
     }
 
 }

@@ -24765,14 +24765,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.33633476
-      value: 1.010388
-      inSlope: -7.826112
-      outSlope: -7.826112
+      time: 0.26303634
+      value: 1.2506913
+      inSlope: -5.095365
+      outSlope: -5.095365
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.02081363
+      outWeight: 0.03360726
     - serializedVersion: 3
       time: 1
       value: 1
@@ -24799,13 +24799,13 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.3413777
-      value: 0.64494884
-      inSlope: -3.8433805
-      outSlope: -3.8433805
+      value: 0.7227839
+      inSlope: -2.8527732
+      outSlope: -2.8527732
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.046081085
+      outWeight: 0.052043114
     - serializedVersion: 3
       time: 1
       value: 1
@@ -24818,9 +24818,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  squishTime: 0.8
+  squishTime: 0.5
   loseSquishable: {fileID: 1151183794}
   winSquishable: {fileID: 770247290}
+  waitBetweenStars: 0.8
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0
