@@ -24821,7 +24821,7 @@ MonoBehaviour:
   squishTime: 0.5
   loseSquishable: {fileID: 1151183794}
   winSquishable: {fileID: 770247290}
-  waitBetweenStars: 0.8
+  waitBetweenStars: 0.4
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0

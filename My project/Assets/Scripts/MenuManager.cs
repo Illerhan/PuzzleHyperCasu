@@ -127,8 +127,8 @@ public class MenuManager : MonoBehaviour
 
             //on active la win
             playerWon = true;
- 
-            CheckStar();
+
+            StartCoroutine(CheckStar());
 
             isUIDrawn = true;
             yield return new WaitForSeconds(timeBeforeWin);
@@ -142,38 +142,8 @@ public class MenuManager : MonoBehaviour
         
     }
 
-
-    void CheckStar()
-    {
-        starsNumber = 0;
-        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
-        {
-            
-            Win1Star.sprite = obtainedStarImage;
-            starsNumber = 1;
-
-            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
-            {
-
-                
-                Win2Star.sprite = obtainedStarImage;
-                starsNumber = 2;
-                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
-                {
-
-                    
-                    Win3Star.sprite = obtainedStarImage;
-                    starsNumber = 3;
-                }
-            }
-        }
-       
-        finalNumberOfMoves = 0;
-    }
-
-    //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
     /*
-    public IEnumerator CheckStar2()
+    void CheckStar()
     {
         starsNumber =0;
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
@@ -201,6 +171,36 @@ public class MenuManager : MonoBehaviour
         finalNumberOfMoves = 0;
     }
     */
+    //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
+    
+    public IEnumerator CheckStar()
+    {
+        starsNumber =0;
+        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
+        {
+            yield return new WaitForSeconds(waitBetweenStars + squishTime + timeBeforeWin);          
+            Win1Star.sprite = obtainedStarImage;
+            starsNumber=1;
+            
+            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
+            {
+               
+                yield return new WaitForSeconds(waitBetweenStars);
+                Win2Star.sprite = obtainedStarImage;
+                starsNumber=2;
+                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
+                {
+                    
+                    yield return new WaitForSeconds(waitBetweenStars);
+                    Win3Star.sprite = obtainedStarImage;
+                    starsNumber=3;
+                }
+            }
+        }
+        yield return new WaitForSeconds(0);
+        finalNumberOfMoves = 0;
+    }
+    
     
 
     public void ResetUI()
@@ -218,6 +218,7 @@ public class MenuManager : MonoBehaviour
         squishClock = 0;
         squishClockStarted = false;
 
+       
 
         playerWon = false;
         isUIDrawn = false;
