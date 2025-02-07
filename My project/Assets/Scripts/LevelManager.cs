@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public Sprite obtainedStar;
     public Color lockColor;
     public static LevelManager Instance;
+    public TextMeshProUGUI starCount;
     
     
     private void Awake()
@@ -24,6 +25,12 @@ public class LevelManager : MonoBehaviour
     
     private void Start()
     {
+        int nb = 0;
+        for (int i = 0; i < 30; i++)
+        {
+            nb = PlayerPrefs.GetInt(i.ToString()) + nb;
+            starCount.text = nb.ToString();
+        }
         
         buttonList = new List<GameObject>();
       
@@ -89,6 +96,12 @@ public class LevelManager : MonoBehaviour
         currentLevel.selectedLevel = currentLevel.levelSo[index + 1];
         SceneManager.LoadScene("Level");
     }
-    
+
+    public void ResetProgression()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("LevelMap");
+    }
+
 }
 

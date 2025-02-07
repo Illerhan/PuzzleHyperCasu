@@ -14,18 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToSpawn: []
   slimeToSpawn:
-  - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
-    slimePosition: {x: 1, y: -0.5, z: -1}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: 1.5, y: -3.5, z: -0.75}
     defaultState: 0
-  - slimePrefab: {fileID: 443885727715651613, guid: 1b72362598735fe45a70d18213b7708a, type: 3}
-    slimePosition: {x: -2.5, y: -5, z: -1}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: -2.5, y: 0.5, z: -0.75}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -0.5, y: 1.5, z: -0.75}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -0.5, y: -4.5, z: -0.75}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: eb52d8f00f0cf4741b74c84777f73071, type: 2}
+    foodOrder: {fileID: 11400000, guid: d43a8a14e6f4b1f45b70377dc798efd2, type: 2}
   nbMovesToGainStars:
-  - Moves: 2
   - Moves: 3
   - Moves: 4
+  - Moves: 5
   hasTutoFinger: 0
   hasTutoText: 1
-  tutoTextToWrite: Give them the correct food !
+  tutoTextToWrite: Don't merge slimes of different colors !
