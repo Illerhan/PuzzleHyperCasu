@@ -3896,15 +3896,15 @@ MonoBehaviour:
   m_text: It's the slime text ! It's the slime text ! It's the slime text ! It's
     the slime text !
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1edaed3e7aa13e9418afb3ff02fc7f79, type: 2}
+  m_sharedMaterial: {fileID: -7018888546180460204, guid: 1edaed3e7aa13e9418afb3ff02fc7f79, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292538623
+  m_fontColor: {r: 1, g: 0.9428388, b: 0.8537736, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3927,7 +3927,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4634,7 +4634,6 @@ MonoBehaviour:
   levelContainer: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
   currentLevel: {fileID: 11400000, guid: 04d042bf5cb067f48b65e68d62a9544b, type: 2}
   movesLeft: {fileID: 1293948313}
-  movesDone: 0
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
   textstarsMoves:
@@ -24751,7 +24750,11 @@ MonoBehaviour:
   Win1Star: {fileID: 980067741}
   Win2Star: {fileID: 1558770850}
   Win3Star: {fileID: 1141723308}
+  inGameStar1: {fileID: 1716324010}
+  inGameStar2: {fileID: 1466255508}
+  inGameStar3: {fileID: 2142077586}
   obtainedStarImage: {fileID: 21300000, guid: eea044393e27cbb4cba118d1e1c019a7, type: 3}
+  lostStarImage: {fileID: 21300000, guid: a9b96af3985ea614b95f240ae0b7ed7e, type: 3}
   verticalSquish:
     serializedVersion: 2
     m_Curve:
@@ -24821,7 +24824,7 @@ MonoBehaviour:
   squishTime: 0.5
   loseSquishable: {fileID: 1151183794}
   winSquishable: {fileID: 770247290}
-  waitBetweenStars: 0.8
+  waitBetweenStars: 0.4
 --- !u!1001 &1492552809
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -32,20 +32,21 @@ public class MenuManager : MonoBehaviour
     //false : fade in le win bg, true : fade in le lose bg
     [HideInInspector] public bool playerWon = false;
 
-    //étoiles
+    //étoiles du win screen
     [Space(10)]
     public Image Win1Star;
     public Image Win2Star;
     public Image Win3Star;
     
+    //les images des étoiles in game
+    [Space(10)]
+    public Image inGameStar1;
+    public Image inGameStar2;
+    public Image inGameStar3;
+    
 
     public Sprite obtainedStarImage;
-
-    //score pour chaque étoile
-
-    private int score_pl1;
-    private int score_pl2;
-    private int score_pl3;
+    public Sprite lostStarImage;
 
     //bool pour éviter des situations où on affiche les 2 interfaces en méme temps
     bool isUIDrawn = false;
@@ -80,6 +81,8 @@ public class MenuManager : MonoBehaviour
     public float waitBetweenStars = 0.8f;
     float starClock = 0;
     bool starClockStarted = false;
+    
+    
 
 
 
@@ -127,8 +130,8 @@ public class MenuManager : MonoBehaviour
 
             //on active la win
             playerWon = true;
- 
-            CheckStar();
+
+            StartCoroutine(CheckStar());
 
             isUIDrawn = true;
             yield return new WaitForSeconds(timeBeforeWin);
@@ -142,38 +145,8 @@ public class MenuManager : MonoBehaviour
         
     }
 
-
-    void CheckStar()
-    {
-        starsNumber = 0;
-        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
-        {
-            
-            Win1Star.sprite = obtainedStarImage;
-            starsNumber = 1;
-
-            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
-            {
-
-                
-                Win2Star.sprite = obtainedStarImage;
-                starsNumber = 2;
-                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
-                {
-
-                    
-                    Win3Star.sprite = obtainedStarImage;
-                    starsNumber = 3;
-                }
-            }
-        }
-       
-        finalNumberOfMoves = 0;
-    }
-
-    //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
     /*
-    public IEnumerator CheckStar2()
+    void CheckStar()
     {
         starsNumber =0;
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
@@ -201,6 +174,36 @@ public class MenuManager : MonoBehaviour
         finalNumberOfMoves = 0;
     }
     */
+    //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
+    
+    public IEnumerator CheckStar()
+    {
+        starsNumber =0;
+        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
+        {
+            yield return new WaitForSeconds(waitBetweenStars + squishTime + timeBeforeWin);          
+            Win1Star.sprite = obtainedStarImage;
+            starsNumber=1;
+            
+            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
+            {
+               
+                yield return new WaitForSeconds(waitBetweenStars);
+                Win2Star.sprite = obtainedStarImage;
+                starsNumber=2;
+                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
+                {
+                    
+                    yield return new WaitForSeconds(waitBetweenStars);
+                    Win3Star.sprite = obtainedStarImage;
+                    starsNumber=3;
+                }
+            }
+        }
+        yield return new WaitForSeconds(0);
+        finalNumberOfMoves = 0;
+    }
+    
     
 
     public void ResetUI()
@@ -218,6 +221,7 @@ public class MenuManager : MonoBehaviour
         squishClock = 0;
         squishClockStarted = false;
 
+       
 
         playerWon = false;
         isUIDrawn = false;
@@ -228,9 +232,23 @@ public class MenuManager : MonoBehaviour
     public void UpdateFinalMoveNumber(int numberOfMoves)
     {
         finalNumberOfMoves = numberOfMoves;
-        levelLoader.movesDone++;
         int moves = 6 - numberOfMoves;
         levelLoader.movesLeft.text = moves.ToString();
+
+        if (numberOfMoves > levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
+        {
+            inGameStar3.sprite = lostStarImage;
+            if (numberOfMoves > levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
+            {
+                inGameStar2.sprite = lostStarImage;
+                if (numberOfMoves > levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
+                {
+                    inGameStar1.sprite = lostStarImage;
+                    
+                
+                }
+            }
+        }
     }
 
 
