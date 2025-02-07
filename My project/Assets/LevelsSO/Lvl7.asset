@@ -16,8 +16,8 @@ MonoBehaviour:
   slimeToSpawn:
   - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
     slimePosition: {x: -2, y: 2, z: -1}
-    defaultState: 2
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    defaultState: 0
+  - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
     slimePosition: {x: -4.5, y: -1, z: -1}
     defaultState: 0
   - slimePrefab: {fileID: 8101620677072191007, guid: 2c587d1cf63cad343b8ef12f6a68aab1, type: 3}
@@ -35,3 +35,6 @@ MonoBehaviour:
   - Moves: 3
   - Moves: 4
   - Moves: 5
+  hasTutoFinger: 0
+  hasTutoText: 0
+  tutoTextToWrite: 

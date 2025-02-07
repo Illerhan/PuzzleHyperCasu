@@ -86,7 +86,7 @@ public class MenuManager : MonoBehaviour
     [Space(10)]
     public ParticleSystem confetti;
     public float timeBeforeConfetti = 0.2f;
-
+    bool confettiHasPlayed = false;
 
 
 
@@ -154,7 +154,12 @@ public class MenuManager : MonoBehaviour
     {
         if(confetti != null)
         {
-            confetti.Play();
+            if (confettiHasPlayed)
+            {
+                confetti.Play();
+                confettiHasPlayed = false;
+            }
+            
         }
         
     }
@@ -238,6 +243,8 @@ public class MenuManager : MonoBehaviour
         //on minimize les UIs
         winSquishable.transform.localScale = new Vector3(0.001f, 0.001f, 1);
         loseSquishable.transform.localScale = new Vector3(0.001f, 0.001f, 1);
+        confettiHasPlayed = true;
+
 
         playerWon = false;
         isUIDrawn = false;
