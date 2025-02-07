@@ -55,7 +55,7 @@ public class DragableObject : MonoBehaviour
         
         GameObject o = Instantiate(rangePrefab.gameObject);
         range = o.transform;
-        range.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
+        range.localScale = new Vector3(type.influenceRadius, 1, type.influenceRadius);
         mousePosition = Input.mousePosition - getMousePosition();
         
     }

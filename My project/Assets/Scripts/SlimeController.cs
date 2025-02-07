@@ -60,7 +60,7 @@ public class SlimeController : MonoBehaviour
             return;
 
         float distance = Vector3.Distance(transform.position, droppedItem.transform.position);
-        if (distance <= droppedItem.GetInfluenceRadius())
+        if (distance <= droppedItem.GetInfluenceRadius()-2)
         {
             co = MoveToObject(droppedItem.transform.position);
             StartCoroutine(co);
