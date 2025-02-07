@@ -6,8 +6,8 @@ public class SlimeManager : MonoBehaviour
 {
 
     public static SlimeManager Instance;
-    [SerializeField] private List<SlimeController> slimesList = new List<SlimeController>();
-
+    [SerializeField] public List<SlimeController> slimesList = new List<SlimeController>();
+    private bool hasTriggeredWin = false;
     private void Awake()
     {
         
@@ -36,6 +36,8 @@ public class SlimeManager : MonoBehaviour
 
     public void CheckSlimes()
     {
+        if (hasTriggeredWin)
+            return;
         foreach (var slime in slimesList)
         {
             if (slime.currentSize < slime.maxSize)
@@ -43,6 +45,7 @@ public class SlimeManager : MonoBehaviour
                 return;
             }
         }
+        hasTriggeredWin = true;
         StartCoroutine(MenuManager.instance.WinUI());
         MenuManager.instance.levelLoader.SavingStarsData();
     }
