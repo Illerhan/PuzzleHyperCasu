@@ -157,17 +157,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeData: {fileID: 11400000, guid: 713099c7969040a47b7721868b968952, type: 2}
-  targetItem: {fileID: 0}
   currentSize: 1
   pulseRadius: 15
   pulseForce: 10
   maxSize: 3
-  speed: 10
+  speed: 5
   currentState: 0
   rb: {fileID: 1593117213218511467}
   animBody: {fileID: 3841018357226163979}
   animFace: {fileID: 2448961219507722724}
-  pS: {fileID: 35532954078608104}
 --- !u!54 &1593117213218511467
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -364,11 +362,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c375667f7542e44dbcd64da8ba70206, type: 3}
---- !u!198 &35532954078608104 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2211668712721793798, guid: 5c375667f7542e44dbcd64da8ba70206, type: 3}
-  m_PrefabInstance: {fileID: 2220083238977419758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8530380931135297707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7542774783110930757, guid: 5c375667f7542e44dbcd64da8ba70206, type: 3}
