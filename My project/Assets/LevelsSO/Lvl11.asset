@@ -13,52 +13,68 @@ MonoBehaviour:
   m_Name: Lvl11
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 0, z: 0}
-  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 1, z: 0}
-  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+  - prefab: {fileID: 3531281159794595862, guid: b4087de08f8c6ab42b68c06f0e5f2fc0, type: 3}
     tilePosition: {x: 5, y: 2, z: 0}
-  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+  - prefab: {fileID: 3531281159794595862, guid: b4087de08f8c6ab42b68c06f0e5f2fc0, type: 3}
     tilePosition: {x: 5, y: 3, z: 0}
-  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+  - prefab: {fileID: 3531281159794595862, guid: b4087de08f8c6ab42b68c06f0e5f2fc0, type: 3}
     tilePosition: {x: 5, y: 4, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 5, z: 0}
+    tilePosition: {x: 6, y: 5, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 6, z: 0}
+    tilePosition: {x: 7, y: 5, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 7, z: 0}
+    tilePosition: {x: 8, y: 5, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 8, z: 0}
+    tilePosition: {x: 9, y: 5, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 9, z: 0}
+    tilePosition: {x: 10, y: 5, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 10, z: 0}
+    tilePosition: {x: 6, y: 6, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 11, z: 0}
+    tilePosition: {x: 7, y: 6, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 12, z: 0}
+    tilePosition: {x: 8, y: 6, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 13, z: 0}
+    tilePosition: {x: 9, y: 6, z: 0}
   - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
-    tilePosition: {x: 5, y: 14, z: 0}
+    tilePosition: {x: 10, y: 6, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 8, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 9, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 10, y: 7, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 6, y: 8, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 7, y: 8, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 8, y: 8, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 9, y: 8, z: 0}
+  - prefab: {fileID: 2177361240552532477, guid: ad7137affade28443ba1cd6303916ca7, type: 3}
+    tilePosition: {x: 10, y: 8, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 1.75, y: 0.5, z: -0.75}
+    slimePosition: {x: 1, y: -6, z: -0.75}
     defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -2.25, y: 2.5, z: -0.75}
+  - slimePrefab: {fileID: 2605752557694240235, guid: 762da9c461f1d724d870bd178720b32c, type: 3}
+    slimePosition: {x: -3, y: -2, z: -1}
     defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -3, y: -1, z: -0.75}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -2.5, y: -5.5, z: -0.75}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -1.25, y: -8, z: -0.75}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 6dd6fdc67ab38884fb74ddc319504ad7, type: 2}
+    foodOrder: {fileID: 11400000, guid: 127fc3f94eeb57241843d610dcd3e3a8, type: 2}
   nbMovesToGainStars:
   - Moves: 3
   - Moves: 4
   - Moves: 5
-  hasTutoFinger: 0
-  hasTutoText: 1
-  tutoTextToWrite: Slimes can't see through grass !
