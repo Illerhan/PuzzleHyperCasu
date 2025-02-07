@@ -3896,15 +3896,15 @@ MonoBehaviour:
   m_text: It's the slime text ! It's the slime text ! It's the slime text ! It's
     the slime text !
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1edaed3e7aa13e9418afb3ff02fc7f79, type: 2}
+  m_sharedMaterial: {fileID: -7018888546180460204, guid: 1edaed3e7aa13e9418afb3ff02fc7f79, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292538623
+  m_fontColor: {r: 1, g: 0.9428388, b: 0.8537736, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3927,7 +3927,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4090,6 +4090,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634764892}
   m_CullTransparentMesh: 1
+--- !u!1 &639758814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7355873560953859436, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
+  m_PrefabInstance: {fileID: 810316442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &651382505
 GameObject:
   m_ObjectHideFlags: 0
@@ -10711,11 +10716,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2021188252}
   m_SourcePrefab: {fileID: 100100000, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
---- !u!1 &810316443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 366789521042888029, guid: e12804b85538c394f9ab24b4aaa552ec, type: 3}
-  m_PrefabInstance: {fileID: 810316442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823485891
 GameObject:
   m_ObjectHideFlags: 0
@@ -27055,7 +27055,7 @@ MonoBehaviour:
   moveSpeed: 10
   foodList: {fileID: 0}
   parentFood: {fileID: 1283654391}
-  convoyerPrefab: {fileID: 810316443}
+  convoyerPrefab: {fileID: 639758814}
 --- !u!4 &1820255349
 Transform:
   m_ObjectHideFlags: 0
