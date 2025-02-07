@@ -59,9 +59,6 @@ public class MenuManager : MonoBehaviour
 
     float fadeLerpFactor;
 
-    //bool waitClockStarted = false;
-
-
     //effet de bounce/squish
     [Space(5)]
     public AnimationCurve verticalSquish;
@@ -98,12 +95,16 @@ public class MenuManager : MonoBehaviour
         //interface de lose activée
         if (!isUIDrawn)
         {
+            //on active la lose
             playerWon = false;
-            bgClockStarted = true;
-            squishClockStarted = true;
+
+            
 
             isUIDrawn = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBeforeLose);
+
+            bgClockStarted = true;
+            squishClockStarted = true;
             loseUIGameObject.SetActive(true);
         }
 
@@ -114,14 +115,18 @@ public class MenuManager : MonoBehaviour
         //interface de win activée
         if (!isUIDrawn)
         {
-            playerWon = true;
-            bgClockStarted = true;
-            squishClockStarted = true;
 
+            //on active la win
+            playerWon = true;
+ 
             CheckStar();
 
             isUIDrawn = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBeforeWin);
+
+            bgClockStarted = true;
+            squishClockStarted = true;
+
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
         }
@@ -270,7 +275,7 @@ public class MenuManager : MonoBehaviour
             }
 
         }
+      
     }
-
 
 }
