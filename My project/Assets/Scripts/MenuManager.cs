@@ -81,10 +81,12 @@ public class MenuManager : MonoBehaviour
     public float waitBetweenStars = 0.8f;
     float starClock = 0;
     bool starClockStarted = false;
-    
-    
 
-
+    //confetti
+    [Space(10)]
+    public ParticleSystem confetti;
+    public float timeBeforeConfetti = 0.2f;
+    bool confettiHasPlayed = false;
 
 
 
@@ -133,14 +135,31 @@ public class MenuManager : MonoBehaviour
 
             StartCoroutine(CheckStar());
 
+            yield return new WaitForSeconds(timeBeforeConfetti);
+            Yippee();
+
             isUIDrawn = true;
-            yield return new WaitForSeconds(timeBeforeWin);
+            yield return new WaitForSeconds(timeBeforeWin - timeBeforeConfetti);
 
             bgClockStarted = true;
             squishClockStarted = true;
 
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
+        }
+        
+    }
+
+    void Yippee()
+    {
+        if(confetti != null)
+        {
+            if (confettiHasPlayed)
+            {
+                confetti.Play();
+                confettiHasPlayed = false;
+            }
+            
         }
         
     }
@@ -224,6 +243,8 @@ public class MenuManager : MonoBehaviour
         //on minimize les UIs
         winSquishable.transform.localScale = new Vector3(0.001f, 0.001f, 1);
         loseSquishable.transform.localScale = new Vector3(0.001f, 0.001f, 1);
+        confettiHasPlayed = true;
+
 
         playerWon = false;
         isUIDrawn = false;

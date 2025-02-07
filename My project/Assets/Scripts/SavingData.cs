@@ -1,7 +1,6 @@
-using System;
+
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using UnityEngine;
 
 public class SavingData : MonoBehaviour
@@ -32,8 +31,6 @@ public class SavingData : MonoBehaviour
        
     }
     
-
-    
     public void SaveGameData()
     {
         string json = JsonUtility.ToJson(levelData, true);
@@ -49,7 +46,7 @@ public class SavingData : MonoBehaviour
         {
             json+=lvl;
         }
-        //Debug.Log(JsonUtility.FromJson<List<int>>(json).Count);
+        Debug.Log(JsonUtility.FromJson<List<int>>(json).Count);
         levelData = JsonUtility.FromJson<LevelData>(json);
     }
     

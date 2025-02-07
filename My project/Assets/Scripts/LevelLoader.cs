@@ -69,6 +69,7 @@ public class LevelLoader : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+        SlimeManager.Instance.slimesList.Clear();
         
         currentLevel = levelContainer.selectedLevel;
         
@@ -87,6 +88,7 @@ public class LevelLoader : MonoBehaviour
             if (slime.slimePrefab != null)
             {
                 GameObject slimeNew = Instantiate(slime.slimePrefab, slime.slimePosition, Quaternion.identity,tilemap.transform);
+                SlimeManager.Instance.RegisterSlime(slimeNew.GetComponent<SlimeController>());
                 slimeNew.GetComponent<SlimeController>().currentState = slime.defaultState;
             }
         }

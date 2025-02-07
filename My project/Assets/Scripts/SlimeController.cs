@@ -19,11 +19,11 @@ public class SlimeController : MonoBehaviour
     [SerializeField] private float pulseForce;
     private IEnumerator co;
     public int maxSize = 3;
-    private bool isGrown = false;
+    public bool isGrown = false;
     public float speed = 30f;
     public SlimeState currentState = SlimeState.Normal;
 
-    //public Rigidbody rb;
+    
 
     [SerializeField] private Animator animBody;
     [SerializeField] private Animator animFace;
@@ -34,7 +34,7 @@ public class SlimeController : MonoBehaviour
         Renderer slimRenderer = GetComponent<Renderer>();
         Color slimColor = slimeData.slimeColor;
         slimRenderer.material.color = slimColor;
-        SlimeManager.Instance.RegisterSlime(this);
+        //SlimeManager.Instance.RegisterSlime(this);
     }
 
     private void OnEnable()
@@ -99,10 +99,12 @@ public class SlimeController : MonoBehaviour
         {
             if (currentState == SlimeState.Hungry)
                 currentState = SlimeState.Normal;
+            Debug.Log($"{slimeData.slimeName} is now fully grown!");
+            SlimeManager.Instance.CheckSlimes();
             isGrown = true;
         }
 
-        SlimeManager.Instance.CheckSlimes();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -211,7 +213,6 @@ public class SlimeController : MonoBehaviour
                 break;
         }
         SlimeManager.Instance.CheckSlimes();
-
     }
 
     void CheckToMergeSlime()
@@ -233,7 +234,6 @@ public class SlimeController : MonoBehaviour
 
                 if (slime.currentSize <= smallestSlime.currentSize)
                 {
-                    Debug.Log("Assign smallest Slime");
                     smallestSlime = slime;
                     break;
                 }
