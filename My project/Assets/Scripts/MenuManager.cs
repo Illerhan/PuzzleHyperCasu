@@ -182,7 +182,7 @@ public class MenuManager : MonoBehaviour
             if(bgClock < bgFadeTime)
             {
                 bgClock += Time.deltaTime;
-                lerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
+                //lerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
 
                 //Debug.Log(bgClock);
             }

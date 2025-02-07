@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public GameObject buttonLevelsContainers;
     private List<GameObject> buttonList;
     public LevelContainer currentLevel;
-    public List<bool> unlockedlevels;
+    public Sprite obtainedStar;
     public Color lockColor;
     public static LevelManager Instance;
     
@@ -30,16 +30,34 @@ public class LevelManager : MonoBehaviour
         int count = buttonLevelsContainers.transform.childCount;
         for (int i = 0; i < count; i++)
         {
+            int nbstars = PlayerPrefs.GetInt((i).ToString());
             GameObject child = buttonLevelsContainers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
             buttonList.Add(child);
             buttonList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
             buttonList[i].name = (i).ToString();
-            
-            if (i!= 0 && !unlockedlevels[i-1])
+            Debug.Log(nbstars);
+            if (i!= 0 && PlayerPrefs.GetInt((i-1).ToString())==0)
             {
                 buttonList[i].GetComponent<Image>().color = lockColor;
                 buttonList[i].transform.GetChild(1).gameObject.SetActive(true);
                 
+            }
+            else
+            {
+                if (nbstars>=1)
+                {
+                    buttonList[i].transform.GetChild(2).GetComponent<Image>().sprite = obtainedStar;
+                    if (nbstars>=2)
+                    {
+                        buttonList[i].transform.GetChild(4).GetComponent<Image>().sprite = obtainedStar;
+                        if (nbstars >=3)
+                        {
+                            buttonList[i].transform.GetChild(3).GetComponent<Image>().sprite = obtainedStar;
+                    
+                        }
+                    
+                    }
+                }
             }
 
         }
@@ -52,7 +70,7 @@ public class LevelManager : MonoBehaviour
         
         int index = int.Parse(EventSystem.current.currentSelectedGameObject.name);
         
-        if ( index == 0 || unlockedlevels[index-1])
+        if ( index == 0 || PlayerPrefs.GetInt((index-1).ToString())>0)
         {
             currentLevel.selectedLevel = currentLevel.levelSo[index];
             SceneManager.LoadScene("Level");
