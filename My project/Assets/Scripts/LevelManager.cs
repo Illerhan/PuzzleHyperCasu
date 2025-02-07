@@ -14,10 +14,7 @@ public class LevelManager : MonoBehaviour
     public List<bool> unlockedlevels;
     public Color lockColor;
     public static LevelManager Instance;
-    public int starsNumber;
-
-    public SavingData savingData;
-    public LevelData levelData;
+    
     
     private void Awake()
     {
@@ -27,7 +24,7 @@ public class LevelManager : MonoBehaviour
     
     private void Start()
     {
-        starsNumber = 0;
+        
         buttonList = new List<GameObject>();
       
         int count = buttonLevelsContainers.transform.childCount;
@@ -74,15 +71,6 @@ public class LevelManager : MonoBehaviour
         currentLevel.selectedLevel = currentLevel.levelSo[index + 1];
         SceneManager.LoadScene("Level");
     }
-
-    public void UnlockedLevels() //considère le niveau comme complété et sauvegarde le nombre max d'étoile obtenue
-    {
-        int index = Array.IndexOf(currentLevel.levelSo, currentLevel.selectedLevel);
-        unlockedlevels[index] = true;
-        
-
-
-
-    }
+    
 }
 

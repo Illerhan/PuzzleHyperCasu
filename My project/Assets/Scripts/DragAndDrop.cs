@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class DragableObject : MonoBehaviour
 {
-    
-    
     Vector3 mousePosition;
     private bool isMooved;
-    private GameObject range;
+    private Transform range;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private Vector3 spawnZone;
     [SerializeField] private float spawnZoneRadius = 5f;
@@ -19,6 +17,7 @@ public class DragableObject : MonoBehaviour
     public static event Action<DragableObject> OnObjectMoved;
     public GameObject rangePrefab;
     public int indexInConvoyeur;
+    
     public bool IsMooved
     {
         get => isMooved;
@@ -35,9 +34,6 @@ public class DragableObject : MonoBehaviour
     private void Start()
     {
         ObjectManager.Instance.RegisterItem(this);
-        
-        
-        
     }
 
     private Vector3 getMousePosition()
@@ -48,70 +44,55 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
+        if (isMooved || MenuManager.instance.playerWon) return;
+        
         if (isFirstMove)
         {
             initialPosition = transform.position;
             spawnZone = initialPosition;
             isFirstMove = false;
         }
-        range = Instantiate(rangePrefab);
-        range.transform.localScale = new Vector3(type.influenceRadius*1.5f,1,type.influenceRadius*1.5f);
+        
+        GameObject o = Instantiate(rangePrefab.gameObject);
+        range = o.transform;
+        range.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
         mousePosition = Input.mousePosition - getMousePosition();
+        
     }
 
     private void OnMouseDrag()
     {
-        if(!isMooved)
-        {
-            if (Camera.main != null)
-            {
-                Vector3 screenMousePos = Input.mousePosition;
-                screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
-                transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
-                range.transform.position = transform.position;
-
-            }
-        }
+        if(isMooved || MenuManager.instance.playerWon) return;
         
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        
-        if (isMooved)
+        if(!isMooved && Camera.main)
         {
-            if (other.CompareTag("Slime"))
-            {
-                SlimeController slim = other.GetComponent<SlimeController>();
-                
-                if (slim.slimeData.compatibleItemTag != type.itemName)
-                {
-                    Debug.Log("Hola");
-                    slim.Bounce();
-                    Destroy(this);
-                    return;
-                }
-                slim.GrowSlim();
-                Destroy(this);
-            }
+            Vector3 screenMousePos = Input.mousePosition;
+            screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+            transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
+            range.position = transform.position;
         }
     }
 
     private void OnMouseUp()
     {
+        if(MenuManager.instance.playerWon) return;
+        
         Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (plane.Raycast(ray, out float distance))
-        {
             transform.position = ray.GetPoint(distance);
-        }
+        
+        if(isMooved) return;
 
         if (IsInsideSpawnZone(transform.position))
         {
             transform.position = initialPosition;
+            isFirstMove = false;
+            isMooved = false;
+            Destroy(range.gameObject);
         }
-        else
+        else if(!isMooved && !IsInsideSpawnZone(transform.position))
         {
             isMooved = true;
             ObjectManager.Instance.UpdateItemPosition(this);
@@ -120,15 +101,32 @@ public class DragableObject : MonoBehaviour
             OnObjectMoved?.Invoke(this);
             LevelLoader.actionCount++;
             MenuManager.instance.UpdateFinalMoveNumber(LevelLoader.actionCount);
-            
         }
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isMooved && other.CompareTag("Slime"))
+        {
+            SlimeController slim = other.GetComponent<SlimeController>();
+            
+            if (slim.slimeData.compatibleItemTag != type.itemName)
+            {
+                Debug.Log("Hola");
+                slim.Bounce();
+                Destroy(gameObject);
+            }
+            
+            slim.GrowSlime();
+            Destroy(gameObject);
+        }
+    }
+    
     private bool IsInsideSpawnZone(Vector3 position)
     {
         return Vector3.Distance(position, spawnZone) <= spawnZoneRadius;
     }
     
-
     public float GetInfluenceRadius()
     {
         return type.influenceRadius;
@@ -136,9 +134,12 @@ public class DragableObject : MonoBehaviour
 
     private void OnDestroy()
     {
-        SlimeManager.Instance.CheckSlimes();
         OnItemEaten?.Invoke(this);
         ObjectManager.Instance.UnregisterItem(this);
-        
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, type.influenceRadius);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,9 +24,10 @@ public class MenuManager : MonoBehaviour
     public float bgFadeTime = 1f;
     public AnimationCurve bgCurve;
 
+    public int starsNumber =-1;
 
     //false : fade in le win bg, true : fade in le lose bg
-    bool isWinBg = false;
+    [HideInInspector] public bool playerWon = false;
 
     //étoiles
     [Space(10)]
@@ -52,24 +54,8 @@ public class MenuManager : MonoBehaviour
     bool bgClockStarted = false;
     float bgClock = 0;
 
-    float fadeLerpFactor;
+    float lerpFactor;
 
-    //effet de bounce/squish
-    [Space(5)]
-    public AnimationCurve verticalSquish;
-    public AnimationCurve horizontalSquish;
-    public float squishTime = 1;
-    [Space(5)]
-    public GameObject loseSquishable;
-    public GameObject winSquishable;
-
-
-    bool squishClockStarted = false;
-    float squishClock = 0;
-    float verticalSquishLerpFactor;
-    float horizontalSquishLerpFactor;
-
-    Vector3 newUIScale;
 
     //singleton
     public static MenuManager instance;
@@ -79,38 +65,37 @@ public class MenuManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-
         //on cache les interfaces
         ResetUI();
 
         
     }
 
-    public void LoseUI()
+    public IEnumerator LoseUI()
     {
         //interface de lose activée
         if (!isUIDrawn)
         {
-            isWinBg = false;
+            playerWon = false;
             bgClockStarted = true;
-            squishClockStarted = true;
             isUIDrawn = true;
+            yield return new WaitForSeconds(0.5f);
             loseUIGameObject.SetActive(true);
         }
 
     }
 
-    public void WinUI()
+    public IEnumerator WinUI()
     {
         //interface de win activée
         if (!isUIDrawn)
         {
-            isWinBg = true;
+            playerWon = false;
             bgClockStarted = true;
-            squishClockStarted = true;
             CheckStar();
 
             isUIDrawn = true;
+            yield return new WaitForSeconds(0.5f);
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
         }
@@ -120,19 +105,20 @@ public class MenuManager : MonoBehaviour
     
     void CheckStar()
     {
+        starsNumber=0;
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
             Win1Star.sprite = obtainedStarImage;
-            //LevelManager.Instance.starsNumber++;
+            starsNumber=1;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
                 Win2Star.sprite = obtainedStarImage;
-                //LevelManager.Instance.starsNumber++;
+                starsNumber=2;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
                     Win3Star.sprite = obtainedStarImage;
-                    //LevelManager.Instance.starsNumber++;
+                    starsNumber=3;
                 }
             }
         }
@@ -152,11 +138,8 @@ public class MenuManager : MonoBehaviour
         //reset clocks
         bgClock = 0;
         bgClockStarted = false;
-        squishClock = 0;
-        squishClockStarted = false;
 
-        isWinBg = false;
-
+        playerWon = false;
         isUIDrawn = false;
         
         
@@ -199,7 +182,7 @@ public class MenuManager : MonoBehaviour
             if(bgClock < bgFadeTime)
             {
                 bgClock += Time.deltaTime;
-                fadeLerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
+                lerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
 
                 //Debug.Log(bgClock);
             }
@@ -208,7 +191,7 @@ public class MenuManager : MonoBehaviour
                 bgClockStarted = false;
             }
 
-            if (isWinBg)
+            if (playerWon)
             {
                 //transition du winbg
                 //calcul : alpha voulu = alpha max * pourcentage (pourcentage = temps actuel / temps max)
@@ -218,7 +201,7 @@ public class MenuManager : MonoBehaviour
                 //Debug.Log(winBgAlpha * bgClock / bgFadeTime);
 
                 
-                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * fadeLerpFactor / 255);
+                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * lerpFactor / 255);
 
 
             }
@@ -230,34 +213,8 @@ public class MenuManager : MonoBehaviour
                 //loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
                 //Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
 
-                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * fadeLerpFactor / 255);
+                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * lerpFactor / 255);
             }
-        }
-
-
-        if (squishClockStarted)
-        {
-            if (squishClock < squishTime)
-            {
-                squishClock += Time.deltaTime;
-                verticalSquishLerpFactor = bgCurve.Evaluate(squishClock / squishTime);
-                horizontalSquishLerpFactor = horizontalSquish.Evaluate(squishClock / squishTime);
-                //Debug.Log(bgClock);
-            }
-            else
-            {
-                squishClockStarted = false;
-            }
-
-            if (isWinBg)
-            {
-                winSquishable.transform.localScale = new Vector3(horizontalSquishLerpFactor, verticalSquishLerpFactor, 1);
-            }
-            else
-            {
-                loseSquishable.transform.localScale = new Vector3(horizontalSquishLerpFactor, verticalSquishLerpFactor, 1);
-            }
-
         }
 
     }
