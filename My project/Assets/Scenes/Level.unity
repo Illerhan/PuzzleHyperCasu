@@ -4629,7 +4629,6 @@ MonoBehaviour:
   levelContainer: {fileID: 11400000, guid: 7a66c025232a9ec4ebc60c88077a4dc5, type: 2}
   currentLevel: {fileID: 11400000, guid: 04d042bf5cb067f48b65e68d62a9544b, type: 2}
   movesLeft: {fileID: 1293948313}
-  movesDone: 0
   tilemap: {fileID: 1283654393}
   level: {fileID: 1332474448}
   textstarsMoves:
@@ -24751,7 +24750,11 @@ MonoBehaviour:
   Win1Star: {fileID: 980067741}
   Win2Star: {fileID: 1558770850}
   Win3Star: {fileID: 1141723308}
+  inGameStar1: {fileID: 1716324010}
+  inGameStar2: {fileID: 1466255508}
+  inGameStar3: {fileID: 2142077586}
   obtainedStarImage: {fileID: 21300000, guid: eea044393e27cbb4cba118d1e1c019a7, type: 3}
+  lostStarImage: {fileID: 21300000, guid: a9b96af3985ea614b95f240ae0b7ed7e, type: 3}
   verticalSquish:
     serializedVersion: 2
     m_Curve:

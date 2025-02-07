@@ -13,7 +13,6 @@ public class LevelLoader : MonoBehaviour
     public LevelContainer levelContainer;
     public LevellSO currentLevel;
     public TextMeshProUGUI movesLeft;
-    public int movesDone=0;
     public Tilemap tilemap;
     public TextMeshProUGUI level;
     public List<TextMeshProUGUI> textstarsMoves;
@@ -45,6 +44,7 @@ public class LevelLoader : MonoBehaviour
     Image handImage;
 
     bool hasBreakClockStarted = false;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
