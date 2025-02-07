@@ -81,9 +81,11 @@ public class MenuManager : MonoBehaviour
     public float waitBetweenStars = 0.8f;
     float starClock = 0;
     bool starClockStarted = false;
-    
-    
 
+    //confettis
+    [Space(10)]
+    public float waitBeforeParticle = 0.1f;
+    public ParticleSystem confetti1;
 
 
 
@@ -109,7 +111,6 @@ public class MenuManager : MonoBehaviour
         {
             //on active la lose
             playerWon = false;
-
             
 
             isUIDrawn = true;
@@ -131,10 +132,13 @@ public class MenuManager : MonoBehaviour
             //on active la win
             playerWon = true;
 
+            yield return new WaitForSeconds(waitBeforeParticle);
+            Yippee();
+
             StartCoroutine(CheckStar());
 
             isUIDrawn = true;
-            yield return new WaitForSeconds(timeBeforeWin);
+            yield return new WaitForSeconds(timeBeforeWin - waitBeforeParticle);
 
             bgClockStarted = true;
             squishClockStarted = true;
@@ -176,6 +180,14 @@ public class MenuManager : MonoBehaviour
     */
     //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
     
+    void Yippee()
+    {
+        confetti1.Play();
+    }
+
+
+
+
     public IEnumerator CheckStar()
     {
         starsNumber =0;
