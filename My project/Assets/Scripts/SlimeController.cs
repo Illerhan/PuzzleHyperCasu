@@ -94,13 +94,12 @@ public class SlimeController : MonoBehaviour
             return;
         animBody.Play("Manger");
         currentSize += 1;
-        transform.localScale *= 1.25f;
+        transform.localScale = new Vector3(currentSize,currentSize,currentSize);
         if (currentSize >= maxSize)
         {
             if (currentState == SlimeState.Hungry)
                 currentState = SlimeState.Normal;
             isGrown = true;
-
         }
 
         SlimeManager.Instance.CheckSlimes();
@@ -211,7 +210,7 @@ public class SlimeController : MonoBehaviour
             default:
                 break;
         }
-
+        SlimeManager.Instance.CheckSlimes();
 
     }
 
