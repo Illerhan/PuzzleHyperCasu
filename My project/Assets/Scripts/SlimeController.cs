@@ -23,7 +23,7 @@ public class SlimeController : MonoBehaviour
     public float speed = 30f;
     public SlimeState currentState = SlimeState.Normal;
 
-    public Rigidbody rb;
+    //public Rigidbody rb;
 
     [SerializeField] private Animator animBody;
     [SerializeField] private Animator animFace;
@@ -165,7 +165,7 @@ public class SlimeController : MonoBehaviour
                 continue;
             
             if (slime.slimeData.slimeName == slimeData.slimeName) continue;
-            
+            Rigidbody rb = slime.GetComponent<Rigidbody>();
             Vector3 forceDirection = (slime.transform.position - transform.position).normalized;
             rb.AddForce(forceDirection * pulseForce,ForceMode.Impulse);
         }
