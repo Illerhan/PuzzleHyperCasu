@@ -15,11 +15,14 @@ public class MenuManager : MonoBehaviour
     public GameObject loseUIGameObject;
     public Image loseBackground;
     [SerializeField] int loseBgAlpha;
+    public float timeBeforeLose = 1;
 
     [Space(10)]
     public GameObject winUIGameObject;
     public Image winBackground;
     [SerializeField] int winBgAlpha;
+    public float timeBeforeWin = 1;
+
     [Space(10)]
     public float bgFadeTime = 1f;
     public AnimationCurve bgCurve;
@@ -54,7 +57,32 @@ public class MenuManager : MonoBehaviour
     bool bgClockStarted = false;
     float bgClock = 0;
 
-    float lerpFactor;
+    float fadeLerpFactor;
+
+    //effet de bounce/squish
+    [Space(5)]
+    public AnimationCurve verticalSquish;
+    public AnimationCurve horizontalSquish;
+    public float squishTime = 1;
+    [Space(5)]
+    public GameObject loseSquishable;
+    public GameObject winSquishable;
+
+
+    bool squishClockStarted = false;
+    float squishClock = 0;
+    float verticalSquishLerpFactor;
+    float horizontalSquishLerpFactor;
+
+    Vector3 newUIScale;
+
+    //temps pour chaque étoile
+    public float waitBetweenStars = 0.8f;
+    float starClock = 0;
+    bool starClockStarted = false;
+
+
+
 
 
     //singleton
@@ -76,10 +104,16 @@ public class MenuManager : MonoBehaviour
         //interface de lose activée
         if (!isUIDrawn)
         {
+            //on active la lose
             playerWon = false;
-            bgClockStarted = true;
+
+            
+
             isUIDrawn = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBeforeLose);
+
+            bgClockStarted = true;
+            squishClockStarted = true;
             loseUIGameObject.SetActive(true);
         }
 
@@ -90,40 +124,83 @@ public class MenuManager : MonoBehaviour
         //interface de win activée
         if (!isUIDrawn)
         {
-            playerWon = false;
-            bgClockStarted = true;
+
+            //on active la win
+            playerWon = true;
+ 
             CheckStar();
 
             isUIDrawn = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBeforeWin);
+
+            bgClockStarted = true;
+            squishClockStarted = true;
+
             loseUIGameObject.SetActive(false);
             winUIGameObject.SetActive(true);
         }
         
     }
-    
-    
+
+
     void CheckStar()
     {
-        starsNumber=0;
+        starsNumber = 0;
         if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
         {
+            
+            Win1Star.sprite = obtainedStarImage;
+            starsNumber = 1;
+
+            if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
+            {
+
+                
+                Win2Star.sprite = obtainedStarImage;
+                starsNumber = 2;
+                if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
+                {
+
+                    
+                    Win3Star.sprite = obtainedStarImage;
+                    starsNumber = 3;
+                }
+            }
+        }
+       
+        finalNumberOfMoves = 0;
+    }
+
+    //une fois le système de save de stars en place, remplacer CheckStar par CheckStar2
+    /*
+    public IEnumerator CheckStar2()
+    {
+        starsNumber =0;
+        if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[2].Moves)
+        {
+            yield return new WaitForSeconds(waitBetweenStars + squishTime);          
             Win1Star.sprite = obtainedStarImage;
             starsNumber=1;
             
             if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[1].Moves)
             {
+               
+                yield return new WaitForSeconds(waitBetweenStars);
                 Win2Star.sprite = obtainedStarImage;
                 starsNumber=2;
                 if (finalNumberOfMoves <= levelLoader.currentLevel.nbMovesToGainStars[0].Moves)
                 {
+                    
+                    yield return new WaitForSeconds(waitBetweenStars);
                     Win3Star.sprite = obtainedStarImage;
                     starsNumber=3;
                 }
             }
         }
+        yield return new WaitForSeconds(0);
         finalNumberOfMoves = 0;
     }
+    */
     
 
     public void ResetUI()
@@ -138,6 +215,9 @@ public class MenuManager : MonoBehaviour
         //reset clocks
         bgClock = 0;
         bgClockStarted = false;
+        squishClock = 0;
+        squishClockStarted = false;
+
 
         playerWon = false;
         isUIDrawn = false;
@@ -182,7 +262,7 @@ public class MenuManager : MonoBehaviour
             if(bgClock < bgFadeTime)
             {
                 bgClock += Time.deltaTime;
-                //lerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
+                fadeLerpFactor = bgCurve.Evaluate(bgClock / bgFadeTime);
 
                 //Debug.Log(bgClock);
             }
@@ -201,7 +281,7 @@ public class MenuManager : MonoBehaviour
                 //Debug.Log(winBgAlpha * bgClock / bgFadeTime);
 
                 
-                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * lerpFactor / 255);
+                winBackground.color = new Color(winBackground.color.r, winBackground.color.g, winBackground.color.b, winBgAlpha * fadeLerpFactor / 255);
 
 
             }
@@ -213,11 +293,48 @@ public class MenuManager : MonoBehaviour
                 //loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * bgClock / bgFadeTime / 255);
                 //Debug.Log(loseBgAlpha * bgClock / bgFadeTime);
 
-                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * lerpFactor / 255);
+                loseBackground.color = new Color(loseBackground.color.r, loseBackground.color.g, loseBackground.color.b, loseBgAlpha * fadeLerpFactor / 255);
             }
         }
 
-    }
+        if (squishClockStarted)
+        {
+            if (squishClock < squishTime)
+            {
+                squishClock += Time.deltaTime;
+                verticalSquishLerpFactor = verticalSquish.Evaluate(squishClock / squishTime);
+                horizontalSquishLerpFactor = horizontalSquish.Evaluate(squishClock / squishTime);
+                //Debug.Log(bgClock);
+            }
+            else
+            {
+                squishClockStarted = false;
+            }
 
+            if (playerWon)
+            {
+                winSquishable.transform.localScale = new Vector3(horizontalSquishLerpFactor, verticalSquishLerpFactor, 1);
+            }
+            else
+            {
+                loseSquishable.transform.localScale = new Vector3(horizontalSquishLerpFactor, verticalSquishLerpFactor, 1);
+            }
+
+        }
+
+        if (starClockStarted)
+        {
+            if (starClock < waitBetweenStars)
+            {
+                starClock += Time.deltaTime;
+            }
+            else
+            {
+                starClockStarted = false;
+            }
+
+
+        }
+    }
 
 }
