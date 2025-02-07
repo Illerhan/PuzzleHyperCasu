@@ -56,7 +56,7 @@ public class LevelLoader : MonoBehaviour
         level.text = levelContainer.selectedLevel.name.Remove(0, 3);
         for (int i = 0; i < textstarsMoves.Count; i++)
         {
-            textstarsMoves[i].text = levelContainer.selectedLevel.nbMovesToGainStars[i].Moves.ToString();
+            textstarsMoves[i].text = (6-levelContainer.selectedLevel.nbMovesToGainStars[i].Moves).ToString();
         }
 
         handImage = tutoHandObject.GetComponent<Image>();

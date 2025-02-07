@@ -17,17 +17,26 @@ MonoBehaviour:
     tilePosition: {x: 0, y: 0, z: 0}
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -3.5, y: -1.5, z: -0.5}
-    defaultState: 2
+    slimePosition: {x: -0.5, y: 2.5, z: -0.5}
+    defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 2.25, y: -1.5, z: -0.5}
+    slimePosition: {x: 2.5, y: 0, z: -0.5}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: -0.5, y: -2.5, z: -0.5}
+    defaultState: 2
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -0.5, y: 0, z: -0.5}
+    defaultState: 2
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -0.5, y: -5.5, z: -0.5}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -3.5, y: -2.5, z: -0.5}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 681923099aeeab14ba0376d2dc9371a2, type: 2}
+    foodOrder: {fileID: 11400000, guid: 6a63dfb1313543a419270aebcd3d1957, type: 2}
   nbMovesToGainStars:
-  - Moves: 2
-  - Moves: 3
   - Moves: 4
-  hasTutoFinger: 0
-  hasTutoText: 1
-  tutoTextToWrite: Sleeping slimes do not react to food.
+  - Moves: 5
+  - Moves: 6

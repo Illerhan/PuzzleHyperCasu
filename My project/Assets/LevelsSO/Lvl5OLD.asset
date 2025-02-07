@@ -10,31 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 908e78f4b15fba3439f53474de18e45b, type: 3}
-  m_Name: Lvl8
+  m_Name: Lvl5OLD
   m_EditorClassIdentifier: 
   objectsToSpawn: []
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 1.5, y: -0.75, z: -0.75}
+    slimePosition: {x: 0.5, y: -0.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -2, y: -2.5, z: -0.75}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
-    slimePosition: {x: -2.5, y: 0.75, z: -0.75}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
-    slimePosition: {x: -0.25, y: -1.75, z: -0.75}
+    slimePosition: {x: 3, y: 2.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -0.75, y: -0.25, z: -0.75}
+    slimePosition: {x: 2, y: -5.5, z: -0.75}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: 0, y: -4, z: -0.75}
+    slimePosition: {x: -1.5, y: -4.5, z: -0.75}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 3b71ce0a46cbaec43a5e8d365579e5c3, type: 2}
+    foodOrder: {fileID: 11400000, guid: 683cd94f45307e74c87108532074b730, type: 2}
   nbMovesToGainStars:
+  - Moves: 2
+  - Moves: 3
   - Moves: 4
-  - Moves: 5
-  - Moves: 6
+  hasTutoFinger: 0
+  hasTutoText: 1
+  tutoTextToWrite: Don't merge slimes of different colors !

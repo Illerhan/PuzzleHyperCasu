@@ -16,21 +16,27 @@ MonoBehaviour:
   - prefab: {fileID: 0}
     tilePosition: {x: 0, y: 0, z: 0}
   slimeToSpawn:
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -2.5, y: 1, z: -0.5}
-    defaultState: 0
-  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: 0.5, y: -3.5, z: -0.5}
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
+    slimePosition: {x: -0.5, y: 1.25, z: -0.5}
     defaultState: 0
   - slimePrefab: {fileID: 8254833122842956610, guid: 0a7c9d556c643ea4699410b01af331aa, type: 3}
-    slimePosition: {x: -1.5, y: -1.5, z: -0.5}
+    slimePosition: {x: -2.75, y: -3.5, z: -0.5}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: 1.75, y: 0, z: -0.5}
+    defaultState: 1
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: -0.5, y: -4.5, z: -0.5}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
+    slimePosition: {x: -2.75, y: -0.25, z: -0.5}
+    defaultState: 1
+  - slimePrefab: {fileID: 8254833122842956610, guid: 0b4e5a93c72eacf42a2a9ea0c1c4df1c, type: 3}
+    slimePosition: {x: 1.75, y: -3.5, z: -0.5}
     defaultState: 1
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 3215fc288db41ab41a01d3d1a0dfbb35, type: 2}
+    foodOrder: {fileID: 11400000, guid: 18b1a72d3b975884795560337c8e85e1, type: 2}
   nbMovesToGainStars:
-  - Moves: 3
   - Moves: 4
   - Moves: 5
-  hasTutoFinger: 0
-  hasTutoText: 1
-  tutoTextToWrite: Hungry slimes are attracted to every type of food !
+  - Moves: 6

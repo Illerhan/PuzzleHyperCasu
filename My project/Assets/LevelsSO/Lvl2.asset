@@ -15,14 +15,17 @@ MonoBehaviour:
   objectsToSpawn: []
   slimeToSpawn:
   - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
-    slimePosition: {x: -0.5, y: -1.5, z: -1}
+    slimePosition: {x: 2.5, y: -2.5, z: -0.75}
+    defaultState: 0
+  - slimePrefab: {fileID: 8254833122842956610, guid: 66b354b86a7679a4c8e65c0f592ecc77, type: 3}
+    slimePosition: {x: -1.5, y: -7, z: -0.75}
     defaultState: 0
   foodToSpawn:
-    foodOrder: {fileID: 11400000, guid: 9b8ce1383dcec7648a05528142719c38, type: 2}
+    foodOrder: {fileID: 11400000, guid: 8e9df5831f36fbe4e8635189f7c4a173, type: 2}
   nbMovesToGainStars:
+  - Moves: 1
   - Moves: 2
   - Moves: 3
-  - Moves: 4
-  hasTutoFinger: 1
+  hasTutoFinger: 0
   hasTutoText: 1
-  tutoTextToWrite: Feed the slime to win !
+  tutoTextToWrite: Slimes can merge together !
