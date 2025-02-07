@@ -29,9 +29,8 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 30; i++)
         {
             nb = PlayerPrefs.GetInt(i.ToString()) + nb;
-            starCount.text = nb.ToString();
         }
-        
+        starCount.text = nb.ToString();
         buttonList = new List<GameObject>();
       
         int count = buttonLevelsContainers.transform.childCount;
