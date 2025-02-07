@@ -44,9 +44,6 @@ public class ConvoyeurFood : MonoBehaviour
         DragableObject.OnObjectMoved -= HandleFoodMoved;
     }
     
-    
-
-    // Update is called once per frame
     void Update()
     {
         if (isMoving)
@@ -93,9 +90,11 @@ public class ConvoyeurFood : MonoBehaviour
         DragableObject foodData = itemQueue.Dequeue();
         
         Vector3 offScreenPosition = positions[positions.Length - 1].position;
-        offScreenPosition.x += 3f;
+        //offScreenPosition.x += 3f;
         
-        DragableObject newFood = Instantiate(foodData.type.foodPrefab, offScreenPosition, Quaternion.identity, parentFood);
+        DragableObject newFood = Instantiate(foodData.type.foodPrefab, parentFood);
+        newFood.transform.position = offScreenPosition;
+        
         foodCount++;
         if (foodCount <= 3)
             newFood.transform.position = positions[positionIndex].position;

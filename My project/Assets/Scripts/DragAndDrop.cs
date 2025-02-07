@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class DragableObject : MonoBehaviour
 {
-    
-    
     Vector3 mousePosition;
     private bool isMooved;
-    private GameObject range;
+    private Transform range;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private Vector3 spawnZone;
     [SerializeField] private float spawnZoneRadius = 5f;
@@ -46,7 +44,7 @@ public class DragableObject : MonoBehaviour
     
     private void OnMouseDown()
     {
-        if (isMooved) return;
+        if (isMooved || MenuManager.instance.playerWon) return;
         
         if (isFirstMove)
         {
@@ -55,27 +53,29 @@ public class DragableObject : MonoBehaviour
             isFirstMove = false;
         }
         
-        range = Instantiate(rangePrefab);
-        range.transform.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
+        GameObject o = Instantiate(rangePrefab.gameObject);
+        range = o.transform;
+        range.localScale = new Vector3(type.influenceRadius * 1.5f, 1, type.influenceRadius * 1.5f);
         mousePosition = Input.mousePosition - getMousePosition();
         
     }
 
     private void OnMouseDrag()
     {
-        if(isMooved) return;
+        if(isMooved || MenuManager.instance.playerWon) return;
         
         if(!isMooved && Camera.main)
         {
             Vector3 screenMousePos = Input.mousePosition;
             screenMousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
             transform.position = Camera.main.ScreenToWorldPoint(screenMousePos);
-            range.transform.position = transform.position;
+            range.position = transform.position;
         }
     }
 
     private void OnMouseUp()
     {
+        if(MenuManager.instance.playerWon) return;
         
         Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, -1));
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

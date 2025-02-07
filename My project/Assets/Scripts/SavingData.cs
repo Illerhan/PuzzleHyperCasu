@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 public class SavingData : MonoBehaviour
 {
     private string filePath ="";
-    private LevelData levelData = new LevelData();
+    public LevelData levelData = new LevelData();
     void Awake()
     {
         if (filePath == "")
@@ -16,13 +17,13 @@ public class SavingData : MonoBehaviour
 
         if (!File.Exists(filePath))
         {
-            List<int> stars = new List<int>(34);
+            int[] stars = {};
             for (int i = 0; i < 34; i++)
             {
-                stars.Add(-1);
+                stars[i]=-1;
             }
             levelData.stars = stars;
-            SaveGameData(levelData );
+            SaveGameData();
         }
         else
         {
@@ -33,18 +34,23 @@ public class SavingData : MonoBehaviour
     
 
     
-    public void SaveGameData(LevelData levelData)
+    public void SaveGameData()
     {
         string json = JsonUtility.ToJson(levelData, true);
-        Debug.Log(json);
+        Debug.Log(levelData.stars[0]);
         File.WriteAllText(filePath, json);
-        LoadGameData();
+        //LoadGameData();
     }
     
     public void LoadGameData()
     {
-        string json = File.ReadAllText(filePath);
-        levelData.stars = JsonUtility.FromJson<List<int>>(json);
+        string json=""; 
+        foreach (string lvl in File.ReadAllLines(filePath))
+        {
+            json+=lvl;
+        }
+        //Debug.Log(JsonUtility.FromJson<List<int>>(json).Count);
+        levelData = JsonUtility.FromJson<LevelData>(json);
     }
     
    
@@ -54,5 +60,5 @@ public class SavingData : MonoBehaviour
 
 public class LevelData
 {
-    public List<int> stars;
+    public int[] stars;
 }

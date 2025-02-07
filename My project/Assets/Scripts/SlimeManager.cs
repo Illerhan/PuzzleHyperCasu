@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,32 +6,35 @@ public class SlimeManager : MonoBehaviour
 {
 
     public static SlimeManager Instance;
-
     [SerializeField] private List<SlimeController> slimesList = new List<SlimeController>();
 
     private void Awake()
     {
+        
         if (Instance == null)
             Instance = this;
     }
 
+    public void RegisterSlime(SlimeController slime)
+    {
+        slimesList.Add(slime);
+
+    }
+    
     public SlimeController[] GetSlimes()
     {
         return slimesList.ToArray();
     }
-    
-    public void RegisterSlime(SlimeController slime)
-    {
-        slimesList.Add(slime);
-    }
-    
     public void UnregisterSlime(SlimeController slime)
     {
         if(slimesList.Contains(slime))
+        {
             slimesList.Remove(slime);
+        }
+            
     }
 
-    void CheckSlimes()
+    public void CheckSlimes()
     {
         foreach (var slime in slimesList)
         {
@@ -39,14 +43,17 @@ public class SlimeManager : MonoBehaviour
                 return;
             }
         }
-        MenuManager.instance.WinUI();
-        
-        if(LevelManager.Instance)
-            LevelManager.Instance.UnlockedLevels();
+        StartCoroutine(MenuManager.instance.WinUI());
+        MenuManager.instance.levelLoader.SavingStarsData();
     }
-    
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        CheckSlimes();
+        
     }
 }
