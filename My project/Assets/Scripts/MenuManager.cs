@@ -221,7 +221,9 @@ public class MenuManager : MonoBehaviour
         squishClock = 0;
         squishClockStarted = false;
 
-       
+        //on minimize les UIs
+        winSquishable.transform.localScale = new Vector3(0.001f, 0.001f, 1);
+        loseSquishable.transform.localScale = new Vector3(0.001f, 0.001f, 1);
 
         playerWon = false;
         isUIDrawn = false;
